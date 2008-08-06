@@ -90,10 +90,10 @@ void* item_userptr(ITEM* item);
 
 enum
 {
-REQ_LEFT_ITEM     = 0x200,
-REQ_RIGHT_ITEM    = 0x201,
-REQ_UP_ITEM       = 0x202,
-REQ_DOWN_ITEM     = 0x203,
+  REQ_LEFT_ITEM     = 0x200,
+  REQ_RIGHT_ITEM    = 0x201,
+  REQ_UP_ITEM       = 0x202,
+  REQ_DOWN_ITEM     = 0x203,
   REQ_SCR_ULINE     = 0x204,
   REQ_SCR_DLINE     = 0x205,
   REQ_SCR_DPAGE     = 0x206,

@@ -76,7 +76,18 @@ int field_count(FORM* form);
 int move_field(FIELD* field, int frow, int fcol);
 int set_field_just(FIELD* field, int justification);
 int field_just(FIELD* field);
-
+int set_current_field(FORM* form, FIELD* field);
+FIELD* current_field(FORM* form);
+int set_form_page(FORM* form, int n);
+int form_page(FORM* form);
+int field_index(FIELD* field);
+int set_field_buffer(FIELD* field, int buf, char* value);
+char *field_buffer(FIELD* field, int buffer);
+int set_field_status(FIELD* field, bool status);
+bool field_status(FIELD* field);
+int set_max_field(FIELD* field, int max);
+int set_field_userptr(FIELD* field, void* userptr);
+void* field_userptr(FIELD* field);
 
 enum
 {

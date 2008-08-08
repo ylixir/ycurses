@@ -22,7 +22,7 @@ IN THE SOFTWARE.
 
 module panel;
 
-import ncurses:WINDOW;
+public import ncurses;
 
 extern (C):
 typedef void PANEL;

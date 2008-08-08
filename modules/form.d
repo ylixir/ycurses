@@ -22,28 +22,30 @@ IN THE SOFTWARE.
 
 module form;
 
-import ncurses:chtype;
+version(Tango)
+{
+  import tango.stdc.stdarg;
+}
+else
+{
+  import std.c.stdarg;
+}
+
+public import ncurses;
 
 extern(C):
 
 typedef void FIELD;
 typedef void FORM;
-enum OPTIONS
-{
-  O_VISIBLE  = 0x0001,
-  O_ACTIVE   = 0x0002,
-  O_PUBLIC   = 0x0004,
-  O_EDIT     = 0x0008,
-  O_WRAP     = 0x0010,
-  O_BLANK    = 0x0020,
-  O_AUTOSKIP = 0x0040,
-  O_NULLOK   = 0x0080,
-  O_PASSOK   = 0x0100,
-  O_STATIC   = 0x0200,
+typedef void FIELDTYPE;
 
-  O_NL_OVERLOAD = 0x0001,
-  O_BS_OVERLOAD = 0x0002
-}
+extern FIELDTYPE* TYPE_ALNUM;
+extern FIELDTYPE* TYPE_ALPHA;
+extern FIELDTYPE* TYPE_ENUM;
+extern FIELDTYPE* TYPE_INTEGER;
+extern FIELDTYPE* TYPE_NUMERIC;
+extern FIELDTYPE* TYPE_REGEXP;
+extern FIELDTYPE* TYPE_IPV4;
 
 FIELD* new_field(int height, int width,
                 int toprow, int leftcol,
@@ -88,6 +90,31 @@ bool field_status(FIELD* field);
 int set_max_field(FIELD* field, int max);
 int set_field_userptr(FIELD* field, void* userptr);
 void* field_userptr(FIELD* field);
+int set_form_win(FORM* form, WINDOW* win);
+WINDOW* form_win(FORM* form);
+int set_form_sub(FORM* form, WINDOW* sub);
+WINDOW* form_sub(FORM* form);
+int scale_form(FORM* form, int* rows, int* columns);
+int set_field_type(FIELD* field, FIELDTYPE* type, ...);
+FIELDTYPE* field_type(FIELD* field);
+void* field_arg(FIELD* field);
+int set_new_page(FIELD* field, bool new_page_flag);
+bool new_page(FIELD* field);
+FIELDTYPE* new_fieldtype(
+   bool function(FIELD*, void*) field_check,
+   bool function(int, void*) char_check);
+int free_fieldtype(FIELDTYPE* fieldtype);
+int set_fieldtype_arg(
+   FIELDTYPE* fieldtype,
+   void* function(va_list*) make_arg,
+   void* function(void*) copy_arg,
+   void  function(void*) free_arg);
+int set_fieldtype_choice(
+   FIELDTYPE *fieldtype,
+   bool function(FIELD*, void*) next_choice,
+   bool function(FIELD*, void*) prev_choice);
+FIELDTYPE* link_fieldtype(FIELDTYPE* type1,
+                         FIELDTYPE* type2);
 
 enum
 {

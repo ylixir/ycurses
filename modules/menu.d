@@ -22,22 +22,12 @@ IN THE SOFTWARE.
 
 module menu;
 
-import ncurses:KEY_MAX,WINDOW,chtype;
+public import ncurses;
 
 extern(C):
 
 typedef void ITEM;
 typedef void MENU;
-enum OPTIONS
-{
-  O_ONEVALUE      = 0x01,
-  O_SHOWDESC      = 0x02,
-  O_ROWMAJOR      = 0x04,
-  O_IGNORECASE    = 0x08,
-  O_SHOWMATCH     = 0x10,
-  O_NONCYCLIC     = 0x20,
-  O_SELECTABLE    = 0x01
-}
 
 ITEM* new_item(char* name, char* description);
 int free_item(ITEM* item);

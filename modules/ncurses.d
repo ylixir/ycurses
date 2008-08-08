@@ -88,6 +88,37 @@ struct cchar_t
   attr_t attr;
   wchar_t chars[CCHARW_MAX];
 }
+/*****
+   strictly speaking this isn't part of the curses library,
+   but the type is used in menu and form, so we will put it here
+ */
+enum OPTIONS
+{
+  /* menu vals */
+  O_ONEVALUE      = 0x01,
+  O_SHOWDESC      = 0x02,
+  O_ROWMAJOR      = 0x04,
+  O_IGNORECASE    = 0x08,
+  O_SHOWMATCH     = 0x10,
+  O_NONCYCLIC     = 0x20,
+  O_SELECTABLE    = 0x01,
+
+  /* form vals */
+  O_VISIBLE  = 0x0001,
+  O_ACTIVE   = 0x0002,
+  O_PUBLIC   = 0x0004,
+  O_EDIT     = 0x0008,
+  O_WRAP     = 0x0010,
+  O_BLANK    = 0x0020,
+  O_AUTOSKIP = 0x0040,
+  O_NULLOK   = 0x0080,
+  O_PASSOK   = 0x0100,
+  O_STATIC   = 0x0200,
+
+  O_NL_OVERLOAD = 0x0001,
+  O_BS_OVERLOAD = 0x0002
+}
+
 
 /* global variables */
 extern WINDOW* stdscr;

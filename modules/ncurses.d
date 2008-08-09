@@ -1,6 +1,7 @@
-/*
-Copyright (c) 2008 Jon "ylixir" Allen <ylixir@gmail.com>
-
+/**
+ * Authors: Jon "ylixir" Allen, ylixir@gmail.com
+ * Copyright: Copyright (c) 2008 ylixir. All rights reserved.
+ * License:
     Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including without limitation
@@ -88,7 +89,7 @@ struct cchar_t
   attr_t attr;
   wchar_t chars[CCHARW_MAX];
 }
-/*****
+/*
    strictly speaking this isn't part of the curses library,
    but the type is used in menu and form, so we will put it here
  */
@@ -132,6 +133,84 @@ extern int     TABSIZE;
 extern int     ESCDELAY;
 
 extern chtype acs_map[256];
+
+/**
+ * Add a complex character to a window, and advance the cursor.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_add_wch
+ */
+int add_wch(C:cchar_t)(C* wch)
+{
+  return wadd_wch(stdscr, wch);
+}
+int wadd_wch(WINDOW* win, cchar_t* wch);                        ///ditto
+int mvadd_wch(N:int, C:cchar_t)(N y, N x, C* wch)               ///ditto
+{
+  return mvwadd_wch(stdscr, y, x, wch);
+}
+int mvwadd_wch(W:WINDOW, N:int, C:cchar_t)
+      (W* win, N y, N x, C* wch)                                ///ditto
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wadd_wch(win, wch);
+}
+
+/**
+ * Add a complex character to a window, advance the cursor,
+ * and display it immediately.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_add_wch
+ */
+int echo_wchar(C:cchar_t)(C* wch )
+{
+  return wecho_wchar(stdscr, wch);
+}
+int wecho_wchar(WINDOW* win, cchar_t* wch);                     ///ditto
+
+/**
+ * Dump a string of complex characters out to a window.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_add_wchstr
+ */
+int add_wchstr(C:cchar_t)(C* wchstr)
+{
+  return wadd_wchstr(stdscr, wchstr);
+}
+int add_wchnstr(C:cchar_t, N:int)(C* wchstr, N n)       ///ditto
+{
+  return wadd_wchnstr(stdscr, wchstr, n);
+}
+int wadd_wchstr(W:WINDOW, C:cchar_t)(W* win, C* wchstr) ///ditto
+{
+  return wadd_wchnstr(win, wchstr, -1);
+}
+int wadd_wchnstr(WINDOW* win, cchar_t* wchstr, int n);  ///ditto
+int mvadd_wchstr(N:int, C:cchar_t)(N y, N x, C* wchstr) ///ditto
+{
+  return mvwadd_wchstr(stdscr, y, x, wchstr);
+}
+int mvadd_wchnstr(N:int,C:cchar_t)(N y, N x, C* wchstr, N n)    ///ditto
+{
+  return mvwadd_wchnstr(stdscr, y, x, wchstr, n);
+}
+int mvwadd_wchstr(W:WINDOW, N:int, C:cchar_t)
+  (W* win, N y, N x, C* wchstr)                         ///ditto
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wadd_wchstr(win, wchstr);
+}
+int mvwadd_wchnstr(W:WINDOW, N:int, C:cchar_t)
+  (W* win, N y, N x, C* wchstr, N n)                         ///ditto
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wadd_wchnstr(win, wchstr, n);
+}
 
 /* initialization functions */
 WINDOW* initscr();
@@ -215,6 +294,21 @@ int clrtobot();
 int wclrtobot(WINDOW* win);
 int clrtoeol();
 int wclrtoeol(WINDOW* win);
+
+/* output options */
+int clearok(WINDOW* win, bool bf);
+int idlok(WINDOW* win, bool bf);
+void idcok(WINDOW* win, bool bf);
+void immedok(WINDOW* win, bool bf);
+int leaveok(WINDOW* win, bool bf);
+int wsetscrreg(WINDOW* win, int top, int bot);
+int setscrreg(N:int)(N top, N bot)
+{
+  return wsetscrreg(stdscr, top, bot);
+}
+int scrollok(WINDOW* win, bool bf);
+int nl();
+int nonl();
 
 /* screen <-> file functions */
 int scr_dump(char *filename);

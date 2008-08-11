@@ -284,6 +284,891 @@ man curs_addchstr
 <br><br>
 
 </dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">addstr</span>
+<script>explorer.outline.addDecl('addstr');</script>
+
+(C : char)(C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">addnstr</span>
+<script>explorer.outline.addDecl('addnstr');</script>
+
+(C : char,N : int)(C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">waddstr</span>
+<script>explorer.outline.addDecl('waddstr');</script>
+
+(W : WINDOW,C : char)(W* <span class="funcparam">win</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">waddnstr</span>
+<script>explorer.outline.addDecl('waddnstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, char* <span class="funcparam">str</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvaddstr</span>
+<script>explorer.outline.addDecl('mvaddstr');</script>
+
+(N : int,C : char)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">mvaddnstr</span>
+<script>explorer.outline.addDecl('mvaddnstr');</script>
+
+(N : int,C : char)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwaddstr</span>
+<script>explorer.outline.addDecl('mvwaddstr');</script>
+
+(W : WINDOW,N : int,C : char)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">mvwaddnstr</span>
+<script>explorer.outline.addDecl('mvwaddnstr');</script>
+
+(W : WINDOW,N : int,C : char)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Dump a string of characters out to a window.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_addstr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">addwstr</span>
+<script>explorer.outline.addDecl('addwstr');</script>
+
+(WC : wchar_t)(WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">addnwstr</span>
+<script>explorer.outline.addDecl('addnwstr');</script>
+
+(WC : wchar_t,N : int)(WC* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">waddwstr</span>
+<script>explorer.outline.addDecl('waddwstr');</script>
+
+(W : WINDOW,WC : wchar_t)(W* <span class="funcparam">win</span>, WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">waddnwstr</span>
+<script>explorer.outline.addDecl('waddnwstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, dchar* <span class="funcparam">wstr</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvaddwstr</span>
+<script>explorer.outline.addDecl('mvaddwstr');</script>
+
+(N : int,WC : wchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">mvaddnwstr</span>
+<script>explorer.outline.addDecl('mvaddnwstr');</script>
+
+(N : int,WC : wchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwaddwstr</span>
+<script>explorer.outline.addDecl('mvwaddwstr');</script>
+
+(W : WINDOW,N : int,WC : wchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">mvwaddnwstr</span>
+<script>explorer.outline.addDecl('mvwaddnwstr');</script>
+
+(W : WINDOW,N : int,WC : wchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Dump a string of wide characters out to a window.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_addwstr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">attroff</span>
+<script>explorer.outline.addDecl('attroff');</script>
+
+(N : int)(N <span class="funcparam">attrs</span>);
+<br>int 
+<span class="currsymbol">wattroff</span>
+<script>explorer.outline.addDecl('wattroff');</script>
+
+(W : WINDOW,N : int)(W* <span class="funcparam">win</span>, N <span class="funcparam">attrs</span>);
+<br>int 
+<span class="currsymbol">attr_off</span>
+<script>explorer.outline.addDecl('attr_off');</script>
+
+(A : attr_t,V : void)(A <span class="funcparam">attrs</span>, V* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">wattr_off</span>
+<script>explorer.outline.addDecl('wattr_off');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">attrs</span>, void* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Turn off specific window attributes.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">opts</td>
+
+               
+<td>reserved for future use.  Always use <b>null</b>.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">attron</span>
+<script>explorer.outline.addDecl('attron');</script>
+
+(N : int)(N <span class="funcparam">attrs</span>);
+<br>int 
+<span class="currsymbol">wattron</span>
+<script>explorer.outline.addDecl('wattron');</script>
+
+(W : WINDOW,N : int)(W* <span class="funcparam">win</span>, N <span class="funcparam">attrs</span>);
+<br>int 
+<span class="currsymbol">attr_on</span>
+<script>explorer.outline.addDecl('attr_on');</script>
+
+(A : attr_t,V : void)(A <span class="funcparam">attrs</span>, V* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">wattr_on</span>
+<script>explorer.outline.addDecl('wattr_on');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">attrs</span>, void* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Turn on specific window attributes.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">opts</td>
+
+               
+<td>reserved for future use.  Always use <b>null</b>.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">attrset</span>
+<script>explorer.outline.addDecl('attrset');</script>
+
+(N : int)(N <span class="funcparam">attrs</span>);
+<br>int 
+<span class="currsymbol">wattrset</span>
+<script>explorer.outline.addDecl('wattrset');</script>
+
+(W : WINDOW,N : int)(W* <span class="funcparam">win</span>, N <span class="funcparam">attrs</span>);
+<br>int 
+<span class="currsymbol">attr_set</span>
+<script>explorer.outline.addDecl('attr_set');</script>
+
+(A : attr_t,S : short,V : void)(A <span class="funcparam">attrs</span>, S <span class="funcparam">pair</span>, V* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">wattr_set</span>
+<script>explorer.outline.addDecl('wattr_set');</script>
+
+(W : WINDOW,A : attr_t,S : short,V : void)(W* <span class="funcparam">win</span>, A <span class="funcparam">attrs</span>, S <span class="funcparam">pair</span>, V* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Sets all window attributes.
+<br><br>
+<b>Returns:</b><br>
+The new set of attributes.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">opts</td>
+
+               
+<td>reserved for future use.  Always use <b>null</b>.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">color_set</span>
+<script>explorer.outline.addDecl('color_set');</script>
+
+(N : short,V : void)(N <span class="funcparam">color_pair_number</span>, V* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">wcolor_set</span>
+<script>explorer.outline.addDecl('wcolor_set');</script>
+
+(WINDOW* <span class="funcparam">win</span>, short <span class="funcparam">color_pair_number</span>, void* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Sets the window's fore/back color attributes.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">color_pair_number</td>
+
+               
+<td>the color_pair that represents
+                          what the new attributes are to be.</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">opts</td>
+
+               
+<td>reserved for future use.  Always use <b>null</b>.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">standend</span>
+<script>explorer.outline.addDecl('standend');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wstandend</span>
+<script>explorer.outline.addDecl('wstandend');</script>
+
+(W : WINDOW)(W* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Turns off all attributes.
+<br><br>
+<b>Returns:</b><br>
+A_NORMAL.
+<br><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">standout</span>
+<script>explorer.outline.addDecl('standout');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wstandout</span>
+<script>explorer.outline.addDecl('wstandout');</script>
+
+(W : WINDOW)(W* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Sets the 
+<span class="currsymbol">standout</span>
+<script>explorer.outline.addDecl('standout');</script>
+
+ window attribute eg. attrset(A_STANDOUT).
+<br><br>
+<b>Returns:</b><br>
+A_STANDOUT.
+<br><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">attr_get</span>
+<script>explorer.outline.addDecl('attr_get');</script>
+
+(A : attr_t,S : short,V : void)(A* <span class="funcparam">attrs</span>, S* <span class="funcparam">pair</span>, V* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">wattr_get</span>
+<script>explorer.outline.addDecl('wattr_get');</script>
+
+(W : WINDOW,A : attr_t,S : short,V : void)(W* <span class="funcparam">win</span>, A* <span class="funcparam">attrs</span>, S* <span class="funcparam">pair</span>, V* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Gets the current attributes and color pair.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">pair</td>
+
+               
+<td>this will hold the color pair.</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">attrs</td>
+
+               
+<td>this will hold the attributes.</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">opts</td>
+
+               
+<td>reserved for future use.  Always use <b>null</b>.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">chgat</span>
+<script>explorer.outline.addDecl('chgat');</script>
+
+(N : int,A : attr_t,S : short,V : void)(N <span class="funcparam">n</span>, A <span class="funcparam">attr</span>, S <span class="funcparam">color</span>, V* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">wchgat</span>
+<script>explorer.outline.addDecl('wchgat');</script>
+
+(WINDOW* <span class="funcparam">win</span>, int <span class="funcparam">n</span>, chtype <span class="funcparam">attr</span>, short <span class="funcparam">color</span>, void* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">mvchgat</span>
+<script>explorer.outline.addDecl('mvchgat');</script>
+
+(N : int,A : attr_t,S : short,V : void)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, N <span class="funcparam">n</span>, A <span class="funcparam">attr</span>, S <span class="funcparam">color</span>, V* <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">mvwchgat</span>
+<script>explorer.outline.addDecl('mvwchgat');</script>
+
+(W : WINDOW,N : int,A : attr_t,S : short,V : void)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, N <span class="funcparam">n</span>, A <span class="funcparam">attr</span>, S <span class="funcparam">color</span>, V* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Changes attributes for n characters.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">n</td>
+
+               
+<td>number of characters to change</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">pair</td>
+
+               
+<td>this will hold the color pair.</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">attr</td>
+
+               
+<td>this will hold the attributes.</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">opts</td>
+
+               
+<td>reserved for future use.  Always use <b>null</b>.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_attr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">chtype 
+<span class="currsymbol">COLOR_PAIR</span>
+<script>explorer.outline.addDecl('COLOR_PAIR');</script>
+
+(N : int)(N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Returns color pair n.
+  
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">short 
+<span class="currsymbol">PAIR_NUMBER</span>
+<script>explorer.outline.addDecl('PAIR_NUMBER');</script>
+
+(A : attr_t)(A <span class="funcparam">attrs</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Inverse of COLOR_PAIR
+  
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_NORMAL</span>
+<script>explorer.outline.addDecl('A_NORMAL');</script>
+
+<br>
+<span class="currsymbol">WA_NORMAL</span>
+<script>explorer.outline.addDecl('WA_NORMAL');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Normal
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_STANDOUT</span>
+<script>explorer.outline.addDecl('A_STANDOUT');</script>
+
+<br>
+<span class="currsymbol">WA_STANDOUT</span>
+<script>explorer.outline.addDecl('WA_STANDOUT');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Best highlighting
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_UNDERLINE</span>
+<script>explorer.outline.addDecl('A_UNDERLINE');</script>
+
+<br>
+<span class="currsymbol">WA_UNDERLINE</span>
+<script>explorer.outline.addDecl('WA_UNDERLINE');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Underlined
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_REVERSE</span>
+<script>explorer.outline.addDecl('A_REVERSE');</script>
+
+<br>
+<span class="currsymbol">WA_REVERSE</span>
+<script>explorer.outline.addDecl('WA_REVERSE');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Reverse Video
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_BLINK</span>
+<script>explorer.outline.addDecl('A_BLINK');</script>
+
+<br>
+<span class="currsymbol">WA_BLINK</span>
+<script>explorer.outline.addDecl('WA_BLINK');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Blinking
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_DIM</span>
+<script>explorer.outline.addDecl('A_DIM');</script>
+
+<br>
+<span class="currsymbol">WA_DIM</span>
+<script>explorer.outline.addDecl('WA_DIM');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Half as bright
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_BOLD</span>
+<script>explorer.outline.addDecl('A_BOLD');</script>
+
+<br>
+<span class="currsymbol">WA_BOLD</span>
+<script>explorer.outline.addDecl('WA_BOLD');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Bold
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_PROTECT</span>
+<script>explorer.outline.addDecl('A_PROTECT');</script>
+
+<br>
+<span class="currsymbol">WA_PROTECT</span>
+<script>explorer.outline.addDecl('WA_PROTECT');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Protected
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_INVIS</span>
+<script>explorer.outline.addDecl('A_INVIS');</script>
+
+<br>
+<span class="currsymbol">WA_INVIS</span>
+<script>explorer.outline.addDecl('WA_INVIS');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Invisible/Blank
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_ALTCHARSET</span>
+<script>explorer.outline.addDecl('A_ALTCHARSET');</script>
+
+<br>
+<span class="currsymbol">WA_ALTCHARSET</span>
+<script>explorer.outline.addDecl('WA_ALTCHARSET');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Alternate character set
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_CHARTEXT</span>
+<script>explorer.outline.addDecl('A_CHARTEXT');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Bitmask to get only the character
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_ATTRIBUTES</span>
+<script>explorer.outline.addDecl('A_ATTRIBUTES');</script>
+
+<br>
+<span class="currsymbol">WA_ATTRIBUTES</span>
+<script>explorer.outline.addDecl('WA_ATTRIBUTES');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Bitmask to get everything but the character
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_COLOR</span>
+<script>explorer.outline.addDecl('A_COLOR');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Bitmask to get the color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">A_HORIZONTAL</span>
+<script>explorer.outline.addDecl('A_HORIZONTAL');</script>
+
+<br>
+<span class="currsymbol">WA_HORIZONTAL</span>
+<script>explorer.outline.addDecl('WA_HORIZONTAL');</script>
+
+<br>
+<span class="currsymbol">A_LEFT</span>
+<script>explorer.outline.addDecl('A_LEFT');</script>
+
+<br>
+<span class="currsymbol">WA_LEFT</span>
+<script>explorer.outline.addDecl('WA_LEFT');</script>
+
+<br>
+<span class="currsymbol">A_LOW</span>
+<script>explorer.outline.addDecl('A_LOW');</script>
+
+<br>
+<span class="currsymbol">WA_LOW</span>
+<script>explorer.outline.addDecl('WA_LOW');</script>
+
+<br>
+<span class="currsymbol">A_RIGHT</span>
+<script>explorer.outline.addDecl('A_RIGHT');</script>
+
+<br>
+<span class="currsymbol">WA_RIGHT</span>
+<script>explorer.outline.addDecl('WA_RIGHT');</script>
+
+<br>
+<span class="currsymbol">A_TOP</span>
+<script>explorer.outline.addDecl('A_TOP');</script>
+
+<br>
+<span class="currsymbol">WA_TOP</span>
+<script>explorer.outline.addDecl('WA_TOP');</script>
+
+<br>
+<span class="currsymbol">A_VERTICAL</span>
+<script>explorer.outline.addDecl('A_VERTICAL');</script>
+
+<br>
+<span class="currsymbol">WA_VERTICAL</span>
+<script>explorer.outline.addDecl('WA_VERTICAL');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Unimplemented?
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">beep</span>
+<script>explorer.outline.addDecl('beep');</script>
+
+();
+<br>int 
+<span class="currsymbol">flash</span>
+<script>explorer.outline.addDecl('flash');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Routines to ring bell, or flash screen
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_beep
+  
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">void 
+<span class="currsymbol">bkgdset</span>
+<script>explorer.outline.addDecl('bkgdset');</script>
+
+(C : chtype)(C <span class="funcparam">ch</span>);
+<br>void 
+<span class="currsymbol">wbkgdset</span>
+<script>explorer.outline.addDecl('wbkgdset');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">bkgd</span>
+<script>explorer.outline.addDecl('bkgd');</script>
+
+(C : chtype)(C <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">wbkgd</span>
+<script>explorer.outline.addDecl('wbkgd');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ch</span>);
+<br>chtype 
+<span class="currsymbol">getbkgd</span>
+<script>explorer.outline.addDecl('getbkgd');</script>
+
+(W : WINDOW)(W* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Manipulate the background characters of a window. The bkgd routines
+apply the setting to every character on the screen.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_bkgd
+  
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">bkgrnd</span>
+<script>explorer.outline.addDecl('bkgrnd');</script>
+
+(C : cchar_t)(C* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">wbkgrnd</span>
+<script>explorer.outline.addDecl('wbkgrnd');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">wch</span>);
+<br>void 
+<span class="currsymbol">bkgrndset</span>
+<script>explorer.outline.addDecl('bkgrndset');</script>
+
+(C : cchar_t)(C* <span class="funcparam">wch</span>);
+<br>void 
+<span class="currsymbol">wbkgrndset</span>
+<script>explorer.outline.addDecl('wbkgrndset');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">getbkgrnd</span>
+<script>explorer.outline.addDecl('getbkgrnd');</script>
+
+(C : cchar_t)(C* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">wgetbkgrnd</span>
+<script>explorer.outline.addDecl('wgetbkgrnd');</script>
+
+(W : WINDOW,C : cchar_t)(W* <span class="funcparam">win</span>, C* <span class="funcparam">wch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Manipulate the complex background characters of a window. The 
+<span class="currsymbol">bkgrnd</span>
+<script>explorer.outline.addDecl('bkgrnd');</script>
+
+
+routines apply the setting to every character on the screen.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_bkgrnd
+  
+<br><br>
+
+</dd>
 </dl>
 <script>explorer.outline.decSymbolLevel();</script>
 
@@ -292,7 +1177,7 @@ man curs_addchstr
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Sun Aug 10 21:45:18 2008
+			on Mon Aug 11 16:42:42 2008
 
 		</td></tr>
 	</table>

@@ -37,7 +37,7 @@ extern (C):
 /* types */
 typedef uint mmask_t;
 typedef uint  chtype;
-typedef chtype   attr_t;
+alias   chtype   attr_t;
 typedef void  SCREEN;
 struct MEVENT
 {
@@ -82,6 +82,7 @@ struct  WINDOW
   pdat pad;
 
   short yoffset;
+  cchar_t bkgrnd;
 }
 const size_t CCHARW_MAX = 5;
 struct cchar_t
@@ -289,6 +290,440 @@ int  mvwaddchnstr(W:WINDOW, N:int, C:chtype)
   return waddchnstr(win, chstr, n);
 }
 
+/**
+ * Dump a string of characters out to a window.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_addstr
+ */
+int addstr(C:char)(C* str)
+{
+  return waddnstr(stdscr, str, -1);
+}
+///ditto
+int addnstr(C:char, N:int)(C* str, N n)
+{
+  return waddnstr(stdscr, str, n);
+}
+///ditto
+int waddstr(W:WINDOW, C:char)(W* win, C* str)
+{
+  return waddnstr(win, str, -1);
+}
+///ditto
+int waddnstr(WINDOW* win, char* str, int n);
+///ditto
+int mvaddstr(N:int, C:char)(N y, N x, C* str)
+{
+  return mvwaddstr(stdscr, y, x, str);
+}
+///ditto
+int mvaddnstr(N:int, C:char)(N y, N x, C* str, N n)
+{
+  return mvwaddnstr(stdscr, y, x, str, n);
+}
+///ditto
+int mvwaddstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return waddnstr(win, str, -1);
+}
+///ditto
+int mvwaddnstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return waddnstr(win, str, n);
+}
+
+/**
+ * Dump a string of wide characters out to a window.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_addwstr
+ */
+int addwstr(WC:wchar_t)(WC* wstr)
+{
+  return waddwstr(stdscr, wstr);
+}
+///ditto
+int addnwstr(WC:wchar_t, N:int)(WC* wstr, N n)
+{
+  return waddnwstr(stdscr, wstr);
+}
+///ditto
+int waddwstr(W:WINDOW, WC:wchar_t)(W* win, WC* wstr)
+{
+  return waddnwstr(win, wstr, -1);
+}
+///ditto
+int waddnwstr(WINDOW* win, wchar_t* wstr, int n);
+///ditto
+int mvaddwstr(N:int, WC:wchar_t)(N y, N x, WC* wstr)
+{
+  return mvwaddwstr(stdscr, y, x, wstr);
+}
+///ditto
+int mvaddnwstr(N:int, WC:wchar_t)(N y, N x, WC* wstr, N n)
+{
+  return mvwaddnwstr(stdscr, y, x, wstr, n);
+}
+///ditto
+int mvwaddwstr(W:WINDOW, N:int, WC:wchar_t)(W* win, N y, N x, WC* wstr)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return waddwstr(win, wstr);
+}
+///ditto
+int mvwaddnwstr(W:WINDOW, N:int, WC:wchar_t)
+  (W* win, N y, N x, WC* wstr, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return waddnwstr(win, wstr, n);
+}
+
+/**
+ * Turn off specific window attributes.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * Params:
+ *     opts = reserved for future use.  Always use null.
+ * See_also: man curs_attr
+ */
+int attroff(N:int)(N attrs)
+{
+  return wattroff(stdscr, attrs);
+}
+///ditto
+int wattroff(W:WINDOW, N:int)(W* win, N attrs)
+{
+  return wattr_off(win, attrs, null);
+}
+///ditto
+int attr_off(A:attr_t, V:void)(A attrs, V* opts)
+{
+  return wattr_off(stdscr, attrs, opts);
+}
+///ditto
+int wattr_off(WINDOW* win, attr_t attrs, void* opts);
+/**
+ * Turn on specific window attributes.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * Params:
+ *     opts = reserved for future use.  Always use null.
+ * See_also: man curs_attr
+ */
+int attron(N:int)(N attrs)
+{
+  return wattron(stdscr, attrs);
+}
+///ditto
+int wattron(W:WINDOW, N:int)(W* win, N attrs)
+{
+  return wattr_on(win, cast(attr_t)attrs, null);
+}
+///ditto
+int attr_on(A:attr_t, V:void)(A attrs, V* opts)
+{
+  return wattr_on(stdscr, attrs, opts);
+}
+///ditto
+int wattr_on(WINDOW* win, attr_t attrs, void* opts);
+/**
+ * Sets all window attributes.
+ *
+ * Returns: The new set of attributes.
+ * Params:
+ *     opts = reserved for future use.  Always use null.
+ * See_also: man curs_attr
+ */
+int attrset(N:int)(N attrs)
+{
+  return wattrset(stdscr, attrs);
+}
+///ditto
+int wattrset(W:WINDOW, N:int)(W* win, N attrs)
+{
+  return win.attrs = attrs;
+}
+///ditto
+int attr_set(A:attr_t, S:short, V:void)(A attrs, S pair, V* opts)
+{
+  return wattr_set(stdscr, attrs, pair, opts);
+}
+///ditto
+int wattr_set(W:WINDOW, A:attr_t, S:short, V:void)
+  (W* win, A attrs, S pair, V* opts)
+{
+  return win.attrs = (attrs & ~A_COLOR) | COLOR_PAIR(pair);
+}
+/**
+ * Sets the window's fore/back color attributes.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * Params:
+ *      color_pair_number = the color_pair that represents
+ *                          what the new attributes are to be.
+ *                   opts = reserved for future use.  Always use null.
+ * See_also: man curs_attr
+ */
+int color_set(N:short, V:void)(N color_pair_number, V* opts)
+{
+  return wcolor_set(stdscr, color_pair_number, opts);
+}
+///ditto
+int wcolor_set(WINDOW* win, short color_pair_number, void* opts);
+/**
+ * Turns off all attributes.
+ *
+ * Returns: A_NORMAL.
+ * See_also: man curs_attr
+ */
+int standend()()
+{
+  return wstandend(stdscr);
+}
+///ditto
+int wstandend(W:WINDOW)(W* win)
+{
+  return wattrset(win, A_NORMAL);
+}
+/**
+ * Sets the standout window attribute eg. attrset(A_STANDOUT).
+ *
+ * Returns: A_STANDOUT.
+ * See_also: man curs_attr
+ */
+int standout()()
+{
+  return wstandout(stdscr);
+}
+///ditto
+int wstandout(W:WINDOW)(W* win)
+{
+  return wattrset(win, A_STANDOUT);
+}
+/**
+ * Gets the current attributes and color pair.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * Params:
+ *       pair = this will hold the color pair.
+ *      attrs = this will hold the attributes.
+ *       opts = reserved for future use.  Always use null.
+ * See_also: man curs_attr
+ */
+int attr_get(A:attr_t, S:short, V:void)(A* attrs, S* pair, V* opts)
+{
+  return wattr_get(stdscr, attrs, pair, opts);
+}
+///ditto
+int wattr_get(W:WINDOW, A:attr_t, S:short, V:void)
+  (W* win, A* attrs, S* pair, V* opts)
+{
+  if(attrs == null || pair == null)
+    return ERR;
+
+  *attrs = win.attrs;
+  *pair = PAIR_NUMBER(win.attrs);
+  return OK;
+}
+/**
+ * Changes attributes for n characters.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * Params:
+ *          n = number of characters to change
+ *       pair = this will hold the color pair.
+ *       attr = this will hold the attributes.
+ *       opts = reserved for future use.  Always use null.
+ * See_also: man curs_attr
+ */
+int chgat(N:int, A:attr_t, S:short, V:void)(N n, A attr, S color, V* opts)
+{
+  return wchgat(stdscr, n, attr, color, opts);
+}
+///ditto
+int wchgat(WINDOW* win, int n, attr_t attr, short color, void* opts);
+///ditto
+int mvchgat(N:int, A:attr_t, S:short, V:void)
+  (N y, N x, N n, A attr, S color, V* opts)
+{
+  return mvwchgat(stdscr, y, x, n, attr, color, opts);
+}
+///ditto
+int mvwchgat(W:WINDOW, N:int, A:attr_t, S:short, V:void)
+  (W* win, N y, N x, N n, A attr, S color, V* opts)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wchgat(win, n, attr, color, opts);
+}
+/**
+  Returns color pair n.
+  */
+chtype COLOR_PAIR(N:int)(N n)
+{
+  return cast(chtype)(n<<8);
+}
+/**
+  Inverse of COLOR_PAIR
+  */
+short PAIR_NUMBER(A:attr_t)(A attrs)
+{
+  return (attrs & A_COLOR) >> 8;
+}
+/**
+  Attributes that can be passed to attron, attrset, attroff or OR'd with
+  the characters passed to addch.
+  */
+enum :chtype
+{
+///Normal
+  A_NORMAL      = 0x0,
+///ditto
+  WA_NORMAL     = A_NORMAL,
+///Best highlighting
+  A_STANDOUT    = 0x10000,
+///ditto
+  WA_STANDOUT   = A_STANDOUT,
+///Underlined
+  A_UNDERLINE   = 0x20000,
+///ditto
+  WA_UNDERLINE  = A_UNDERLINE,
+///Reverse Video
+  A_REVERSE     = 0x40000,
+///ditto
+  WA_REVERSE    = A_REVERSE,
+///Blinking
+  A_BLINK       = 0x80000,
+///ditto
+  WA_BLINK      = A_BLINK,
+///Half as bright
+  A_DIM         = 0x100000,
+///ditto
+  WA_DIM        = A_DIM,
+///Bold
+  A_BOLD        = 0x200000,
+///ditto
+  WA_BOLD       = A_BOLD,
+///Protected
+  A_PROTECT     = 0x1000000,
+///ditto
+  WA_PROTECT    = A_PROTECT,
+///Invisible/Blank
+  A_INVIS       = 0x800000,
+///ditto
+  WA_INVIS      = A_INVIS,
+///Alternate character set
+  A_ALTCHARSET  = 0x400000,
+///ditto
+  WA_ALTCHARSET = A_ALTCHARSET,
+///Bitmask to get only the character
+  A_CHARTEXT    = 0xFF,
+///Bitmask to get everything but the character
+  A_ATTRIBUTES  = 0xFFFFFF00,
+///ditto
+  WA_ATTRIBUTES = A_ATTRIBUTES,
+///Bitmask to get the color
+  A_COLOR       = 0xFF00,
+///Unimplemented?
+  A_HORIZONTAL  = 0x2000000,
+///ditto
+  WA_HORIZONTAL = A_HORIZONTAL,
+///ditto
+  A_LEFT        = 0x4000000,
+///ditto
+  WA_LEFT       = A_LEFT,
+///ditto
+  A_LOW         = 0x8000000,
+///ditto
+  WA_LOW        = A_LOW,
+///ditto
+  A_RIGHT       = 0x10000000,
+///ditto
+  WA_RIGHT      = A_RIGHT,
+///ditto
+  A_TOP         = 0x20000000,
+///ditto
+  WA_TOP        = A_TOP,
+///ditto
+  A_VERTICAL    = 0x40000000,
+///ditto
+  WA_VERTICAL   = A_VERTICAL
+}
+/**
+Routines to ring bell, or flash screen
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_beep
+  */
+int beep();
+///ditto
+int flash();
+
+/**
+Manipulate the background characters of a window. The bkgd routines
+apply the setting to every character on the screen.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_bkgd
+  */
+void bkgdset(C:chtype)(C ch)
+{
+  return wbkgdset(stdscr, ch);
+}
+///ditto
+void wbkgdset(WINDOW* win, chtype ch);
+///ditto
+int bkgd(C:chtype)(C ch)
+{
+  return wbkgd(stdscr, ch);
+}
+///ditto
+int wbkgd(WINDOW* win, chtype ch);
+///ditto
+chtype getbkgd(W:WINDOW)(W* win)
+{
+  return win.bkgd;
+}
+
+/**
+Manipulate the complex background characters of a window. The bkgrnd
+routines apply the setting to every character on the screen.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_bkgrnd
+  */
+int bkgrnd(C:cchar_t)(C* wch)
+{
+  return wbkgrnd(stdscr, wch);
+}
+///ditto
+int wbkgrnd(WINDOW* win, cchar_t* wch);
+///ditto
+void bkgrndset(C:cchar_t)(C* wch )
+{
+  wbkgrndset(stdscr, wch);
+}
+///ditto
+void wbkgrndset(WINDOW* win, cchar_t* wch);
+///ditto
+int getbkgrnd(C:cchar_t)(C* wch)
+{
+  return wgetbkgrnd(stdscr, wch);
+}
+///ditto
+int wgetbkgrnd(W:WINDOW, C:cchar_t)(W* win, C* wch)
+{
+  *wch=win.bkgrnd;
+  return OK;
+}
+
 /* initialization functions */
 WINDOW* initscr();
 int endwin();
@@ -425,16 +860,6 @@ int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
 deprecated int vwprintw(WINDOW* win, char* fmt, va_list varglist);
 int vw_printw(WINDOW* win, char* fmt, va_list varglist);
 
-/* string output functions */
-int addstr(char* str);
-int addnstr(char* str, int n);
-int waddstr(WINDOW* win, char* str);
-int waddnstr(WINDOW* win, char* str, int n);
-int mvaddstr(int y, int x, char* str);
-int mvaddnstr(int y, int x, char* str, int n);
-int mvwaddstr(WINDOW* win, int y, int x, char* str);
-int mvwaddnstr(WINDOW* win, int y, int x, char* str, int n);
-
 /* character get functions */
 int getch();
 int wgetch(WINDOW* win);
@@ -543,32 +968,6 @@ int notimeout(WINDOW *win, bool bf);
 void timeout(int delay);
 void wtimeout(WINDOW *win, int delay);
 int typeahead(int fd);
-
-/* attribute functions */
-int attroff(int attrs);
-int wattroff(WINDOW* win, int attrs);
-int attron(int attrs);
-int wattron(WINDOW* win, int attrs);
-int attrset(int attrs);
-int wattrset(WINDOW* win, int attrs);
-int color_set(short color_pair_number, void* opts);
-int wcolor_set(WINDOW* win, short color_pair_number, void* opts);
-int standend();
-int wstandend(WINDOW* win);
-int standout();
-int wstandout(WINDOW* win);
-int attr_get(attr_t* attrs, short* pair, void* opts);
-int wattr_get(WINDOW* win, attr_t* attrs, short* pair, void* opts);
-int attr_off(attr_t attrs, void* opts);
-int wattr_off(WINDOW* win, attr_t attrs, void* opts);
-int attr_on(attr_t attrs, void* opts);
-int wattr_on(WINDOW* win, attr_t attrs, void* opts);
-int attr_set(attr_t attrs, short pair, void* opts);
-int wattr_set(WINDOW* win, attr_t attrs, short pair, void* opts);
-int chgat(int n, attr_t attr, short color, void* opts);
-int wchgat(WINDOW* win, int n, attr_t attr, short color, void* opts);
-int mvchgat(int y, int x, int n, attr_t attr, short color, void* opts);
-int mvwchgat(WINDOW* win, int y, int x, int n, attr_t attr, short color, void* opts);
 
 /* color functions */
 int start_color();
@@ -729,25 +1128,6 @@ enum
   ALL_MOUSE_EVENTS          = 0x7FFFFFF
 }
 
-/* attribute mask constants */
-const chtype  A_NORMAL      = 0x0;
-const chtype  A_ATTRIBUTES  = 0xFFFFFF00;
-const chtype  A_CHARTEXT    = 0xFF;
-const chtype  A_COLOR       = 0xFF00;
-const chtype  A_STANDOUT    = 0x10000;
-const chtype  A_UNDERLINE   = 0x20000;
-const chtype  A_REVERSE     = 0x40000;
-const chtype  A_BLINK       = 0x80000;
-const chtype  A_DIM         = 0x100000;
-const chtype  A_BOLD        = 0x200000;
-const chtype  A_ALTCHARSET  = 0x400000;
-const chtype  A_INVIS       = 0x800000;
-const chtype  A_PROTECT     = 0x1000000;
-const chtype  A_HORIZONTAL  = 0x2000000;
-const chtype  A_LOW         = 0x8000000;
-const chtype  A_RIGHT       = 0x10000000;
-const chtype  A_TOP         = 0x20000000;
-const chtype  A_VERTICAL    = 0x40000000;
 
 const chtype  COLOR_BLACK   = 0;
 const chtype  COLOR_RED     = 1;
@@ -758,10 +1138,6 @@ const chtype  COLOR_MAGENTA = 5;
 const chtype  COLOR_CYAN    = 6;
 const chtype  COLOR_WHITE   = 7;
 
-chtype COLOR_PAIR(N:int)(N n)
-{
-  return cast(chtype)(n<<8);
-}
 /* acs symbols */
 enum ACS
 {

@@ -212,6 +212,83 @@ int mvwadd_wchnstr(W:WINDOW, N:int, C:cchar_t)
   return wadd_wchnstr(win, wchstr, n);
 }
 
+/**
+ * Add a character to a window, and advance the cursor.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_addch
+ */
+int addch(C:chtype)(C ch)
+{
+  return waddch(stdscr, ch);
+}
+int waddch(WINDOW* win, chtype ch);             ///ditto
+int mvaddch(N:int, C:chtype)(N y, N x, C ch)    ///ditto
+{
+  return mvwaddch(stdscr, y, x, ch);
+}
+int mvwaddch(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch) ///ditto
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  waddch(win, ch);
+}
+
+/**
+ * Add a character to a window, advance the cursor,
+ * and display it immediately.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_addch
+ */
+int echochar(C:chtype)(C ch)
+{
+  return wechochar(stdscr, ch);
+}
+int wechochar(WINDOW* win, chtype ch);          ///ditto
+
+/**
+ * Dump a string of characters out to a window.
+ *
+ * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+ * See_also: man curs_addchstr
+ */
+int addchstr(C:chtype)(C* chstr)
+{
+  return waddchstr(stdscr, str);
+}
+int addchnstr(C:chtype, N:int)(C* chstr, N n)///ditto
+{
+  return waddchnstr(stdscr, chstr, n);
+}
+int waddchstr(W:WINDOW, C:chtype)(W* win, C* chstr)///ditto
+{
+  return waddchnstr(win, chstr, -1);
+}
+int waddchnstr(WINDOW* win, chtype* chstr, int n);///ditto
+int mvaddchstr(N:int, C:chtype)(N y, N x, C* chstr)///ditto
+{
+  return mvwaddchstr(stdscr, y, x, str);
+}
+int mvaddchnstr(N:int, C:chtype)(N y, N x, C* chstr, N n)///ditto
+{
+  return mvwaddchnstr(stdscr, y, x, chstr, n);
+}
+int mvwaddchstr(W:WINDOW, N:int, C:chtype)
+  (W* win, N y, N x, C* chstr)///ditto
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return waddchnstr(win, chstr, -1);
+}
+int  mvwaddchnstr(W:WINDOW, N:int, C:chtype)
+  (W* win,  N y, N x, C* chstr, N n)///ditto
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return waddchnstr(win, chstr, n);
+}
+
 /* initialization functions */
 WINDOW* initscr();
 int endwin();
@@ -347,14 +424,6 @@ int mvprintw(int y, int x, char* fmt, ...);
 int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
 deprecated int vwprintw(WINDOW* win, char* fmt, va_list varglist);
 int vw_printw(WINDOW* win, char* fmt, va_list varglist);
-
-/* single char output functions */
-int addch(chtype ch);
-int waddch(WINDOW* win, chtype ch);
-int mvaddch(int y, int x, chtype ch);
-int mvwaddch(WINDOW* win, int y, int x, chtype ch);
-int echochar(chtype ch);
-int wechochar(WINDOW* win, chtype ch);
 
 /* string output functions */
 int addstr(char* str);

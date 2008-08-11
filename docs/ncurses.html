@@ -151,13 +151,135 @@ man curs_add_wch
 <script>explorer.outline.writeEnabled = false;</script>
 
 
-<dd>Put an string of complex characters out to a window.
+<dd>Dump a string of complex characters out to a window.
 <br><br>
 <b>Returns:</b><br>
 <i>OK</i> when successful and <i>ERR</i> when not.
 <br><br>
 <b>See Also:</b><br>
 man curs_add_wchstr
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">addch</span>
+<script>explorer.outline.addDecl('addch');</script>
+
+(C : chtype)(C <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">waddch</span>
+<script>explorer.outline.addDecl('waddch');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">mvaddch</span>
+<script>explorer.outline.addDecl('mvaddch');</script>
+
+(N : int,C : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">mvwaddch</span>
+<script>explorer.outline.addDecl('mvwaddch');</script>
+
+(W : WINDOW,N : int,C : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C <span class="funcparam">ch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Add a character to a window, and advance the cursor.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_addch
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">echochar</span>
+<script>explorer.outline.addDecl('echochar');</script>
+
+(C : chtype)(C <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">wechochar</span>
+<script>explorer.outline.addDecl('wechochar');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Add a character to a window, advance the cursor,
+ and display it immediately.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_addch
+ 
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">addchstr</span>
+<script>explorer.outline.addDecl('addchstr');</script>
+
+(C : chtype)(C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">addchnstr</span>
+<script>explorer.outline.addDecl('addchnstr');</script>
+
+(C : chtype,N : int)(C* <span class="funcparam">chstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">waddchstr</span>
+<script>explorer.outline.addDecl('waddchstr');</script>
+
+(W : WINDOW,C : chtype)(W* <span class="funcparam">win</span>, C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">waddchnstr</span>
+<script>explorer.outline.addDecl('waddchnstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype* <span class="funcparam">chstr</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvaddchstr</span>
+<script>explorer.outline.addDecl('mvaddchstr');</script>
+
+(N : int,C : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">mvaddchnstr</span>
+<script>explorer.outline.addDecl('mvaddchnstr');</script>
+
+(N : int,C : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwaddchstr</span>
+<script>explorer.outline.addDecl('mvwaddchstr');</script>
+
+(W : WINDOW,N : int,C : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">mvwaddchnstr</span>
+<script>explorer.outline.addDecl('mvwaddchnstr');</script>
+
+(W : WINDOW,N : int,C : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Dump a string of characters out to a window.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_addchstr
  
 <br><br>
 
@@ -170,7 +292,7 @@ man curs_add_wchstr
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Sat Aug  9 05:37:04 2008
+			on Sun Aug 10 21:45:18 2008
 
 		</td></tr>
 	</table>

@@ -1169,6 +1169,414 @@ man curs_bkgrnd
 <br><br>
 
 </dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">border</span>
+<script>explorer.outline.addDecl('border');</script>
+
+(C : chtype)(C <span class="funcparam">ls</span>, C <span class="funcparam">rs</span>, C <span class="funcparam">ts</span>, C <span class="funcparam">bs</span>, C <span class="funcparam">tl</span>, C <span class="funcparam">tr</span>, C <span class="funcparam">bl</span>, C <span class="funcparam">br</span>);
+<br>int 
+<span class="currsymbol">wborder</span>
+<script>explorer.outline.addDecl('wborder');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ls</span>, chtype <span class="funcparam">rs</span>, chtype <span class="funcparam">ts</span>, chtype <span class="funcparam">bs</span>, chtype <span class="funcparam">tl</span>, chtype <span class="funcparam">tr</span>, chtype <span class="funcparam">bl</span>, chtype <span class="funcparam">br</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Draw a box around the window. A zero parameter for any of the character
+parameters will draw with the default ACS character for a line/corner.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">ls</td>
+
+               
+<td>left side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">rs</td>
+
+               
+<td>right side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">ts</td>
+
+               
+<td>top side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">bs</td>
+
+               
+<td>bottom side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">tl</td>
+
+               
+<td>top left-hand corner,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">tr</td>
+
+               
+<td>top right-hand corner,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">bl</td>
+
+               
+<td>bottom left-hand corner, and</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">br</td>
+
+               
+<td>bottom right-hand corner.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_border
+  
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">box</span>
+<script>explorer.outline.addDecl('box');</script>
+
+(W : WINDOW,C : chtype)(W* <span class="funcparam">win</span>, C <span class="funcparam">verch</span>, C <span class="funcparam">horch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Same as wborder(win, verch, verch, horch, horch, 0, 0, 0, 0)
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_border
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">hline</span>
+<script>explorer.outline.addDecl('hline');</script>
+
+(C : chtype,N : int)(C <span class="funcparam">ch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">whline</span>
+<script>explorer.outline.addDecl('whline');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ch</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">vline</span>
+<script>explorer.outline.addDecl('vline');</script>
+
+(C : chtype,N : int)(C <span class="funcparam">ch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">wvline</span>
+<script>explorer.outline.addDecl('wvline');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ch</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvhline</span>
+<script>explorer.outline.addDecl('mvhline');</script>
+
+(N : int,C : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C <span class="funcparam">ch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwhline</span>
+<script>explorer.outline.addDecl('mvwhline');</script>
+
+(W : WINDOW,N : int,C : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C <span class="funcparam">ch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvvline</span>
+<script>explorer.outline.addDecl('mvvline');</script>
+
+(N : int,C : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C <span class="funcparam">ch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwvline</span>
+<script>explorer.outline.addDecl('mvwvline');</script>
+
+(W : WINDOW,N : int,C : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C <span class="funcparam">ch</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Draw a horizontal or vertical line in the window.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_border
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">border_set</span>
+<script>explorer.outline.addDecl('border_set');</script>
+
+(C : cchar_t)(C* <span class="funcparam">ls</span>, C* <span class="funcparam">rs</span>, C* <span class="funcparam">ts</span>, C* <span class="funcparam">bs</span>, C* <span class="funcparam">tl</span>, C* <span class="funcparam">tr</span>, C* <span class="funcparam">bl</span>, C* <span class="funcparam">br</span>);
+<br>int 
+<span class="currsymbol">wborder_set</span>
+<script>explorer.outline.addDecl('wborder_set');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">ls</span>, cchar_t* <span class="funcparam">rs</span>, cchar_t* <span class="funcparam">ts</span>, cchar_t* <span class="funcparam">bs</span>, cchar_t* <span class="funcparam">tl</span>, cchar_t* <span class="funcparam">tr</span>, cchar_t* <span class="funcparam">bl</span>, cchar_t* <span class="funcparam">br</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Draw a box around the window. A <b>null</b> parameter for any of the character
+parameters will draw with the default ACS character for a line/corner.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">ls</td>
+
+               
+<td>left side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">rs</td>
+
+               
+<td>right side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">ts</td>
+
+               
+<td>top side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">bs</td>
+
+               
+<td>bottom side,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">tl</td>
+
+               
+<td>top left-hand corner,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">tr</td>
+
+               
+<td>top right-hand corner,</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">bl</td>
+
+               
+<td>bottom left-hand corner, and</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">br</td>
+
+               
+<td>bottom right-hand corner.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_border_set
+  
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">box_set</span>
+<script>explorer.outline.addDecl('box_set');</script>
+
+(W : WINDOW,C : cchar_t)(W* <span class="funcparam">win</span>, C* <span class="funcparam">verch</span>, C* <span class="funcparam">horch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Same as wborder_set(win, verch, verch, horch, horch, <b>null</b>, <b>null</b>, <b>null</b>,
+<b>null</b>)
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_border_set
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">hline_set</span>
+<script>explorer.outline.addDecl('hline_set');</script>
+
+(C : cchar_t,N : int)(C* <span class="funcparam">wch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">whline_set</span>
+<script>explorer.outline.addDecl('whline_set');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">wch</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvhline_set</span>
+<script>explorer.outline.addDecl('mvhline_set');</script>
+
+(N : int,C : cchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">wch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwhline_set</span>
+<script>explorer.outline.addDecl('mvwhline_set');</script>
+
+(W : WINDOW,N : int,C : cchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">wch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">vline_set</span>
+<script>explorer.outline.addDecl('vline_set');</script>
+
+(C : cchar_t,N : int)(C* <span class="funcparam">wch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">wvline_set</span>
+<script>explorer.outline.addDecl('wvline_set');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">wch</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvvline_set</span>
+<script>explorer.outline.addDecl('mvvline_set');</script>
+
+(N : int,C : cchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">wch</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwvline_set</span>
+<script>explorer.outline.addDecl('mvwvline_set');</script>
+
+(W : WINDOW,N : int,C : cchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">wch</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Draw a horizontal or vertical line in the window.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_border_set
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">erase</span>
+<script>explorer.outline.addDecl('erase');</script>
+
+()();
+<br>int 
+<span class="currsymbol">werase</span>
+<script>explorer.outline.addDecl('werase');</script>
+
+(WINDOW* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Write blanks to the whole window.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_clear
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">clear</span>
+<script>explorer.outline.addDecl('clear');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wclear</span>
+<script>explorer.outline.addDecl('wclear');</script>
+
+(WINDOW* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Similar to erase, but also forces the window to repaint from scratch on
+the next refresh.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_clear
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">clrtobot</span>
+<script>explorer.outline.addDecl('clrtobot');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wclrtobot</span>
+<script>explorer.outline.addDecl('wclrtobot');</script>
+
+(WINDOW* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Clears from cursor to bottom of the screen.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_clear
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">clrtoeol</span>
+<script>explorer.outline.addDecl('clrtoeol');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wclrtoeol</span>
+<script>explorer.outline.addDecl('wclrtoeol');</script>
+
+(WINDOW* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Clears from cursor to end of the line.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_clear
+<br><br>
+
+</dd>
 </dl>
 <script>explorer.outline.decSymbolLevel();</script>
 
@@ -1177,7 +1585,7 @@ man curs_bkgrnd
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Mon Aug 11 16:42:42 2008
+			on Tue Aug 12 13:31:08 2008
 
 		</td></tr>
 	</table>

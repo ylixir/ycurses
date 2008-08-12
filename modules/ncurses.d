@@ -694,6 +694,227 @@ int wgetbkgrnd(W:WINDOW, C:cchar_t)(W* win, C* wch)
   return OK;
 }
 
+/**
+Draw a box around the window. A zero parameter for any of the character
+parameters will draw with the default ACS character for a line/corner.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+Params:
+ls = left side,
+rs = right side,
+ts = top side,
+bs = bottom side,
+tl = top left-hand corner,
+tr = top right-hand corner,
+bl = bottom left-hand corner, and
+br = bottom right-hand corner.
+
+See_also: man curs_border
+  */
+int border(C:chtype)(C ls, C rs, C ts, C bs, C tl, C tr, C bl, C br)
+{
+  return wborder(stdscr, ls, rs, ts, bs, tl, tr, bl, br);
+}
+///ditto
+int wborder(WINDOW* win, chtype ls, chtype rs,
+  chtype ts, chtype bs, chtype tl, chtype tr,
+  chtype bl, chtype br);
+/**
+Same as wborder(win, verch, verch, horch, horch, 0, 0, 0, 0)
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_border
+*/
+int box(W:WINDOW, C:chtype)(W* win, C verch, C horch)
+{
+  return wborder(win, verch, verch, horch, horch, 0, 0, 0, 0);
+}
+/**
+Draw a horizontal or vertical line in the window.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_border
+*/
+int hline(C:chtype, N:int)(C ch, N n)
+{
+  return whline(stdscr, ch, n);
+}
+///ditto
+int whline(WINDOW* win, chtype ch, int n);
+///ditto
+int vline(C:chtype, N:int)(C ch, N n)
+{
+  return wvline(stdscr, ch, n);
+}
+///ditto
+int wvline(WINDOW* win, chtype ch, int n);
+///ditto
+int mvhline(N:int, C:chtype)(N y, N x, C ch, N n)
+{
+  return mvwhline(stdscr, y, x, ch, n);
+}
+///ditto
+int mvwhline(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return whline(win, ch, n);
+}
+///ditto
+int mvvline(N:int, C:chtype)(N y, N x, C ch, N n)
+{
+  return mvwvline(stdscr, y, x, ch, n);
+}
+///ditto
+int mvwvline(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wvline(win, ch, n);
+}
+
+/**
+Draw a box around the window. A null parameter for any of the character
+parameters will draw with the default ACS character for a line/corner.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+Params:
+ls = left side,
+rs = right side,
+ts = top side,
+bs = bottom side,
+tl = top left-hand corner,
+tr = top right-hand corner,
+bl = bottom left-hand corner, and
+br = bottom right-hand corner.
+
+See_also: man curs_border_set
+  */
+int border_set(C:cchar_t)
+  (C* ls, C* rs, C* ts, C* bs, C* tl, C* tr, C* bl, C* br)
+{
+  return wborder_set(stdscr, ls, rs, ts, bs, tl, tr, bl, br);
+}
+///ditto
+int wborder_set(
+  WINDOW* win,
+  cchar_t* ls, cchar_t* rs, cchar_t* ts, cchar_t* bs,
+  cchar_t* tl, cchar_t* tr, cchar_t* bl, cchar_t* br);
+/**
+Same as wborder_set(win, verch, verch, horch, horch, null, null, null,
+null)
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_border_set
+*/int box_set(W:WINDOW, C:cchar_t)(W* win, C* verch, C* horch)
+{
+  return wborder_set
+    (win, verch, verch, horch, horch, null, null, null, null);
+}
+/**
+Draw a horizontal or vertical line in the window.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_border_set
+*/
+int hline_set(C:cchar_t, N:int)(C* wch, N n)
+{
+  return whline_set(stdscr, wch, n);
+}
+///ditto
+int whline_set(WINDOW* win, cchar_t* wch, int n);
+///ditto
+int mvhline_set(N:int, C:cchar_t)(N y, N x, C* wch, N n)
+{
+  return mvwhline_set(stdscr, y, x, wch, n);
+}
+///ditto
+int mvwhline_set(W:WINDOW, N:int, C:cchar_t)
+  (W* win, N y, N x, C* wch, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return whline_set(win, wch, n);
+}
+///ditto
+int vline_set(C:cchar_t, N:int)(C* wch, N n)
+{
+  return wvline_set(stdscr, wch, n);
+}
+///ditto
+int wvline_set(WINDOW* win, cchar_t* wch, int n);
+///ditto
+int mvvline_set(N:int, C:cchar_t)(N y, N x, C* wch, N n)
+{
+  return mvwvline_set(stdscr, y, x, wch, n);
+}
+///ditto
+int mvwvline_set(W:WINDOW, N:int, C:cchar_t)
+  (W* win, N y, N x, C* wch, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wvline_set(win, wch, n);
+}
+
+/**
+Write blanks to the whole window.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_clear
+*/
+int erase()()
+{
+  return werase(stdscr);
+}
+///ditto
+int werase(WINDOW* win);
+/**
+Similar to erase, but also forces the window to repaint from scratch on
+the next refresh.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_clear
+*/
+int clear()()
+{
+  return wclear(stdscr);
+}
+///ditto
+int wclear(WINDOW* win);
+/**
+Clears from cursor to bottom of the screen.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_clear
+*/
+int clrtobot()()
+{
+  return wclrtobot(stdscr);
+}
+///ditto
+int wclrtobot(WINDOW* win);
+/**
+Clears from cursor to end of the line.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_clear
+*/
+int clrtoeol()()
+{
+  return wclrtoeol(stdscr);
+}
+///ditto
+int wclrtoeol(WINDOW* win);
+
 /* initialization functions */
 WINDOW* initscr();
 int endwin();
@@ -743,22 +964,6 @@ int syncok(WINDOW* win, bool bf);
 void wcursyncup(WINDOW* win);
 void wsyncdown(WINDOW* win);
 
-/* border functions */
-int border(chtype ls, chtype rs, chtype ts, chtype bs,
-  chtype tl, chtype tr, chtype bl, chtype br);
-int wborder(WINDOW* win, chtype ls, chtype rs,
-  chtype ts, chtype bs, chtype tl, chtype tr,
-  chtype bl, chtype br);
-int box(WINDOW* win, chtype verch, chtype horch);
-int hline(chtype ch, int n);
-int whline(WINDOW* win, chtype ch, int n);
-int vline(chtype ch, int n);
-int wvline(WINDOW* win, chtype ch, int n);
-int mvhline(int y, int x, chtype ch, int n);
-int mvwhline(WINDOW* win, int y, int x, chtype ch, int n);
-int mvvline(int y, int x, chtype ch, int n);
-int mvwvline(WINDOW* win, int y, int x, chtype ch, int n);
-
 /* refresh functions */
 int refresh();
 int wrefresh(WINDOW* win);
@@ -766,16 +971,6 @@ int wnoutrefresh(WINDOW* win);
 int doupdate();
 int redrawwin(WINDOW* win);
 int wredrawln(WINDOW* win, int beg_line, int num_lines);
-
-/* clearing functions */
-int erase();
-int werase(WINDOW* win);
-int clear();
-int wclear(WINDOW* win);
-int clrtobot();
-int wclrtobot(WINDOW* win);
-int clrtoeol();
-int wclrtoeol(WINDOW* win);
 
 /* output options */
 int clearok(WINDOW* win, bool bf);

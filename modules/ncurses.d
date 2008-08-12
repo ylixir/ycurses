@@ -915,6 +915,96 @@ int clrtoeol()()
 ///ditto
 int wclrtoeol(WINDOW* win);
 
+///Maximum number of colors supported
+extern int COLORS;
+///Maximum number of color pairs supported
+extern int COLOR_PAIRS;
+/**
+Call before using any other color manipulation routines.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_color
+*/
+int start_color();
+/**
+Initialize a new color pair.
+
+Params:
+pair=index of the new pair
+f=foreground color
+b=background color
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_color
+*/
+int init_pair(short pair, short f, short b);
+/**
+Changes the definition of a color.  When used all colors on the
+screen with that color change to the new definition.
+
+Params:
+color=the color to define ranged 0..COLORS
+r=red component ranged 0..1000
+g=green component ranged 0..1000
+b=blue component ranged 0..1000
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_color
+*/
+int init_color(short color, short r, short g, short b);
+/**
+Check to see whether the terminal can manipulate colors.
+
+See_also: man curs_color
+*/
+bool has_colors();
+/**
+Check to see whether you can change the color definitions.
+
+See_also: man curs_color
+*/
+bool can_change_color();
+/**
+Get the color components for the specified color.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_color
+*/
+int color_content(short color, short* r, short* g, short* b);
+/**
+Get the foreground and background colors of the specified pair.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_color
+*/
+int pair_content(short pair, short* f, short* b);
+
+/**
+Delete a character. Shifts characters to the right of the character over.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_delch
+*/
+int delch()()
+{
+  return wdelch(stdscr);
+}
+///ditto
+int wdelch(WINDOW* win);
+///ditto
+int mvdelch(N:int)(N y, N x)
+{
+  return mvwdelch(stdscr, y, x);
+}
+///ditto
+int mvwdelch(W:WINDOW, N:int)(W* win, N y, N x)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wdelch(win);
+}
+
 /* initialization functions */
 WINDOW* initscr();
 int endwin();
@@ -1133,15 +1223,6 @@ int notimeout(WINDOW *win, bool bf);
 void timeout(int delay);
 void wtimeout(WINDOW *win, int delay);
 int typeahead(int fd);
-
-/* color functions */
-int start_color();
-int init_pair(short pair, short f, short b);
-int init_color(short color, short r, short g, short b);
-bool has_colors();
-bool can_change_color();
-int color_content(short color, short* r, short* g, short* b);
-int pair_content(short pair, short* f, short* b);
 
 /* error codes */
 enum

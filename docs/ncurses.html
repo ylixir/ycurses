@@ -1577,6 +1577,254 @@ man curs_clear
 <br><br>
 
 </dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">COLORS</span>
+<script>explorer.outline.addDecl('COLORS');</script>
+
+;
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Maximum number of colors supported
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">COLOR_PAIRS</span>
+<script>explorer.outline.addDecl('COLOR_PAIRS');</script>
+
+;
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Maximum number of color pairs supported
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">start_color</span>
+<script>explorer.outline.addDecl('start_color');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Call before using any other color manipulation routines.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">init_pair</span>
+<script>explorer.outline.addDecl('init_pair');</script>
+
+(short <span class="funcparam">pair</span>, short <span class="funcparam">f</span>, short <span class="funcparam">b</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Initialize a new color <span class="funcparam">pair</span>.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">short <span class="funcparam">pair</span></td>
+
+               
+<td>index of the new <span class="funcparam">pair</span></td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">short <span class="funcparam">f</span></td>
+
+               
+<td>foreground color</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">short <span class="funcparam">b</span></td>
+
+               
+<td>background color</td></tr>
+</table><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">init_color</span>
+<script>explorer.outline.addDecl('init_color');</script>
+
+(short <span class="funcparam">color</span>, short <span class="funcparam">r</span>, short <span class="funcparam">g</span>, short <span class="funcparam">b</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Changes the definition of a <span class="funcparam">color</span>.  When used all colors on the
+screen with that <span class="funcparam">color</span> change to the new definition.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">short <span class="funcparam">color</span></td>
+
+               
+<td>the <span class="funcparam">color</span> to define ranged 0..COLORS</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">short <span class="funcparam">r</span></td>
+
+               
+<td>red component ranged 0..1000</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">short <span class="funcparam">g</span></td>
+
+               
+<td>green component ranged 0..1000</td></tr>
+<tr>
+<td nowrap valign="top" style="padding-right: 8px">short <span class="funcparam">b</span></td>
+
+               
+<td>blue component ranged 0..1000</td></tr>
+</table><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">bool 
+<span class="currsymbol">has_colors</span>
+<script>explorer.outline.addDecl('has_colors');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Check to see whether the terminal can manipulate colors.
+<br><br>
+<b>See Also:</b><br>
+man curs_color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">bool 
+<span class="currsymbol">can_change_color</span>
+<script>explorer.outline.addDecl('can_change_color');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Check to see whether you can change the color definitions.
+<br><br>
+<b>See Also:</b><br>
+man curs_color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">color_content</span>
+<script>explorer.outline.addDecl('color_content');</script>
+
+(short <span class="funcparam">color</span>, short* <span class="funcparam">r</span>, short* <span class="funcparam">g</span>, short* <span class="funcparam">b</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the <span class="funcparam">color</span> components for the specified <span class="funcparam">color</span>.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">pair_content</span>
+<script>explorer.outline.addDecl('pair_content');</script>
+
+(short <span class="funcparam">pair</span>, short* <span class="funcparam">f</span>, short* <span class="funcparam">b</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the foreground and background colors of the specified <span class="funcparam">pair</span>.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_color
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">delch</span>
+<script>explorer.outline.addDecl('delch');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wdelch</span>
+<script>explorer.outline.addDecl('wdelch');</script>
+
+(WINDOW* <span class="funcparam">win</span>);
+<br>int 
+<span class="currsymbol">mvdelch</span>
+<script>explorer.outline.addDecl('mvdelch');</script>
+
+(N : int)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>);
+<br>int 
+<span class="currsymbol">mvwdelch</span>
+<script>explorer.outline.addDecl('mvwdelch');</script>
+
+(W : WINDOW,N : int)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Delete a character. Shifts characters to the right of the character over.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_delch
+<br><br>
+
+</dd>
 </dl>
 <script>explorer.outline.decSymbolLevel();</script>
 
@@ -1585,7 +1833,7 @@ man curs_clear
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Tue Aug 12 13:31:08 2008
+			on Tue Aug 12 16:01:55 2008
 
 		</td></tr>
 	</table>

@@ -190,3 +190,22 @@ enum
   JUSTIFY_CENTER   = 2,
   JUSTIFY_RIGHT    = 3
 }
+enum :OPTIONS
+{
+  /* form vals */
+  O_VISIBLE  = 0x0001,
+  O_ACTIVE   = 0x0002,
+  O_PUBLIC   = 0x0004,
+  O_EDIT     = 0x0008,
+  O_WRAP     = 0x0010,
+  O_BLANK    = 0x0020,
+  O_AUTOSKIP = 0x0040,
+  O_NULLOK   = 0x0080,
+  O_PASSOK   = 0x0100,
+  O_STATIC   = 0x0200,
+
+  O_NL_OVERLOAD = 0x0001,
+  O_BS_OVERLOAD = 0x0002
+}
+
+

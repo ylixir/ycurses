@@ -101,4 +101,15 @@ enum
   MIN_MENU_COMMAND  = 0x200,
   MAX_MENU_COMMAND  = 0x210
 }
+enum :OPTIONS
+{
+  /* menu vals */
+  O_ONEVALUE      = 0x01,
+  O_SHOWDESC      = 0x02,
+  O_ROWMAJOR      = 0x04,
+  O_IGNORECASE    = 0x08,
+  O_SHOWMATCH     = 0x10,
+  O_NONCYCLIC     = 0x20,
+  O_SELECTABLE    = 0x01,
+}
 

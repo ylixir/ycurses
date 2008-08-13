@@ -979,6 +979,25 @@ Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
 See_also: man curs_color
 */
 int pair_content(short pair, short* f, short* b);
+enum :chtype
+{
+///Predefined colors
+  COLOR_BLACK   = 0,
+///ditto
+  COLOR_RED     = 1,
+///ditto
+  COLOR_GREEN   = 2,
+///ditto
+  COLOR_YELLOW  = 3,
+///ditto
+  COLOR_BLUE    = 4,
+///ditto
+  COLOR_MAGENTA = 5,
+///ditto
+  COLOR_CYAN    = 6,
+///ditto
+  COLOR_WHITE   = 7
+}
 
 /**
 Delete a character. Shifts characters to the right of the character over.
@@ -1004,6 +1023,185 @@ int mvwdelch(W:WINDOW, N:int)(W* win, N y, N x)
     return ERR;
   return wdelch(win);
 }
+
+/**
+Delete line, moving lines below up.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_deleteln
+*/
+int deleteln()()
+{
+  return winsdelln(stdscr, -1);
+}
+///ditto
+int wdeleteln(W:WINDOW)(W* win)
+{
+  return winsdelln(win, -1);
+}
+/**
+For n>0, insert n lines above the current line. For n<0 delete n lines
+and move the remaining lines up.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_deleteln
+*/
+int insdelln(N:int)(N n)
+{
+  return winsdelln(stdscr, n);
+}
+///ditto
+int winsdelln(WINDOW* win, int n);
+/**
+Insert a blank line above the current line.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_deleteln
+*/
+int insertln()()
+{
+  return winsdelln(stdscr, 1);
+}
+///ditto
+int winsertln(W:WINDOW)(W* win)
+{
+  return winsdelln(win, 1);
+}
+
+/**
+Get the version number of the ncurses library.
+
+See_also: man curs_extend
+*/
+char* curses_version();
+/**
+Controls whether the calling app can use nonstandard names from terminfo.
+
+See_also: man curs_extend;
+*/
+int use_extended_names(bool enable);
+
+/**
+Read a character from the terminal.
+
+Returns: $(D_PARAM KEY_CODE_YES) when a function key is pressed. $(D_PARAM OK) when a wide character is reported. $(D_PARAM ERR) otherwise.
+
+See_also: man curs_get_wch
+*/
+int get_wch(WN:wint_t)(WN* wch)
+{
+  return wget_wch(stdscr, wch);
+}
+///ditto
+int wget_wch(WINDOW* win, wint_t* wch);
+///ditto
+int mvget_wch(N:int, WN:wint_t)(N y, N x, WN* wch)
+{
+  return mvwget_wch(stdscr, y, x, wch);
+}
+///ditto
+int mvwget_wch(W:WINDOW, N:int, WN:wint_t)(W* win, N y, N x, WN* wch)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wget_wch(win, wch);
+}
+/**
+Pushes a character back onto the input queue. Only one push back is
+guaranteed.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_get_wch
+*/
+int unget_wch(wchar_t wch);
+
+/**
+Read input into a string until a newline, end of line, or end of file
+is reached. Functions that take an n parameter read at most n characters.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_get_wstr
+*/
+int get_wstr(WN:wint_t)(WN* wstr)
+{
+  return wget_wstr(stdscr, wstr);
+}
+///ditto
+int getn_wstr(WN:wint_t, N:int)(WN* wstr, N n)
+{
+  return wgetn_wstr(stdscr, wstr, n);
+}
+///ditto
+int wget_wstr(W:WINDOW, WN:wint_t)(W* win, WN* wstr)
+{
+  return wgetn_wstr(win, wstr, -1);
+}
+///ditto
+int wgetn_wstr(WINDOW* win, wint_t* wstr, int n);
+///ditto
+int mvget_wstr(N:int, WN:wint_t)(N y, N x, WN* wstr)
+{
+  return mvwget_wstr(stdscr, y, x, wstr);
+}
+///ditto
+int mvgetn_wstr(N:int, WN:wint_t)(N y, N x, WN* wstr, N n)
+{
+  return mvwgetn_wstr(stdscr, y, x, wstr, n);
+}
+///ditto
+int mvwget_wstr(W:WINDOW, N:int, WN:wint_t)(W* win, N y, N x, WN* wstr)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wget_wstr(win, wstr);
+}
+///ditto
+int mvwgetn_wstr(W:WINDOW, N:int, WN:wint_t)
+  (W* win, N y, N x, WN* wstr, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wgetn_wstr(win, wstr, n);
+}
+
+/**
+Gets a wide character string and rendering data from a cchar_t.
+If wch is not null getcchar fills out the other parameters.
+If wch is null, getcchar doesn't fill anything out, but returns
+the number of characters in the cchar_t
+
+Params:
+opts=Reserved for future use. Always null.
+
+Returns: $(D_PARAM OK) or length of string when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_getcchar
+*/
+int getcchar(cchar_t* wcval, wchar_t* wch, attr_t* attrs,
+    short* color_pair, void* opts);
+/**
+Fills out a cchar_t with color, attribute, and string data. The string
+needs to be null terminated
+
+Params:
+opts=Reserver for future use. Use null.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_getcchar
+*/
+int setcchar(cchar_t *wcval, wchar_t* wch, attr_t attrs,
+    short color_pair, void* opts );
+
+/* character get functions */
+int getch();
+int wgetch(WINDOW* win);
+int mvgetch(int y, int x);
+int mvwgetch(WINDOW* win, int y, int x);
+int ungetch(int ch);
+int has_key(int ch);
 
 /* initialization functions */
 WINDOW* initscr();
@@ -1114,14 +1312,6 @@ int mvprintw(int y, int x, char* fmt, ...);
 int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
 deprecated int vwprintw(WINDOW* win, char* fmt, va_list varglist);
 int vw_printw(WINDOW* win, char* fmt, va_list varglist);
-
-/* character get functions */
-int getch();
-int wgetch(WINDOW* win);
-int mvgetch(int y, int x);
-int mvwgetch(WINDOW* win, int y, int x);
-int ungetch(int ch);
-int has_key(int ch);
 
 /* string input */
 int getstr(char* str);
@@ -1374,15 +1564,6 @@ enum
   ALL_MOUSE_EVENTS          = 0x7FFFFFF
 }
 
-
-const chtype  COLOR_BLACK   = 0;
-const chtype  COLOR_RED     = 1;
-const chtype  COLOR_GREEN   = 2;
-const chtype  COLOR_YELLOW  = 3;
-const chtype  COLOR_BLUE    = 4;
-const chtype  COLOR_MAGENTA = 5;
-const chtype  COLOR_CYAN    = 6;
-const chtype  COLOR_WHITE   = 7;
 
 /* acs symbols */
 enum ACS

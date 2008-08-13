@@ -1791,6 +1791,48 @@ man curs_color
 </dd>
 
 <script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">COLOR_BLACK</span>
+<script>explorer.outline.addDecl('COLOR_BLACK');</script>
+
+<br>
+<span class="currsymbol">COLOR_RED</span>
+<script>explorer.outline.addDecl('COLOR_RED');</script>
+
+<br>
+<span class="currsymbol">COLOR_GREEN</span>
+<script>explorer.outline.addDecl('COLOR_GREEN');</script>
+
+<br>
+<span class="currsymbol">COLOR_YELLOW</span>
+<script>explorer.outline.addDecl('COLOR_YELLOW');</script>
+
+<br>
+<span class="currsymbol">COLOR_BLUE</span>
+<script>explorer.outline.addDecl('COLOR_BLUE');</script>
+
+<br>
+<span class="currsymbol">COLOR_MAGENTA</span>
+<script>explorer.outline.addDecl('COLOR_MAGENTA');</script>
+
+<br>
+<span class="currsymbol">COLOR_CYAN</span>
+<script>explorer.outline.addDecl('COLOR_CYAN');</script>
+
+<br>
+<span class="currsymbol">COLOR_WHITE</span>
+<script>explorer.outline.addDecl('COLOR_WHITE');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Predefined colors
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
 <dt><span class="decl">int 
 <span class="currsymbol">delch</span>
 <script>explorer.outline.addDecl('delch');</script>
@@ -1825,6 +1867,309 @@ man curs_delch
 <br><br>
 
 </dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">deleteln</span>
+<script>explorer.outline.addDecl('deleteln');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wdeleteln</span>
+<script>explorer.outline.addDecl('wdeleteln');</script>
+
+(W : WINDOW)(W* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Delete line, moving lines below up.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_deleteln
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">insdelln</span>
+<script>explorer.outline.addDecl('insdelln');</script>
+
+(N : int)(N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">winsdelln</span>
+<script>explorer.outline.addDecl('winsdelln');</script>
+
+(WINDOW* <span class="funcparam">win</span>, int <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>For n&gt;0, insert n lines above the current line. For n&lt;0 delete n lines
+and move the remaining lines up.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_deleteln
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">insertln</span>
+<script>explorer.outline.addDecl('insertln');</script>
+
+()();
+<br>int 
+<span class="currsymbol">winsertln</span>
+<script>explorer.outline.addDecl('winsertln');</script>
+
+(W : WINDOW)(W* <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Insert a blank line above the current line.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_deleteln
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">char* 
+<span class="currsymbol">curses_version</span>
+<script>explorer.outline.addDecl('curses_version');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the version number of the ncurses library.
+<br><br>
+<b>See Also:</b><br>
+man curs_extend
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">use_extended_names</span>
+<script>explorer.outline.addDecl('use_extended_names');</script>
+
+(bool <span class="funcparam">enable</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Controls whether the calling app can use nonstandard names from terminfo.
+<br><br>
+<b>See Also:</b><br>
+man curs_extend;
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">get_wch</span>
+<script>explorer.outline.addDecl('get_wch');</script>
+
+(WN : wint_t)(WN* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">wget_wch</span>
+<script>explorer.outline.addDecl('wget_wch');</script>
+
+(WINDOW* <span class="funcparam">win</span>, dchar* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">mvget_wch</span>
+<script>explorer.outline.addDecl('mvget_wch');</script>
+
+(N : int,WN : wint_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WN* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">mvwget_wch</span>
+<script>explorer.outline.addDecl('mvwget_wch');</script>
+
+(W : WINDOW,N : int,WN : wint_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WN* <span class="funcparam">wch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Read a character from the terminal.
+<br><br>
+<b>Returns:</b><br>
+<i>KEY_CODE_YES</i> when a function key is pressed. <i>OK</i> when a wide character is reported. <i>ERR</i> otherwise.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_get_wch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">unget_wch</span>
+<script>explorer.outline.addDecl('unget_wch');</script>
+
+(dchar <span class="funcparam">wch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Pushes a character back onto the input queue. Only one push back is
+guaranteed.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_get_wch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">get_wstr</span>
+<script>explorer.outline.addDecl('get_wstr');</script>
+
+(WN : wint_t)(WN* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">getn_wstr</span>
+<script>explorer.outline.addDecl('getn_wstr');</script>
+
+(WN : wint_t,N : int)(WN* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">wget_wstr</span>
+<script>explorer.outline.addDecl('wget_wstr');</script>
+
+(W : WINDOW,WN : wint_t)(W* <span class="funcparam">win</span>, WN* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">wgetn_wstr</span>
+<script>explorer.outline.addDecl('wgetn_wstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, dchar* <span class="funcparam">wstr</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvget_wstr</span>
+<script>explorer.outline.addDecl('mvget_wstr');</script>
+
+(N : int,WN : wint_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WN* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">mvgetn_wstr</span>
+<script>explorer.outline.addDecl('mvgetn_wstr');</script>
+
+(N : int,WN : wint_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WN* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwget_wstr</span>
+<script>explorer.outline.addDecl('mvwget_wstr');</script>
+
+(W : WINDOW,N : int,WN : wint_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WN* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">mvwgetn_wstr</span>
+<script>explorer.outline.addDecl('mvwgetn_wstr');</script>
+
+(W : WINDOW,N : int,WN : wint_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WN* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Read input into a string until a newline, end of line, or end of file
+is reached. Functions that take an n parameter read at most n characters.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_get_wstr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">getcchar</span>
+<script>explorer.outline.addDecl('getcchar');</script>
+
+(cchar_t* <span class="funcparam">wcval</span>, dchar* <span class="funcparam">wch</span>, chtype* <span class="funcparam">attrs</span>, short* <span class="funcparam">color_pair</span>, void* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Gets a wide character string and rendering data from a cchar_t.
+If <span class="funcparam">wch</span> is not <b>null</b> 
+<span class="currsymbol">getcchar</span>
+<script>explorer.outline.addDecl('getcchar');</script>
+
+ fills out the other parameters.
+If <span class="funcparam">wch</span> is <b>null</b>, 
+<span class="currsymbol">getcchar</span>
+<script>explorer.outline.addDecl('getcchar');</script>
+
+ doesn't fill anything out, but returns
+the number of characters in the cchar_t
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">void* <span class="funcparam">opts</span></td>
+
+               
+<td>Reserved for future use. Always <b>null</b>.</td></tr>
+</table><br>
+<b>Returns:</b><br>
+<i>OK</i> or length of string when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_getcchar
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">setcchar</span>
+<script>explorer.outline.addDecl('setcchar');</script>
+
+(cchar_t* <span class="funcparam">wcval</span>, dchar* <span class="funcparam">wch</span>, chtype <span class="funcparam">attrs</span>, short <span class="funcparam">color_pair</span>, void* <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Fills out a cchar_t with color, attribute, and string data. The string
+needs to be <b>null</b> terminated
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">void* <span class="funcparam">opts</span></td>
+
+               
+<td>Reserver for future use. Use <b>null</b>.</td></tr>
+</table><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_getcchar
+<br><br>
+
+</dd>
 </dl>
 <script>explorer.outline.decSymbolLevel();</script>
 
@@ -1833,7 +2178,7 @@ man curs_delch
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Tue Aug 12 16:01:55 2008
+			on Wed Aug 13 13:16:00 2008
 
 		</td></tr>
 	</table>

@@ -1195,21 +1195,701 @@ See_also: man curs_getcchar
 int setcchar(cchar_t *wcval, wchar_t* wch, attr_t attrs,
     short color_pair, void* opts );
 
-/* character get functions */
-int getch();
+/**
+Reads a character from a window.
+
+Returns: $(D_PARAM ERR) on failure, or a number representing a
+key on success.
+See_also: man curs_getch
+*/
+int getch()()
+{
+  return wgetch(stdscr);
+}
+///ditto
 int wgetch(WINDOW* win);
-int mvgetch(int y, int x);
-int mvwgetch(WINDOW* win, int y, int x);
+///ditto
+int mvgetch(N:int)(N y, N x)
+{
+  return mvwgetch(stdscr, y, x);
+}
+///ditto
+int mvwgetch(W:WINDOW, N:int)(W* win, N y, N x)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wgetch(win);
+}
+/**
+Puts a character back onto the input queue.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+See_also: man curs_getch
+*/
 int ungetch(int ch);
+/**
+Checks to see of the current terminal has support for a given key.
+
+Returns: Zero if the key isn't supported, or non-zero if it is.
+See_also: man curs_getch
+*/
 int has_key(int ch);
 
-/* initialization functions */
+/**
+Codes that might be returned by getch if keypad is enabled.
+See_also: man curs_getch
+*/
+enum :int
+{
+  KEY_CODE_YES  = 0x100,
+  KEY_MIN       = 0x101,
+/**
+Codes that might be returned by getch if keypad is enabled.
+See_also: man curs_getch
+*/
+  KEY_BREAK     = 0x101,
+  ///ditto
+  KEY_DOWN      = 0x102,
+  ///ditto
+  KEY_UP        = 0x103,
+  ///ditto
+  KEY_LEFT      = 0x104,
+  ///ditto
+  KEY_RIGHT     = 0x105,
+  ///ditto
+  KEY_HOME      = 0x106,
+  ///ditto
+  KEY_BACKSPACE = 0x107,
+  KEY_F0        = 0x108,
+  ///ditto
+  KEY_DL        = 0x148,
+  ///ditto
+  KEY_IL        = 0x149,
+  ///ditto
+  KEY_DC        = 0x14A,
+  ///ditto
+  KEY_IC        = 0x14B,
+  ///ditto
+  KEY_EIC       = 0x14C,
+  ///ditto
+  KEY_CLEAR     = 0x14D,
+  ///ditto
+  KEY_EOS       = 0x14E,
+  ///ditto
+  KEY_EOL       = 0x14F,
+  ///ditto
+  KEY_SF        = 0x150,
+  ///ditto
+  KEY_SR        = 0x151,
+  ///ditto
+  KEY_NPAGE     = 0x152,
+  ///ditto
+  KEY_PPAGE     = 0x153,
+  ///ditto
+  KEY_STAB      = 0x154,
+  ///ditto
+  KEY_CTAB      = 0x155,
+  ///ditto
+  KEY_CATAB     = 0x156,
+  ///ditto
+  KEY_ENTER     = 0x157,
+  ///ditto
+  KEY_SRESET    = 0x158,
+  ///ditto
+  KEY_RESET     = 0x159,
+  ///ditto
+  KEY_PRINT     = 0x15A,
+  ///ditto
+  KEY_LL        = 0x15B,
+  ///ditto
+  KEY_A1        = 0x15C,
+  ///ditto
+  KEY_A3        = 0x15D,
+  ///ditto
+  KEY_B2        = 0x15E,
+  ///ditto
+  KEY_C1        = 0x15F,
+  ///ditto
+  KEY_C3        = 0x160,
+  ///ditto
+  KEY_BTAB      = 0x161,
+  ///ditto
+  KEY_BEG       = 0x162,
+  ///ditto
+  KEY_CANCEL    = 0x163,
+  ///ditto
+  KEY_CLOSE     = 0x164,
+  ///ditto
+  KEY_COMMAND   = 0x165,
+  ///ditto
+  KEY_COPY      = 0x166,
+  ///ditto
+  KEY_CREATE    = 0x167,
+  ///ditto
+  KEY_END       = 0x168,
+  ///ditto
+  KEY_EXIT      = 0x169,
+  ///ditto
+  KEY_FIND      = 0x16A,
+  ///ditto
+  KEY_HELP      = 0x16B,
+  ///ditto
+  KEY_MARK      = 0x16C,
+  ///ditto
+  KEY_MESSAGE   = 0x16D,
+  ///ditto
+  KEY_MOVE      = 0x16E,
+  ///ditto
+  KEY_NEXT      = 0x16F,
+  ///ditto
+  KEY_OPEN      = 0x170,
+  ///ditto
+  KEY_OPTIONS   = 0x171,
+  ///ditto
+  KEY_PREVIOUS  = 0x172,
+  ///ditto
+  KEY_REDO      = 0x173,
+  ///ditto
+  KEY_REFERENCE = 0x174,
+  ///ditto
+  KEY_REFRESH   = 0x175,
+  ///ditto
+  KEY_REPLACE   = 0x176,
+  ///ditto
+  KEY_RESTART   = 0x177,
+  ///ditto
+  KEY_RESUME    = 0x178,
+  ///ditto
+  KEY_SAVE      = 0x179,
+  ///ditto
+  KEY_SBEG      = 0x17A,
+  ///ditto
+  KEY_SCANCEL   = 0x17B,
+  ///ditto
+  KEY_SCOMMAND  = 0x17C,
+  ///ditto
+  KEY_SCOPY     = 0x17D,
+  ///ditto
+  KEY_SCREATE   = 0x17E,
+  ///ditto
+  KEY_SDC       = 0x17F,
+  ///ditto
+  KEY_SDL       = 0x180,
+  ///ditto
+  KEY_SELECT    = 0x181,
+  ///ditto
+  KEY_SEND      = 0x182,
+  ///ditto
+  KEY_SEOL      = 0x183,
+  ///ditto
+  KEY_SEXIT     = 0x184,
+  ///ditto
+  KEY_SFIND     = 0x185,
+  ///ditto
+  KEY_SHELP     = 0x186,
+  ///ditto
+  KEY_SHOME     = 0x187,
+  ///ditto
+  KEY_SIC       = 0x188,
+  ///ditto
+  KEY_SLEFT     = 0x189,
+  ///ditto
+  KEY_SMESSAGE  = 0x18A,
+  ///ditto
+  KEY_SMOVE     = 0x18B,
+  ///ditto
+  KEY_SNEXT     = 0x18C,
+  ///ditto
+  KEY_SOPTIONS  = 0x18D,
+  ///ditto
+  KEY_SPREVIOUS = 0x18E,
+  ///ditto
+  KEY_SPRINT    = 0x18F,
+  ///ditto
+  KEY_SREDO     = 0x190,
+  ///ditto
+  KEY_SREPLACE  = 0x191,
+  ///ditto
+  KEY_SRIGHT    = 0x192,
+  ///ditto
+  KEY_SRSUME    = 0x193,
+  ///ditto
+  KEY_SSAVE     = 0x194,
+  ///ditto
+  KEY_SSUSPEND  = 0x195,
+  ///ditto
+  KEY_SUNDO     = 0x196,
+  ///ditto
+  KEY_SUSPEND   = 0x197,
+  ///ditto
+  KEY_UNDO      = 0x198,
+  ///ditto
+  KEY_MOUSE     = 0x199,
+  ///ditto
+  KEY_RESIZE    = 0x19A,
+  ///ditto
+  KEY_EVENT     = 0x19B,
+  ///ditto
+  KEY_MAX       = 0x1FF
+}
+/**
+Macro to that returns the value of the appropriate function key that
+getch may return if keypad is enabled.
+
+Params:
+n=min 0. max 63.
+
+See_also: man curs_getch
+*/
+int KEY_F(N:int)(N n)
+in
+{
+  assert (n>=0, "Invalid value for KEY_F(n)");
+  assert (n<=63, "Invalid value for KEY_F(n)");
+}
+out (result)
+{
+  assert (result < KEY_DL, "Invalid value for KEY_F(n)");
+}
+body
+{
+  return KEY_F0 + n;
+}
+
+/**
+Get a string from the keyboard.  Input is terminated with newline/carriage
+return, or when the specified maximum number is reached.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_getstr
+*/
+int getstr(C:char)(C* str)
+{
+  return wgetstr(stdscr, str);
+}
+///ditto
+int getnstr(C:char, N:int)(C* str, N n)
+{
+  return wgetnstr(stdscr, str, n);
+}
+///ditto
+int wgetstr(W:WINDOW, C:char)(W* win, C* str)
+{
+  return wgetnstr(win, str, -1);
+}
+///ditto
+int wgetnstr(WINDOW* win, char* str, int n);
+///ditto
+int mvgetstr(N:int, C:char)(N y, N x, C* str)
+{
+  return mvwgetstr(stdscr, y, x, str);
+}
+///ditto
+int mvwgetstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wgetstr(win, str);
+}
+///ditto
+int mvgetnstr(N:int, C:char)(N y, N x, C* str, N n)
+{
+  return mvwgetnstr(stdscr, y, x, str, n);
+}
+///ditto
+int mvwgetnstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wgetnstr(win, str, n);
+}
+
+/**
+Get the coordinates of the cursor in the given window.
+
+See_also: man_getyx
+*/
+void getyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
+{
+  y = getcury(win);
+  x = getcurx(win);
+}
+///ditto
+int getcurx(U:WINDOW*)(U win)
+{
+  return win ? win.curx : ERR;
+}
+///ditto
+int getcury(U:WINDOW*)(U win)
+{
+  return win ? win.cury : ERR;
+}
+/**
+Get the coordinates of subwindow win relative to the parent window.
+If it's not, $(D_PARAM ERR) is placed in the coordinates.
+
+See_also: man_getyx
+*/
+void getparyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
+{
+  y = getpary(win);
+  x = getparx(win);
+}
+///ditto
+int getpary(U:WINDOW*)(U win)
+{
+  return win ? win.pary : ERR;
+}
+///ditto
+int getparx(U:WINDOW*)(U win)
+{
+  return win ? win.parx : ERR;
+}
+/**
+Get the beginning coordinates and the size of a window.
+
+See_also: man_getyx
+*/
+void getbegyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
+{
+  y = getbegy(win);
+  x = getbegx(win);
+}
+///ditto
+int getbegy(U:WINDOW*)(U win)
+{
+  return win ? win.begy : ERR;
+}
+///ditto
+int getbegx(U:WINDOW*)(U win)
+{
+  return win ? win.begx : ERR;
+}
+///ditto
+void getmaxyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
+{
+  y = getmaxy(win);
+  x = getmaxx(win);
+}
+///ditto
+int getmaxy(U:WINDOW*)(U win)
+{
+  return win ? win.maxy : ERR;
+}
+///ditto
+int getmaxx(U:WINDOW*)(U win)
+{
+  return win ? win.maxx : ERR;
+}
+
+/**
+Extract a complex character and rendition from a window
+
+Returns: $(D_PARAM ERR) for null parameters or invalid coordinates.
+$(D_PARAM OK) on success.
+
+See_also: man curs_in_wch
+*/
+int in_wch(CC:cchar_t)(CC* wcval)
+{
+  return win_wch(stdscr, wcval);
+}
+///ditto
+int mvin_wch(N:int, CC:cchar_t)(N y, N x, CC* wcval)
+{
+  return mvwin_wch(stdscr, y, x, wcval);
+}
+///ditto
+int mvwin_wch(W:WINDOW, N:int, CC:cchar_t)(W* win, N y, N x, CC* wcval)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return win_wch(win, wcval);
+}
+///ditto
+int win_wch(WINDOW* win, cchar_t* wcval);
+
+/**
+Get a string of complex characters and renditions from a window
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_in_wchstr
+*/
+int in_wchstr(CC:cchar_t)(CC* wchstr)
+{
+  return win_wchstr(stdscr, wchstr);
+}
+///ditto
+int in_wchnstr(CC:cchar_t, N:int)(CC* wchstr, N n)
+{
+  return win_wchnstr(stdscr, wchstr, n);
+}
+///ditto
+int win_wchstr(W:WINDOW, CC:cchar_t)(W* win, CC* wchstr)
+{
+  return win_wchnstr(win, wchstr, -1);
+}
+///ditto
+int win_wchnstr(WINDOW* win, cchar_t* wchstr, int n);
+///ditto
+int mvin_wchstr(N:int, CC:cchar_t)(N y, N x, CC* wchstr)
+{
+  return mvwin_wchstr(stdscr, y, x, wchstr);
+}
+///ditto
+int mvin_wchnstr(N:int, CC:cchar_t)(N y, N x, CC* wchstr, N n)
+{
+  return mvwin_wchnstr(stdscr, y, x, wchstr, n);
+}
+///ditto
+int mvwin_wchstr(W:WINDOW, N:int, CC:cchar_t)
+  (W* win, N y, N x, CC* wchstr)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return win_wchstr(win, wchstr);
+}
+///ditto
+int mvwin_wchnstr(W:WINDOW, N:int, CC:cchar_t)
+  (W* win, N y, N x, CC* wchstr, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return win_wchnstr(win, wchstr, n);
+}
+
+/**
+Get a character and attributes from a window.
+
+See_also: man curs_inch
+*/
+chtype inch()()
+{
+  return winch(stdscr);
+}
+///ditto
+chtype winch(WINDOW* win);
+///ditto
+chtype mvinch(N:int)(N y, N x)
+{
+  return mvwinch(stdscr, y, x);
+}
+///ditto
+chtype mvwinch(W:WINDOW, N:int)(W* win, N y, N x)
+{
+  if(wmove(win, y, x) == ERR)
+    return cast(chtype)ERR;
+  return winch(win);
+}
+
+/**
+Get a string of characters and attributes from a window.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inchstr
+*/
+int inchstr(C:chtype)(C* chstr)
+{
+  return winchstr(stdscr, chstr);
+}
+///ditto
+int inchnstr(C:chtype, N:int)(C* chstr, N n)
+{
+  return winchnstr(stdscr, chstr, n);
+}
+///ditto
+int winchstr(W:WINDOW, C:chtype)(W* win, C* chstr)
+{
+  return winchnstr(win, chstr, -1);
+}
+///ditto
+int winchnstr(WINDOW* win, chtype* chstr, int n);
+///ditto
+int mvinchstr(N:int, C:chtype)(N y, N x, C* chstr)
+{
+  return mvwinchstr(stdscr, y, x, chstr);
+}
+///ditto
+int mvinchnstr(N:int, C:chtype)(N y, N x, C* chstr, N n)
+{
+  return mvwinchnstr(stdscr, y, x, chstr, n);
+}
+///ditto
+int mvwinchstr(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C* chstr)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winchstr(win, chstr);
+}
+///ditto
+int mvwinchnstr(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C* chstr, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winchnstr(win, chstr, n);
+}
+
+/**
+Determines terminal type and initializes data structures.
+
+Returns: A pointer to stdscr
+
+See_also: man curs_initscr
+*/
 WINDOW* initscr();
+/**
+Routine to call before exitting, or leaving curses mode temporarily
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_initscr
+*/
 int endwin();
+/**
+Determines whether or not endwin has been called sinze the last refresh
+
+See_also: man curs_initscr
+*/
 bool isendwin();
+/**
+Initializes a terminal.
+
+Returns: A reference to the terminal
+
+See_also: man curs_initscr
+*/
 SCREEN* newterm(char* type, FILE* outfd, FILE* infd);
+/**
+Sets the current terminal. The only routine to manipulate screens.
+
+Returns: A reference to the terminal
+
+See_also: man curs_initscr
+*/
 SCREEN* set_term(SCREEN* newscreen);
+/**
+Frees SCREEN data storage.
+
+Returns: A reference to the terminal
+
+See_also: man curs_initscr
+*/
 void delscreen(SCREEN* sp);
+
+/**
+Enables/disables line buffering and kill/erase processing. Makes all characters
+typed immediately available to the program.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int cbreak();
+///ditto
+int nocbreak();
+/**
+Controls whether typed characters are echoed as they are typed.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int echo();
+///ditto
+int noecho();
+/**
+In half delay mode input returns return ERR after blocking for so many
+tenths of a second if nothing is typed by the user.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int halfdelay(int tenths);
+/**
+Enabling interrupt flush, flushes the output when an interrupt occurs.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int intrflush(WINDOW* win, bool bf);
+/**
+Enables the keypad and the mouse and function keys, etc.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int keypad(WINDOW* win, bool bf);
+/**
+Force 8 significant bits to be returned on input if passed true,
+or 7 if passed false.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int meta(WINDOW* win, bool bf);
+/**
+Determines whether or not getch blocks.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int nodelay(WINDOW *win, bool bf);
+/**
+Similar to cbreak, but also controls whether interrupt, quit, suspend,
+and and flow control characters are passed through.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int raw();
+///ditto
+int noraw();
+/**
+Controls whether or not flushing of input queues is done when INTR, QUIT,
+and SUSP keys are sent to the program.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+void noqiflush();
+///ditto
+void qiflush();
+/**
+Sets blocking or non blocking read for a given window. If delay is
+is negative blocking is used.  If delay is zero then nonblocking is used.
+If delay is positive then read blocks for delay milliseconds.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int notimeout(WINDOW *win, bool bf);
+///ditto
+void timeout(N:int)(N delay)
+{
+  return wtimeout(stdscr, delay);
+}
+///ditto
+void wtimeout(WINDOW *win, int delay);
+/**
+Controls whether typeahead checking is enabled, and which file descripter
+to use for it.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_inopts
+*/
+int typeahead(int fd);
 
 /* "kernel" functions */
 int def_prog_mode();
@@ -1313,16 +1993,6 @@ int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
 deprecated int vwprintw(WINDOW* win, char* fmt, va_list varglist);
 int vw_printw(WINDOW* win, char* fmt, va_list varglist);
 
-/* string input */
-int getstr(char* str);
-int getnstr(char* str, int n);
-int wgetstr(WINDOW* win, char* str);
-int wgetnstr(WINDOW* win, char* str, int n);
-int mvgetstr(int y, int x, char* str);
-int mvwgetstr(WINDOW* win, int y, int x, char* str);
-int mvgetnstr(int y, int x, char* str, int n);
-int mvwgetnstr(WINDOW* win, int y, int x, char* str, int n);
-
 /* formatted input functions */
 int scanw(char* fmt, ...);
 int wscanw(WINDOW* win, char* fmt, ...);
@@ -1341,78 +2011,6 @@ bool wmouse_trafo(WINDOW* win, int* pY, int* pX,
     bool to_screen);
 int mouseinterval(int erval);
 
-/* get coordinate info */
-void getyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
-{
-  y = getcury(win);
-  x = getcurx(win);
-}
-void getparyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
-{
-  y = getpary(win);
-  x = getparx(win);
-}
-void getbegyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
-{
-  y = getbegy(win);
-  x = getbegx(win);
-}
-void getmaxyx(U:WINDOW*, T: int)(U win, ref T y, ref T x)
-{
-  y = getmaxy(win);
-  x = getmaxx(win);
-}
-int getcurx(U:WINDOW*)(U win)
-{
-  return win ? win.curx : ERR;
-}
-int getcury(U:WINDOW*)(U win)
-{
-  return win ? win.cury : ERR;
-}
-int getbegy(U:WINDOW*)(U win)
-{
-  return win ? win.begy : ERR;
-}
-int getbegx(U:WINDOW*)(U win)
-{
-  return win ? win.begx : ERR;
-}
-int getpary(U:WINDOW*)(U win)
-{
-  return win ? win.pary : ERR;
-}
-int getparx(U:WINDOW*)(U win)
-{
-  return win ? win.parx : ERR;
-}
-int getmaxy(U:WINDOW*)(U win)
-{
-  return win ? win.maxy : ERR;
-}
-int getmaxx(U:WINDOW*)(U win)
-{
-  return win ? win.maxx : ERR;
-}
-
-/* input option functions */
-int cbreak();
-int nocbreak();
-int echo();
-int noecho();
-int halfdelay(int tenths);
-int intrflush(WINDOW* win, bool bf);
-int keypad(WINDOW* win, bool bf);
-int meta(WINDOW* win, bool bf);
-int nodelay(WINDOW *win, bool bf);
-int raw();
-int noraw();
-void noqiflush();
-void qiflush();
-int notimeout(WINDOW *win, bool bf);
-void timeout(int delay);
-void wtimeout(WINDOW *win, int delay);
-int typeahead(int fd);
 
 /* error codes */
 enum
@@ -1421,118 +2019,6 @@ enum
   ERR = -1
 }
 
-/* key codes */
-enum
-{
- KEY_CODE_YES  = 0x100,
- KEY_MIN       = 0x101,
- KEY_BREAK     = 0x101,
- KEY_SRESET    = 0x158,
- KEY_RESET     = 0x159,
- KEY_DOWN      = 0x102,
- KEY_UP        = 0x103,
- KEY_LEFT      = 0x104,
- KEY_RIGHT     = 0x105,
- KEY_HOME      = 0x106,
- KEY_BACKSPACE = 0x107,
- KEY_F0        = 0x108,
- KEY_DL        = 0x148,
- KEY_IL        = 0x149,
- KEY_DC        = 0x14A,
- KEY_IC        = 0x14B,
- KEY_EIC       = 0x14C,
- KEY_CLEAR     = 0x14D,
- KEY_EOS       = 0x14E,
- KEY_EOL       = 0x14F,
- KEY_SF        = 0x150,
- KEY_SR        = 0x151,
- KEY_NPAGE     = 0x152,
- KEY_PPAGE     = 0x153,
- KEY_STAB      = 0x154,
- KEY_CTAB      = 0x155,
- KEY_CATAB     = 0x156,
- KEY_ENTER     = 0x157,
- KEY_PRINT     = 0x15A,
- KEY_LL        = 0x15B,
- KEY_A1        = 0x15C,
- KEY_A3        = 0x15D,
- KEY_B2        = 0x15E,
- KEY_C1        = 0x15F,
- KEY_C3        = 0x160,
- KEY_BTAB      = 0x161,
- KEY_BEG       = 0x162,
- KEY_CANCEL    = 0x163,
- KEY_CLOSE     = 0x164,
- KEY_COMMAND   = 0x165,
- KEY_COPY      = 0x166,
- KEY_CREATE    = 0x167,
- KEY_END       = 0x168,
- KEY_EXIT      = 0x169,
- KEY_FIND      = 0x16A,
- KEY_HELP      = 0x16B,
- KEY_MARK      = 0x16C,
- KEY_MESSAGE   = 0x16D,
- KEY_MOVE      = 0x16E,
- KEY_NEXT      = 0x16F,
- KEY_OPEN      = 0x170,
- KEY_OPTIONS   = 0x171,
- KEY_PREVIOUS  = 0x172,
- KEY_REDO      = 0x173,
- KEY_REFERENCE = 0x174,
- KEY_REFRESH   = 0x175,
- KEY_REPLACE   = 0x176,
- KEY_RESTART   = 0x177,
- KEY_RESUME    = 0x178,
- KEY_SAVE      = 0x179,
- KEY_SBEG      = 0x17A,
- KEY_SCANCEL   = 0x17B,
- KEY_SCOMMAND  = 0x17C,
- KEY_SCOPY     = 0x17D,
- KEY_SCREATE   = 0x17E,
- KEY_SDC       = 0x17F,
- KEY_SDL       = 0x180,
- KEY_SELECT    = 0x181,
- KEY_SEND      = 0x182,
- KEY_SEOL      = 0x183,
- KEY_SEXIT     = 0x184,
- KEY_SFIND     = 0x185,
- KEY_SHELP     = 0x186,
- KEY_SHOME     = 0x187,
- KEY_SIC       = 0x188,
- KEY_SLEFT     = 0x189,
- KEY_SMESSAGE  = 0x18A,
- KEY_SMOVE     = 0x18B,
- KEY_SNEXT     = 0x18C,
- KEY_SOPTIONS  = 0x18D,
- KEY_SPREVIOUS = 0x18E,
- KEY_SPRINT    = 0x18F,
- KEY_SREDO     = 0x190,
- KEY_SREPLACE  = 0x191,
- KEY_SRIGHT    = 0x192,
- KEY_SRSUME    = 0x193,
- KEY_SSAVE     = 0x194,
- KEY_SSUSPEND  = 0x195,
- KEY_SUNDO     = 0x196,
- KEY_SUSPEND   = 0x197,
- KEY_UNDO      = 0x198,
- KEY_MOUSE     = 0x199,
- KEY_RESIZE    = 0x19A,
- KEY_EVENT     = 0x19B,
- KEY_MAX       = 0x1FF
-}
-int KEY_F(N:int)(N n)
-in
-{
-  assert (n>=0, "Invalid value for KEY_F(n)");
-}
-out (result)
-{
-  assert (result < KEY_DL, "Invalid value for KEY_F(n)");
-}
-body
-{
-  return KEY_F0 + n;
-}
 
 /* mouse events */
 enum

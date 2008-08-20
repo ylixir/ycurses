@@ -2170,6 +2170,1251 @@ man curs_getcchar
 <br><br>
 
 </dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">getch</span>
+<script>explorer.outline.addDecl('getch');</script>
+
+()();
+<br>int 
+<span class="currsymbol">wgetch</span>
+<script>explorer.outline.addDecl('wgetch');</script>
+
+(WINDOW* <span class="funcparam">win</span>);
+<br>int 
+<span class="currsymbol">mvgetch</span>
+<script>explorer.outline.addDecl('mvgetch');</script>
+
+(N : int)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>);
+<br>int 
+<span class="currsymbol">mvwgetch</span>
+<script>explorer.outline.addDecl('mvwgetch');</script>
+
+(W : WINDOW,N : int)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Reads a character from a window.
+<br><br>
+<b>Returns:</b><br>
+<i>ERR</i> on failure, or a number representing a
+key on success.
+<br><br>
+<b>See Also:</b><br>
+man curs_getch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">ungetch</span>
+<script>explorer.outline.addDecl('ungetch');</script>
+
+(int <span class="funcparam">ch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Puts a character back onto the input queue.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+<br><br>
+<b>See Also:</b><br>
+man curs_getch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">has_key</span>
+<script>explorer.outline.addDecl('has_key');</script>
+
+(int <span class="funcparam">ch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Checks to see of the current terminal has support for a given key.
+<br><br>
+<b>Returns:</b><br>
+Zero if the key isn't supported, or non-zero if it is.
+<br><br>
+<b>See Also:</b><br>
+man curs_getch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">
+<span class="currsymbol">KEY_BREAK</span>
+<script>explorer.outline.addDecl('KEY_BREAK');</script>
+
+<br>
+<span class="currsymbol">KEY_DOWN</span>
+<script>explorer.outline.addDecl('KEY_DOWN');</script>
+
+<br>
+<span class="currsymbol">KEY_UP</span>
+<script>explorer.outline.addDecl('KEY_UP');</script>
+
+<br>
+<span class="currsymbol">KEY_LEFT</span>
+<script>explorer.outline.addDecl('KEY_LEFT');</script>
+
+<br>
+<span class="currsymbol">KEY_RIGHT</span>
+<script>explorer.outline.addDecl('KEY_RIGHT');</script>
+
+<br>
+<span class="currsymbol">KEY_HOME</span>
+<script>explorer.outline.addDecl('KEY_HOME');</script>
+
+<br>
+<span class="currsymbol">KEY_BACKSPACE</span>
+<script>explorer.outline.addDecl('KEY_BACKSPACE');</script>
+
+<br>
+<span class="currsymbol">KEY_DL</span>
+<script>explorer.outline.addDecl('KEY_DL');</script>
+
+<br>
+<span class="currsymbol">KEY_IL</span>
+<script>explorer.outline.addDecl('KEY_IL');</script>
+
+<br>
+<span class="currsymbol">KEY_DC</span>
+<script>explorer.outline.addDecl('KEY_DC');</script>
+
+<br>
+<span class="currsymbol">KEY_IC</span>
+<script>explorer.outline.addDecl('KEY_IC');</script>
+
+<br>
+<span class="currsymbol">KEY_EIC</span>
+<script>explorer.outline.addDecl('KEY_EIC');</script>
+
+<br>
+<span class="currsymbol">KEY_CLEAR</span>
+<script>explorer.outline.addDecl('KEY_CLEAR');</script>
+
+<br>
+<span class="currsymbol">KEY_EOS</span>
+<script>explorer.outline.addDecl('KEY_EOS');</script>
+
+<br>
+<span class="currsymbol">KEY_EOL</span>
+<script>explorer.outline.addDecl('KEY_EOL');</script>
+
+<br>
+<span class="currsymbol">KEY_SF</span>
+<script>explorer.outline.addDecl('KEY_SF');</script>
+
+<br>
+<span class="currsymbol">KEY_SR</span>
+<script>explorer.outline.addDecl('KEY_SR');</script>
+
+<br>
+<span class="currsymbol">KEY_NPAGE</span>
+<script>explorer.outline.addDecl('KEY_NPAGE');</script>
+
+<br>
+<span class="currsymbol">KEY_PPAGE</span>
+<script>explorer.outline.addDecl('KEY_PPAGE');</script>
+
+<br>
+<span class="currsymbol">KEY_STAB</span>
+<script>explorer.outline.addDecl('KEY_STAB');</script>
+
+<br>
+<span class="currsymbol">KEY_CTAB</span>
+<script>explorer.outline.addDecl('KEY_CTAB');</script>
+
+<br>
+<span class="currsymbol">KEY_CATAB</span>
+<script>explorer.outline.addDecl('KEY_CATAB');</script>
+
+<br>
+<span class="currsymbol">KEY_ENTER</span>
+<script>explorer.outline.addDecl('KEY_ENTER');</script>
+
+<br>
+<span class="currsymbol">KEY_SRESET</span>
+<script>explorer.outline.addDecl('KEY_SRESET');</script>
+
+<br>
+<span class="currsymbol">KEY_RESET</span>
+<script>explorer.outline.addDecl('KEY_RESET');</script>
+
+<br>
+<span class="currsymbol">KEY_PRINT</span>
+<script>explorer.outline.addDecl('KEY_PRINT');</script>
+
+<br>
+<span class="currsymbol">KEY_LL</span>
+<script>explorer.outline.addDecl('KEY_LL');</script>
+
+<br>
+<span class="currsymbol">KEY_A1</span>
+<script>explorer.outline.addDecl('KEY_A1');</script>
+
+<br>
+<span class="currsymbol">KEY_A3</span>
+<script>explorer.outline.addDecl('KEY_A3');</script>
+
+<br>
+<span class="currsymbol">KEY_B2</span>
+<script>explorer.outline.addDecl('KEY_B2');</script>
+
+<br>
+<span class="currsymbol">KEY_C1</span>
+<script>explorer.outline.addDecl('KEY_C1');</script>
+
+<br>
+<span class="currsymbol">KEY_C3</span>
+<script>explorer.outline.addDecl('KEY_C3');</script>
+
+<br>
+<span class="currsymbol">KEY_BTAB</span>
+<script>explorer.outline.addDecl('KEY_BTAB');</script>
+
+<br>
+<span class="currsymbol">KEY_BEG</span>
+<script>explorer.outline.addDecl('KEY_BEG');</script>
+
+<br>
+<span class="currsymbol">KEY_CANCEL</span>
+<script>explorer.outline.addDecl('KEY_CANCEL');</script>
+
+<br>
+<span class="currsymbol">KEY_CLOSE</span>
+<script>explorer.outline.addDecl('KEY_CLOSE');</script>
+
+<br>
+<span class="currsymbol">KEY_COMMAND</span>
+<script>explorer.outline.addDecl('KEY_COMMAND');</script>
+
+<br>
+<span class="currsymbol">KEY_COPY</span>
+<script>explorer.outline.addDecl('KEY_COPY');</script>
+
+<br>
+<span class="currsymbol">KEY_CREATE</span>
+<script>explorer.outline.addDecl('KEY_CREATE');</script>
+
+<br>
+<span class="currsymbol">KEY_END</span>
+<script>explorer.outline.addDecl('KEY_END');</script>
+
+<br>
+<span class="currsymbol">KEY_EXIT</span>
+<script>explorer.outline.addDecl('KEY_EXIT');</script>
+
+<br>
+<span class="currsymbol">KEY_FIND</span>
+<script>explorer.outline.addDecl('KEY_FIND');</script>
+
+<br>
+<span class="currsymbol">KEY_HELP</span>
+<script>explorer.outline.addDecl('KEY_HELP');</script>
+
+<br>
+<span class="currsymbol">KEY_MARK</span>
+<script>explorer.outline.addDecl('KEY_MARK');</script>
+
+<br>
+<span class="currsymbol">KEY_MESSAGE</span>
+<script>explorer.outline.addDecl('KEY_MESSAGE');</script>
+
+<br>
+<span class="currsymbol">KEY_MOVE</span>
+<script>explorer.outline.addDecl('KEY_MOVE');</script>
+
+<br>
+<span class="currsymbol">KEY_NEXT</span>
+<script>explorer.outline.addDecl('KEY_NEXT');</script>
+
+<br>
+<span class="currsymbol">KEY_OPEN</span>
+<script>explorer.outline.addDecl('KEY_OPEN');</script>
+
+<br>
+<span class="currsymbol">KEY_OPTIONS</span>
+<script>explorer.outline.addDecl('KEY_OPTIONS');</script>
+
+<br>
+<span class="currsymbol">KEY_PREVIOUS</span>
+<script>explorer.outline.addDecl('KEY_PREVIOUS');</script>
+
+<br>
+<span class="currsymbol">KEY_REDO</span>
+<script>explorer.outline.addDecl('KEY_REDO');</script>
+
+<br>
+<span class="currsymbol">KEY_REFERENCE</span>
+<script>explorer.outline.addDecl('KEY_REFERENCE');</script>
+
+<br>
+<span class="currsymbol">KEY_REFRESH</span>
+<script>explorer.outline.addDecl('KEY_REFRESH');</script>
+
+<br>
+<span class="currsymbol">KEY_REPLACE</span>
+<script>explorer.outline.addDecl('KEY_REPLACE');</script>
+
+<br>
+<span class="currsymbol">KEY_RESTART</span>
+<script>explorer.outline.addDecl('KEY_RESTART');</script>
+
+<br>
+<span class="currsymbol">KEY_RESUME</span>
+<script>explorer.outline.addDecl('KEY_RESUME');</script>
+
+<br>
+<span class="currsymbol">KEY_SAVE</span>
+<script>explorer.outline.addDecl('KEY_SAVE');</script>
+
+<br>
+<span class="currsymbol">KEY_SBEG</span>
+<script>explorer.outline.addDecl('KEY_SBEG');</script>
+
+<br>
+<span class="currsymbol">KEY_SCANCEL</span>
+<script>explorer.outline.addDecl('KEY_SCANCEL');</script>
+
+<br>
+<span class="currsymbol">KEY_SCOMMAND</span>
+<script>explorer.outline.addDecl('KEY_SCOMMAND');</script>
+
+<br>
+<span class="currsymbol">KEY_SCOPY</span>
+<script>explorer.outline.addDecl('KEY_SCOPY');</script>
+
+<br>
+<span class="currsymbol">KEY_SCREATE</span>
+<script>explorer.outline.addDecl('KEY_SCREATE');</script>
+
+<br>
+<span class="currsymbol">KEY_SDC</span>
+<script>explorer.outline.addDecl('KEY_SDC');</script>
+
+<br>
+<span class="currsymbol">KEY_SDL</span>
+<script>explorer.outline.addDecl('KEY_SDL');</script>
+
+<br>
+<span class="currsymbol">KEY_SELECT</span>
+<script>explorer.outline.addDecl('KEY_SELECT');</script>
+
+<br>
+<span class="currsymbol">KEY_SEND</span>
+<script>explorer.outline.addDecl('KEY_SEND');</script>
+
+<br>
+<span class="currsymbol">KEY_SEOL</span>
+<script>explorer.outline.addDecl('KEY_SEOL');</script>
+
+<br>
+<span class="currsymbol">KEY_SEXIT</span>
+<script>explorer.outline.addDecl('KEY_SEXIT');</script>
+
+<br>
+<span class="currsymbol">KEY_SFIND</span>
+<script>explorer.outline.addDecl('KEY_SFIND');</script>
+
+<br>
+<span class="currsymbol">KEY_SHELP</span>
+<script>explorer.outline.addDecl('KEY_SHELP');</script>
+
+<br>
+<span class="currsymbol">KEY_SHOME</span>
+<script>explorer.outline.addDecl('KEY_SHOME');</script>
+
+<br>
+<span class="currsymbol">KEY_SIC</span>
+<script>explorer.outline.addDecl('KEY_SIC');</script>
+
+<br>
+<span class="currsymbol">KEY_SLEFT</span>
+<script>explorer.outline.addDecl('KEY_SLEFT');</script>
+
+<br>
+<span class="currsymbol">KEY_SMESSAGE</span>
+<script>explorer.outline.addDecl('KEY_SMESSAGE');</script>
+
+<br>
+<span class="currsymbol">KEY_SMOVE</span>
+<script>explorer.outline.addDecl('KEY_SMOVE');</script>
+
+<br>
+<span class="currsymbol">KEY_SNEXT</span>
+<script>explorer.outline.addDecl('KEY_SNEXT');</script>
+
+<br>
+<span class="currsymbol">KEY_SOPTIONS</span>
+<script>explorer.outline.addDecl('KEY_SOPTIONS');</script>
+
+<br>
+<span class="currsymbol">KEY_SPREVIOUS</span>
+<script>explorer.outline.addDecl('KEY_SPREVIOUS');</script>
+
+<br>
+<span class="currsymbol">KEY_SPRINT</span>
+<script>explorer.outline.addDecl('KEY_SPRINT');</script>
+
+<br>
+<span class="currsymbol">KEY_SREDO</span>
+<script>explorer.outline.addDecl('KEY_SREDO');</script>
+
+<br>
+<span class="currsymbol">KEY_SREPLACE</span>
+<script>explorer.outline.addDecl('KEY_SREPLACE');</script>
+
+<br>
+<span class="currsymbol">KEY_SRIGHT</span>
+<script>explorer.outline.addDecl('KEY_SRIGHT');</script>
+
+<br>
+<span class="currsymbol">KEY_SRSUME</span>
+<script>explorer.outline.addDecl('KEY_SRSUME');</script>
+
+<br>
+<span class="currsymbol">KEY_SSAVE</span>
+<script>explorer.outline.addDecl('KEY_SSAVE');</script>
+
+<br>
+<span class="currsymbol">KEY_SSUSPEND</span>
+<script>explorer.outline.addDecl('KEY_SSUSPEND');</script>
+
+<br>
+<span class="currsymbol">KEY_SUNDO</span>
+<script>explorer.outline.addDecl('KEY_SUNDO');</script>
+
+<br>
+<span class="currsymbol">KEY_SUSPEND</span>
+<script>explorer.outline.addDecl('KEY_SUSPEND');</script>
+
+<br>
+<span class="currsymbol">KEY_UNDO</span>
+<script>explorer.outline.addDecl('KEY_UNDO');</script>
+
+<br>
+<span class="currsymbol">KEY_MOUSE</span>
+<script>explorer.outline.addDecl('KEY_MOUSE');</script>
+
+<br>
+<span class="currsymbol">KEY_RESIZE</span>
+<script>explorer.outline.addDecl('KEY_RESIZE');</script>
+
+<br>
+<span class="currsymbol">KEY_EVENT</span>
+<script>explorer.outline.addDecl('KEY_EVENT');</script>
+
+<br>
+<span class="currsymbol">KEY_MAX</span>
+<script>explorer.outline.addDecl('KEY_MAX');</script>
+
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Codes that might be returned by getch if keypad is enabled.
+<br><br>
+<b>See Also:</b><br>
+man curs_getch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">KEY_F</span>
+<script>explorer.outline.addDecl('KEY_F');</script>
+
+(N : int)(N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Macro to that returns the value of the appropriate function key that
+getch may return if keypad is enabled.
+<br><br>
+<b>Params:</b><br>
+<table><tr>
+<td nowrap valign="top" style="padding-right: 8px">n</td>
+
+               
+<td>min 0. max 63.</td></tr>
+</table><br>
+<b>See Also:</b><br>
+man curs_getch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">getstr</span>
+<script>explorer.outline.addDecl('getstr');</script>
+
+(C : char)(C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">getnstr</span>
+<script>explorer.outline.addDecl('getnstr');</script>
+
+(C : char,N : int)(C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">wgetstr</span>
+<script>explorer.outline.addDecl('wgetstr');</script>
+
+(W : WINDOW,C : char)(W* <span class="funcparam">win</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">wgetnstr</span>
+<script>explorer.outline.addDecl('wgetnstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, char* <span class="funcparam">str</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvgetstr</span>
+<script>explorer.outline.addDecl('mvgetstr');</script>
+
+(N : int,C : char)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">mvwgetstr</span>
+<script>explorer.outline.addDecl('mvwgetstr');</script>
+
+(W : WINDOW,N : int,C : char)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">mvgetnstr</span>
+<script>explorer.outline.addDecl('mvgetnstr');</script>
+
+(N : int,C : char)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwgetnstr</span>
+<script>explorer.outline.addDecl('mvwgetnstr');</script>
+
+(W : WINDOW,N : int,C : char)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get a string from the keyboard.  Input is terminated with newline/carriage
+return, or when the specified maximum number is reached.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_getstr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">void 
+<span class="currsymbol">getyx</span>
+<script>explorer.outline.addDecl('getyx');</script>
+
+(U : WINDOW*,T : int)(U <span class="funcparam">win</span>, ref T <span class="funcparam">y</span>, ref T <span class="funcparam">x</span>);
+<br>int 
+<span class="currsymbol">getcurx</span>
+<script>explorer.outline.addDecl('getcurx');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+<br>int 
+<span class="currsymbol">getcury</span>
+<script>explorer.outline.addDecl('getcury');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the coordinates of the cursor in the given window.
+<br><br>
+<b>See Also:</b><br>
+man_getyx
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">void 
+<span class="currsymbol">getparyx</span>
+<script>explorer.outline.addDecl('getparyx');</script>
+
+(U : WINDOW*,T : int)(U <span class="funcparam">win</span>, ref T <span class="funcparam">y</span>, ref T <span class="funcparam">x</span>);
+<br>int 
+<span class="currsymbol">getpary</span>
+<script>explorer.outline.addDecl('getpary');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+<br>int 
+<span class="currsymbol">getparx</span>
+<script>explorer.outline.addDecl('getparx');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the coordinates of subwindow win relative to the parent window.
+If it's not, <i>ERR</i> is placed in the coordinates.
+<br><br>
+<b>See Also:</b><br>
+man_getyx
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">void 
+<span class="currsymbol">getbegyx</span>
+<script>explorer.outline.addDecl('getbegyx');</script>
+
+(U : WINDOW*,T : int)(U <span class="funcparam">win</span>, ref T <span class="funcparam">y</span>, ref T <span class="funcparam">x</span>);
+<br>int 
+<span class="currsymbol">getbegy</span>
+<script>explorer.outline.addDecl('getbegy');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+<br>int 
+<span class="currsymbol">getbegx</span>
+<script>explorer.outline.addDecl('getbegx');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+<br>void 
+<span class="currsymbol">getmaxyx</span>
+<script>explorer.outline.addDecl('getmaxyx');</script>
+
+(U : WINDOW*,T : int)(U <span class="funcparam">win</span>, ref T <span class="funcparam">y</span>, ref T <span class="funcparam">x</span>);
+<br>int 
+<span class="currsymbol">getmaxy</span>
+<script>explorer.outline.addDecl('getmaxy');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+<br>int 
+<span class="currsymbol">getmaxx</span>
+<script>explorer.outline.addDecl('getmaxx');</script>
+
+(U : WINDOW*)(U <span class="funcparam">win</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the beginning coordinates and the size of a window.
+<br><br>
+<b>See Also:</b><br>
+man_getyx
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">in_wch</span>
+<script>explorer.outline.addDecl('in_wch');</script>
+
+(CC : cchar_t)(CC* <span class="funcparam">wcval</span>);
+<br>int 
+<span class="currsymbol">mvin_wch</span>
+<script>explorer.outline.addDecl('mvin_wch');</script>
+
+(N : int,CC : cchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wcval</span>);
+<br>int 
+<span class="currsymbol">mvwin_wch</span>
+<script>explorer.outline.addDecl('mvwin_wch');</script>
+
+(W : WINDOW,N : int,CC : cchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wcval</span>);
+<br>int 
+<span class="currsymbol">win_wch</span>
+<script>explorer.outline.addDecl('win_wch');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">wcval</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Extract a complex character and rendition from a window
+<br><br>
+<b>Returns:</b><br>
+<i>ERR</i> for <b>null</b> parameters or invalid coordinates.
+<i>OK</i> on success.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_in_wch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">in_wchstr</span>
+<script>explorer.outline.addDecl('in_wchstr');</script>
+
+(CC : cchar_t)(CC* <span class="funcparam">wchstr</span>);
+<br>int 
+<span class="currsymbol">in_wchnstr</span>
+<script>explorer.outline.addDecl('in_wchnstr');</script>
+
+(CC : cchar_t,N : int)(CC* <span class="funcparam">wchstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">win_wchstr</span>
+<script>explorer.outline.addDecl('win_wchstr');</script>
+
+(W : WINDOW,CC : cchar_t)(W* <span class="funcparam">win</span>, CC* <span class="funcparam">wchstr</span>);
+<br>int 
+<span class="currsymbol">win_wchnstr</span>
+<script>explorer.outline.addDecl('win_wchnstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">wchstr</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvin_wchstr</span>
+<script>explorer.outline.addDecl('mvin_wchstr');</script>
+
+(N : int,CC : cchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wchstr</span>);
+<br>int 
+<span class="currsymbol">mvin_wchnstr</span>
+<script>explorer.outline.addDecl('mvin_wchnstr');</script>
+
+(N : int,CC : cchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wchstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwin_wchstr</span>
+<script>explorer.outline.addDecl('mvwin_wchstr');</script>
+
+(W : WINDOW,N : int,CC : cchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wchstr</span>);
+<br>int 
+<span class="currsymbol">mvwin_wchnstr</span>
+<script>explorer.outline.addDecl('mvwin_wchnstr');</script>
+
+(W : WINDOW,N : int,CC : cchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wchstr</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get a string of complex characters and renditions from a window
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_in_wchstr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">chtype 
+<span class="currsymbol">inch</span>
+<script>explorer.outline.addDecl('inch');</script>
+
+()();
+<br>chtype 
+<span class="currsymbol">winch</span>
+<script>explorer.outline.addDecl('winch');</script>
+
+(WINDOW* <span class="funcparam">win</span>);
+<br>chtype 
+<span class="currsymbol">mvinch</span>
+<script>explorer.outline.addDecl('mvinch');</script>
+
+(N : int)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>);
+<br>chtype 
+<span class="currsymbol">mvwinch</span>
+<script>explorer.outline.addDecl('mvwinch');</script>
+
+(W : WINDOW,N : int)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get a character and attributes from a window.
+<br><br>
+<b>See Also:</b><br>
+man curs_inch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">inchstr</span>
+<script>explorer.outline.addDecl('inchstr');</script>
+
+(C : chtype)(C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">inchnstr</span>
+<script>explorer.outline.addDecl('inchnstr');</script>
+
+(C : chtype,N : int)(C* <span class="funcparam">chstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">winchstr</span>
+<script>explorer.outline.addDecl('winchstr');</script>
+
+(W : WINDOW,C : chtype)(W* <span class="funcparam">win</span>, C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">winchnstr</span>
+<script>explorer.outline.addDecl('winchnstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype* <span class="funcparam">chstr</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvinchstr</span>
+<script>explorer.outline.addDecl('mvinchstr');</script>
+
+(N : int,C : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">mvinchnstr</span>
+<script>explorer.outline.addDecl('mvinchnstr');</script>
+
+(N : int,C : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwinchstr</span>
+<script>explorer.outline.addDecl('mvwinchstr');</script>
+
+(W : WINDOW,N : int,C : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>);
+<br>int 
+<span class="currsymbol">mvwinchnstr</span>
+<script>explorer.outline.addDecl('mvwinchnstr');</script>
+
+(W : WINDOW,N : int,C : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">chstr</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get a string of characters and attributes from a window.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inchstr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">WINDOW* 
+<span class="currsymbol">initscr</span>
+<script>explorer.outline.addDecl('initscr');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Determines terminal type and initializes data structures.
+<br><br>
+<b>Returns:</b><br>
+A pointer to stdscr
+
+<br><br>
+<b>See Also:</b><br>
+man curs_initscr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">endwin</span>
+<script>explorer.outline.addDecl('endwin');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Routine to call before exitting, or leaving curses mode temporarily
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_initscr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">bool 
+<span class="currsymbol">isendwin</span>
+<script>explorer.outline.addDecl('isendwin');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Determines whether or not endwin has been called sinze the last refresh
+<br><br>
+<b>See Also:</b><br>
+man curs_initscr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">SCREEN* 
+<span class="currsymbol">newterm</span>
+<script>explorer.outline.addDecl('newterm');</script>
+
+(char* <span class="funcparam">type</span>, _iobuf* <span class="funcparam">outfd</span>, _iobuf* <span class="funcparam">infd</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Initializes a terminal.
+<br><br>
+<b>Returns:</b><br>
+A reference to the terminal
+
+<br><br>
+<b>See Also:</b><br>
+man curs_initscr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">SCREEN* 
+<span class="currsymbol">set_term</span>
+<script>explorer.outline.addDecl('set_term');</script>
+
+(SCREEN* <span class="funcparam">newscreen</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Sets the current terminal. The only routine to manipulate screens.
+<br><br>
+<b>Returns:</b><br>
+A reference to the terminal
+
+<br><br>
+<b>See Also:</b><br>
+man curs_initscr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">void 
+<span class="currsymbol">delscreen</span>
+<script>explorer.outline.addDecl('delscreen');</script>
+
+(SCREEN* <span class="funcparam">sp</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Frees SCREEN data storage.
+<br><br>
+<b>Returns:</b><br>
+A reference to the terminal
+
+<br><br>
+<b>See Also:</b><br>
+man curs_initscr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">cbreak</span>
+<script>explorer.outline.addDecl('cbreak');</script>
+
+();
+<br>int 
+<span class="currsymbol">nocbreak</span>
+<script>explorer.outline.addDecl('nocbreak');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Enables/disables line buffering and kill/erase processing. Makes all characters
+typed immediately available to the program.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">echo</span>
+<script>explorer.outline.addDecl('echo');</script>
+
+();
+<br>int 
+<span class="currsymbol">noecho</span>
+<script>explorer.outline.addDecl('noecho');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Controls whether typed characters are echoed as they are typed.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">halfdelay</span>
+<script>explorer.outline.addDecl('halfdelay');</script>
+
+(int <span class="funcparam">tenths</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>In half delay mode input returns return ERR after blocking for so many
+<span class="funcparam">tenths</span> of a second if nothing is typed by the user.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">intrflush</span>
+<script>explorer.outline.addDecl('intrflush');</script>
+
+(WINDOW* <span class="funcparam">win</span>, bool <span class="funcparam">bf</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Enabling interrupt flush, flushes the output when an interrupt occurs.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">keypad</span>
+<script>explorer.outline.addDecl('keypad');</script>
+
+(WINDOW* <span class="funcparam">win</span>, bool <span class="funcparam">bf</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Enables the 
+<span class="currsymbol">keypad</span>
+<script>explorer.outline.addDecl('keypad');</script>
+
+ and the mouse and function keys, etc.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">meta</span>
+<script>explorer.outline.addDecl('meta');</script>
+
+(WINDOW* <span class="funcparam">win</span>, bool <span class="funcparam">bf</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Force 8 significant bits to be returned on input if passed <b>true</b>,
+or 7 if passed <b>false</b>.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">nodelay</span>
+<script>explorer.outline.addDecl('nodelay');</script>
+
+(WINDOW* <span class="funcparam">win</span>, bool <span class="funcparam">bf</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Determines whether or not getch blocks.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">raw</span>
+<script>explorer.outline.addDecl('raw');</script>
+
+();
+<br>int 
+<span class="currsymbol">noraw</span>
+<script>explorer.outline.addDecl('noraw');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Similar to cbreak, but also controls whether interrupt, quit, suspend,
+and and flow control characters are passed through.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">void 
+<span class="currsymbol">noqiflush</span>
+<script>explorer.outline.addDecl('noqiflush');</script>
+
+();
+<br>void 
+<span class="currsymbol">qiflush</span>
+<script>explorer.outline.addDecl('qiflush');</script>
+
+();
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Controls whether or not flushing of input queues is done when INTR, QUIT,
+and SUSP keys are sent to the program.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">notimeout</span>
+<script>explorer.outline.addDecl('notimeout');</script>
+
+(WINDOW* <span class="funcparam">win</span>, bool <span class="funcparam">bf</span>);
+<br>void 
+<span class="currsymbol">timeout</span>
+<script>explorer.outline.addDecl('timeout');</script>
+
+(N : int)(N <span class="funcparam">delay</span>);
+<br>void 
+<span class="currsymbol">wtimeout</span>
+<script>explorer.outline.addDecl('wtimeout');</script>
+
+(WINDOW* <span class="funcparam">win</span>, int <span class="funcparam">delay</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Sets blocking or non blocking read for a given window. If delay is
+is negative blocking is used.  If delay is zero then nonblocking is used.
+If delay is positive then read blocks for delay milliseconds.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">typeahead</span>
+<script>explorer.outline.addDecl('typeahead');</script>
+
+(int <span class="funcparam">fd</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Controls whether 
+<span class="currsymbol">typeahead</span>
+<script>explorer.outline.addDecl('typeahead');</script>
+
+ checking is enabled, and which file descripter
+to use for it.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_inopts
+<br><br>
+
+</dd>
 </dl>
 <script>explorer.outline.decSymbolLevel();</script>
 
@@ -2178,7 +3423,7 @@ man curs_getcchar
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Wed Aug 13 13:16:00 2008
+			on Wed Aug 20 15:24:19 2008
 
 		</td></tr>
 	</table>

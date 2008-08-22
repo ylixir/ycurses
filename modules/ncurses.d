@@ -1891,6 +1891,161 @@ See_also: man curs_inopts
 */
 int typeahead(int fd);
 
+/**
+Insert a complex character with rendition behind the cursor.
+Characters to the right of the cursor are moved right.
+Cursor position remains unchanged.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_ins_wch
+*/
+int ins_wch(CC:cchar_t)(CC* wch)
+{
+  return wins_wch(stdscr, wch);
+}
+///ditto
+int wins_wch(WINDOW* win, cchar_t* wch);
+///ditto
+int mvins_wch(N:int, CC:cchar_t)(N y, N x, CC* wch)
+{
+  return mvwins_wch(stdscr, y, x, wch);
+}
+///ditto
+int mvwins_wch(W:WINDOW, N:int, CC:cchar_t)(W* win, N y, N x, CC* wch)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wins_wch(win, wch);
+}
+
+/**
+Insert a wide character string behind the cursor.
+Characters to the right of the cursor are moved right.
+Cursor position remains unchanged.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_ins_wstr
+*/
+int ins_wstr(WC:wchar_t)(WC* wstr)
+{
+  return wins_wstr(stdscr, wstr);
+}
+///ditto
+int ins_nwstr(WC:wchar_t, N:int)(WC* wstr, N n)
+{
+  return wins_nwstr(stdscr, wstr, n);
+}
+///ditto
+int wins_wstr(W:WINDOW, WC:wchar_t)(W* win, WC* wstr)
+{
+  return wins_nwstr(win, wstr, -1);
+}
+///ditto
+int wins_nwstr(WINDOW* win, wchar_t* wstr, int n);
+///ditto
+int mvins_wstr(N:int, WC:wchar_t)(N y, N x, WC* wstr)
+{
+  return mvwins_wstr(stdscr, y, x, wstr);
+}
+///ditto
+int mvins_nwstr(N:int, WC:wchar_t)(N y, N x, WC* wstr, N n)
+{
+  return mvwins_nwstr(stdscr, y, x, wstr, n);
+}
+///ditto
+int mvwins_wstr(W:WINDOW, N:int, WC:wchar_t)(W* win, N y, N x, WC* wstr)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wins_wstr(win, wstr);
+}
+///ditto
+int mvwins_nwstr(W:WINDOW, N:int, WC:wchar_t)
+  (W* win, N y, N x, WC* wstr, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return wins_nwstr(win, wstr, n);
+}
+
+/**
+Insert a character behind the cursor, moving characters to the right over.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_insch
+*/
+int insch(CH:chtype)(CH ch)
+{
+  return winsch(stdscr, ch);
+}
+///ditto
+int winsch(WINDOW* win, chtype ch);
+///ditto
+int mvinsch(N:int, CH:chtype)(N y, N x, CH ch)
+{
+  return mvwinsch(stdscr, y, x, ch);
+}
+///ditto
+int mvwinsch(W:WINDOW, N:int, CH:chtype)(W* win, N y, N x, CH ch)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winsch(win, ch);
+}
+
+/**
+Insert a string behind the cursor.
+Characters to the right of the cursor are moved right.
+Cursor position remains unchanged.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_insstr
+*/
+int insstr(C:char)(C* str)
+{
+  return winsstr(stdscr, str);
+}
+///ditto
+int insnstr(C:char, N:int)(C* str, N n)
+{
+  return winsnstr(stdscr, str, n);
+}
+///ditto
+int winsstr(W:WINDOW, C:char)(W* win, C* str)
+{
+  return winsnstr(win, str, -1);
+}
+///ditto
+int winsnstr(WINDOW* win, char* str, int n);
+///ditto
+int mvinsstr(N:int, C:char)(N y, N x, C* str)
+{
+  return mvwinsstr(stdscr, y, x, str);
+}
+///ditto
+int mvinsnstr(N:int, C:char)(N y, N x, C* str, N n)
+{
+  return mvwinsnstr(stdscr, y, x, str, n);
+}
+///ditto
+int mvwinsstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winsstr(win, str);
+}
+///ditto
+int mvwinsnstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, char* str, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winsnstr(win, str, n);
+}
+
 /* "kernel" functions */
 int def_prog_mode();
 int def_shell_mode();

@@ -3415,6 +3415,200 @@ man curs_inopts
 <br><br>
 
 </dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">ins_wch</span>
+<script>explorer.outline.addDecl('ins_wch');</script>
+
+(CC : cchar_t)(CC* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">wins_wch</span>
+<script>explorer.outline.addDecl('wins_wch');</script>
+
+(WINDOW* <span class="funcparam">win</span>, cchar_t* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">mvins_wch</span>
+<script>explorer.outline.addDecl('mvins_wch');</script>
+
+(N : int,CC : cchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wch</span>);
+<br>int 
+<span class="currsymbol">mvwins_wch</span>
+<script>explorer.outline.addDecl('mvwins_wch');</script>
+
+(W : WINDOW,N : int,CC : cchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CC* <span class="funcparam">wch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Insert a complex character with rendition behind the cursor.
+Characters to the right of the cursor are moved right.
+Cursor position remains unchanged.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_ins_wch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">ins_wstr</span>
+<script>explorer.outline.addDecl('ins_wstr');</script>
+
+(WC : wchar_t)(WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">ins_nwstr</span>
+<script>explorer.outline.addDecl('ins_nwstr');</script>
+
+(WC : wchar_t,N : int)(WC* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">wins_wstr</span>
+<script>explorer.outline.addDecl('wins_wstr');</script>
+
+(W : WINDOW,WC : wchar_t)(W* <span class="funcparam">win</span>, WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">wins_nwstr</span>
+<script>explorer.outline.addDecl('wins_nwstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, dchar* <span class="funcparam">wstr</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvins_wstr</span>
+<script>explorer.outline.addDecl('mvins_wstr');</script>
+
+(N : int,WC : wchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">mvins_nwstr</span>
+<script>explorer.outline.addDecl('mvins_nwstr');</script>
+
+(N : int,WC : wchar_t)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwins_wstr</span>
+<script>explorer.outline.addDecl('mvwins_wstr');</script>
+
+(W : WINDOW,N : int,WC : wchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>);
+<br>int 
+<span class="currsymbol">mvwins_nwstr</span>
+<script>explorer.outline.addDecl('mvwins_nwstr');</script>
+
+(W : WINDOW,N : int,WC : wchar_t)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, WC* <span class="funcparam">wstr</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Insert a wide character string behind the cursor.
+Characters to the right of the cursor are moved right.
+Cursor position remains unchanged.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_ins_wstr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">insch</span>
+<script>explorer.outline.addDecl('insch');</script>
+
+(CH : chtype)(CH <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">winsch</span>
+<script>explorer.outline.addDecl('winsch');</script>
+
+(WINDOW* <span class="funcparam">win</span>, chtype <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">mvinsch</span>
+<script>explorer.outline.addDecl('mvinsch');</script>
+
+(N : int,CH : chtype)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CH <span class="funcparam">ch</span>);
+<br>int 
+<span class="currsymbol">mvwinsch</span>
+<script>explorer.outline.addDecl('mvwinsch');</script>
+
+(W : WINDOW,N : int,CH : chtype)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, CH <span class="funcparam">ch</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Insert a character behind the cursor, moving characters to the right over.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_insch
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">insstr</span>
+<script>explorer.outline.addDecl('insstr');</script>
+
+(C : char)(C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">insnstr</span>
+<script>explorer.outline.addDecl('insnstr');</script>
+
+(C : char,N : int)(C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">winsstr</span>
+<script>explorer.outline.addDecl('winsstr');</script>
+
+(W : WINDOW,C : char)(W* <span class="funcparam">win</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">winsnstr</span>
+<script>explorer.outline.addDecl('winsnstr');</script>
+
+(WINDOW* <span class="funcparam">win</span>, char* <span class="funcparam">str</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvinsstr</span>
+<script>explorer.outline.addDecl('mvinsstr');</script>
+
+(N : int,C : char)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">mvinsnstr</span>
+<script>explorer.outline.addDecl('mvinsnstr');</script>
+
+(N : int,C : char)(N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">mvwinsstr</span>
+<script>explorer.outline.addDecl('mvwinsstr');</script>
+
+(W : WINDOW,N : int,C : char)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, C* <span class="funcparam">str</span>);
+<br>int 
+<span class="currsymbol">mvwinsnstr</span>
+<script>explorer.outline.addDecl('mvwinsnstr');</script>
+
+(W : WINDOW,N : int,C : char)(W* <span class="funcparam">win</span>, N <span class="funcparam">y</span>, N <span class="funcparam">x</span>, char* <span class="funcparam">str</span>, N <span class="funcparam">n</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Insert a string behind the cursor.
+Characters to the right of the cursor are moved right.
+Cursor position remains unchanged.
+<br><br>
+<b>Returns:</b><br>
+<i>OK</i> when successful and <i>ERR</i> when not.
+
+<br><br>
+<b>See Also:</b><br>
+man curs_insstr
+<br><br>
+
+</dd>
 </dl>
 <script>explorer.outline.decSymbolLevel();</script>
 
@@ -3423,7 +3617,7 @@ man curs_inopts
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Wed Aug 20 15:24:19 2008
+			on Thu Aug 21 22:23:09 2008
 
 		</td></tr>
 	</table>

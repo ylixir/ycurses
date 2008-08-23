@@ -40,12 +40,6 @@ typedef uint  chtype;
 alias   chtype   attr_t;
 typedef int OPTIONS;
 typedef void  SCREEN;
-struct MEVENT
-{
-  short id;         /* ID to distinguish multiple devices */
-  int x, y, z;      /* event coordinates */
-  mmask_t bstate;   /* button state bits */
-}
 struct  WINDOW
 {
   short   cury,
@@ -2046,16 +2040,157 @@ int mvwinsnstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, char* str, N n)
   return winsnstr(win, str, n);
 }
 
-/* "kernel" functions */
+/**
+Get a string of characters in the window.
+
+Returns: $(D_PARAM ERR) on failure, or the number of characters read
+into the string.
+
+See_also: man curs_instr
+*/
+int instr(C:char)(C* str)
+{
+  return winstr(stdscr, str);
+}
+///ditto
+int innstr(C:char, N:int)(C* str, N n)
+{
+  return winnstr(stdscr, str, n);
+}
+///ditto
+int winstr(W:WINDOW, C:char)(W* win, C* str)
+{
+  return winnstr(win, str, -1);
+}
+///ditto
+int winnstr(WINDOW* win, char* str, int n);
+///ditto
+int mvinstr(N:int, C:char)(N y, N x, C* str)
+{
+  return mvwinstr(stdscr, y, x, str);
+}
+///ditto
+int mvinnstr(N:int, C:char)(N y, N x, C* str, N n)
+{
+  return mvwinnstr(stdscr, y, x, str, n);
+}
+///ditto
+int mvwinstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winstr(win, str);
+}
+///ditto
+int mvwinnstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winnstr(win, str, n);
+}
+
+/**
+Get a string of wide characters in the window.
+
+Returns: $(D_PARAM ERR) on failure, or the number of characters read
+into the string.
+
+See_also: man curs_inwstr
+*/
+int inwstr(WC:wchar_t)(WC* str)
+{
+  return winwstr(stdscr, str);
+}
+///ditto
+int innwstr(WC:wchar_t, N:int)(WC* str, N n)
+{
+  return winnwstr(stdscr, str, n);
+}
+///ditto
+int winwstr(W:WINDOW, WC:wchar_t)(W* win, WC* str)
+{
+  return winnwstr(win, str, -1);
+}
+///ditto
+int winnwstr(WINDOW* win, wchar_t* str, int n);
+///ditto
+int mvinwstr(N:int, WC:wchar_t)(N y, N x, WC* str)
+{
+  return mvwinwstr(stdscr, y, x, str);
+}
+///ditto
+int mvinnwstr(N:int, WC:wchar_t)(N y, N x, WC* str, N n)
+{
+  return mvwinnwstr(stdscr, y, x, str, n);
+}
+///ditto
+int mvwinwstr(W:WINDOW, N:int, WC:wchar_t)(W* win, N y, N x, WC* str)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winwstr(win, str);
+}
+///ditto
+int mvwinnwstr(W:WINDOW, N:int, WC:wchar_t)(W* win, N y, N x, WC* str, N n)
+{
+  if(wmove(win, y, x) == ERR)
+    return ERR;
+  return winnwstr(win, str, n);
+}
+
+/**
+Save and restore the program and shell terminal modes.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_kernel
+*/
 int def_prog_mode();
+///ditto
 int def_shell_mode();
+///ditto
 int reset_prog_mode();
+///ditto
 int reset_shell_mode();
+/**
+Save and restore the terminal modes.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_kernel
+*/
 int resetty();
+///ditto
 int savetty();
+/**
+Remove a line from the top (positive) or bottom (negative) of the screen.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_kernel
+*/
 int ripoffline(int line, int (*init)(WINDOW* win, int cols));
+/**
+Set cursor visibility to invisible (0), normal (1) or very visible (2).
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_kernel
+*/
 int curs_set(int visibility);
+/**
+Sleep for a given number of milliseconds.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_kernel
+*/
 int napms(int ms);
+/**
+Get and set the location of the virtual screen cursor.
+
+See_also: man curs_kernel
+*/
 void getsyx(T:int)(ref T y, ref T x)
 {
   if(newscr.leaveok)
@@ -2063,6 +2198,7 @@ void getsyx(T:int)(ref T y, ref T x)
   else
     getyx(newscr,y,x);
 }
+///ditto
 void setsyx(T:int)(T y, T x)
 {
   if((y==-1) && (x==-1))
@@ -2073,6 +2209,437 @@ void setsyx(T:int)(T y, T x)
     wmove(newscr, y, x);
   }
 }
+
+/**
+Mouse event data
+*/
+struct MEVENT
+{
+  short id;         /// mouse device ID
+  int x,            /// event coordinates
+      y,            ///ditto
+      z;            ///ditto
+  mmask_t bstate;   /// button state
+}
+/**
+Call when getch returns KEY_MOUSE to get the mouse event data.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_mouse
+*/
+int getmouse(MEVENT* event);
+/**
+Push the mouse event back onto the event stack.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_mouse
+*/
+int ungetmouse(MEVENT* event);
+/**
+Decide which mouse events reported to the app.
+
+Returns: The mask of events that will be reported.
+
+See_also: man curs_mouse
+*/
+mmask_t mousemask(mmask_t newmask, mmask_t* oldmask);
+/**
+Check to see if given coordinates are enclosed by the given window.
+
+See_also: man curs_mouse
+*/
+bool wenclose(WINDOW* win, int y, int x);
+/**
+Convert coordinates from stdscr relative to screen relative.
+
+See_also: man curs_mouse
+*/
+bool mouse_trafo(N:int, B:bool)(N* pY, N* pX, B to_screen)
+{
+  return wmouse_trafo(stdscr, pY, pX, to_screen);
+}
+///ditto
+bool wmouse_trafo(WINDOW* win, int* pY, int* pX,
+    bool to_screen);
+/**
+Set the maximum time in milliseconds for a press release to be recognized
+as a click.
+
+Returns: The previous interval value.
+
+See_also: man curs_mouse
+*/
+int mouseinterval(int erval);
+/* mouse events */
+enum :mmask_t
+{
+  BUTTON1_RELEASED          = 0x1,      ///button up
+  ///ditto
+  BUTTON2_RELEASED          = 0x40,
+  ///ditto
+  BUTTON3_RELEASED          = 0x1000,
+  ///ditto
+  BUTTON4_RELEASED          = 0x40000,
+  BUTTON1_PRESSED           = 0x2,      ///button down
+  ///ditto
+  BUTTON2_PRESSED           = 0x80,
+  ///ditto
+  BUTTON3_PRESSED           = 0x2000,
+  ///ditto
+  BUTTON4_PRESSED           = 0x80000,
+  ///button up and down in less then
+  ///mouseinterval time
+  BUTTON1_CLICKED           = 0x4,
+  ///ditto
+  BUTTON2_CLICKED           = 0x100,
+  ///ditto
+  BUTTON3_CLICKED           = 0x4000,
+  ///ditto
+  BUTTON4_CLICKED           = 0x100000,
+  BUTTON1_DOUBLE_CLICKED    = 0x8,      ///double click
+  ///ditto
+  BUTTON2_DOUBLE_CLICKED    = 0x200,
+  ///ditto
+  BUTTON3_DOUBLE_CLICKED    = 0x8000,
+  ///ditto
+  BUTTON4_DOUBLE_CLICKED    = 0x200000,
+  BUTTON1_TRIPLE_CLICKED    = 0x10,     ///triple click
+  ///ditto
+  BUTTON2_TRIPLE_CLICKED    = 0x400,
+  ///ditto
+  BUTTON3_TRIPLE_CLICKED    = 0x10000,
+  ///ditto
+  BUTTON4_TRIPLE_CLICKED    = 0x400000,
+  ///modifier key down during button state change
+  BUTTON_CTRL               = 0x1000000,
+  ///ditto
+  BUTTON_SHIFT              = 0x2000000,
+  ///ditto
+  BUTTON_ALT                = 0x4000000,
+  ///report movement
+  REPORT_MOUSE_POSITION     = 0x8000000,
+  ///report all button events
+  ALL_MOUSE_EVENTS          = 0x7FFFFFF
+}
+
+/**
+Move the cursor.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_move
+*/
+int move(N:int)(N y, N x)
+{
+  return wmove(stdscr, y, x);
+}
+///ditto
+int wmove(WINDOW* win, int y, int x);
+
+/**
+Next refresh draws entire screen from scratch if true is passed.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+int clearok(WINDOW* win, bool bf);
+/**
+Determines whether curses should consider using hardware line insertion/
+deletion features of terminals.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+int idlok(WINDOW* win, bool bf);
+/**
+Determines whether curses should consider using hardware character
+insertion/deletion features of terminals.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+void idcok(WINDOW* win, bool bf);
+/**
+Determines whether to automatically call refresh every time a window
+is changed.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+void immedok(WINDOW* win, bool bf);
+/**
+Allow the cursor to be left where it is when the update is finished.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+int leaveok(WINDOW* win, bool bf);
+/**
+Set scrolling region.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+int setscrreg(N:int)(N top, N bot)
+{
+  return wsetscrreg(stdscr, top, bot);
+}
+///ditto
+int wsetscrreg(WINDOW* win, int top, int bot);
+/**
+Enable scrolling when cursor reaches edge of terminal.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+int scrollok(WINDOW* win, bool bf);
+/**
+Enable/disable newline <-> return+line-feed translations.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_outopts
+*/
+int nl();
+///ditto
+int nonl();
+
+/**
+Overlay srcwin onto dstwin.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_overlay
+*/
+int overlay(WINDOW* srcwin, WINDOW* dstwin);
+///ditto
+int overwrite(WINDOW* srcwin, WINDOW* dstwin);
+///ditto
+int copywin(WINDOW* srcwin, WINDOW* dstwin, int sminrow,
+     int smincol, int dminrow, int dmincol, int dmaxrow,
+     int dmaxcol, int overlay);
+
+/**
+Create a new pad data structure.
+
+See_also: man curs_pad
+*/
+WINDOW* newpad(int nlines, int ncols);
+/**
+Create a new subwindow within a pad.
+
+See_also: man curs_pad
+*/
+WINDOW* subpad(WINDOW* orig, int nlines, int ncols,
+     int begin_y, int begin_x);
+/**
+Similar to wrefresh and wnoutrefresh, but for pads instead of windows.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_pad
+*/
+int prefresh(WINDOW* pad, int pminrow, int pmincol,
+     int sminrow, int smincol, int smaxrow, int smaxcol);
+///ditto
+int pnoutrefresh(WINDOW* pad, int pminrow, int pmincol,
+     int sminrow, int smincol, int smaxrow, int smaxcol);
+/**
+Like addch, followed by refresh.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_pad
+*/
+int pechochar(WINDOW* pad, chtype ch);
+///ditto
+int pecho_wchar(WINDOW* pad, cchar_t *wch);
+
+/**
+Ship data to a printer.
+
+See_also: man curs_print
+*/
+int mcprint(char *data, int len);
+
+/**
+printf for a curses window.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_printw
+*/
+int printw(char* fmt, ...);
+///ditto
+int wprintw(WINDOW* win, char* fmt, ...);
+///ditto
+int mvprintw(int y, int x, char* fmt, ...);
+///ditto
+int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
+///ditto
+int vwprintw(WINDOW* win, char* fmt, va_list varglist);
+///ditto
+int vw_printw(W:WINDOW, C:char, V:va_list)(W* win, C* fmt, V varglist)
+{
+  return vwprintw(win, fmt, varglist);
+}
+
+/**
+Copy a window to the physical terminal.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_refresh
+*/
+int refresh()()
+{
+  return wrefresh(stdscr);
+}
+///ditto
+int wrefresh(WINDOW* win);
+/**
+Allows multiple updates. More efficient than refresh alone.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_refresh
+*/
+int wnoutrefresh(WINDOW* win);
+///ditto
+int doupdate();
+/**
+Indicates that some lines are corrupted and should be thrown away.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_refresh
+*/
+int redrawwin(W:WINDOW)(W* win)
+{
+  return wredrawln(win, 0, win.maxy+1);
+}
+///ditto
+int wredrawln(WINDOW* win, int beg_line, int num_lines);
+
+/**
+scanf for a curses window.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_scanf
+*/
+int scanw(char* fmt, ...);
+///ditto
+int wscanw(WINDOW* win, char* fmt, ...);
+///ditto
+int mvscanw(int y, int x, char* fmt, ...);
+///ditto
+int mvwscanw(WINDOW* win, int y, int x, char* fmt, ...);
+///ditto
+int vw_scanw(W:WINDOW, C:char, V:va_list)(W* win, C* fmt, V varglist)
+{
+  return vwscanw(win, fmt, varglist);
+}
+///ditto
+int vwscanw(WINDOW* win, char* fmt, va_list varglist);
+
+/**
+Dump/restore the contents of a virtual screen.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_scr_dump
+*/
+int scr_dump(char *filename);
+///ditto
+int scr_restore(char *filename);
+///ditto
+int scr_init(char *filename);
+///ditto
+int scr_set(char *filename);
+
+/**
+Scroll the window up one line
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_scroll
+*/
+int scroll(W:WINDOW)(W* win)
+{
+  return wscrl(win, 1);
+}
+/**
+Scroll the window n lines.  Up for positive n, down for negative.
+
+Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
+
+See_also: man curs_scroll
+*/
+int scrl(N:int)(N n)
+{
+  return wscrl(stdscr, n);
+}
+///ditto
+int wscrl(WINDOW *win, int n);
+
+/**
+Routines for manipulating the set of "soft function key labels"
+
+See_also: man curs_slk
+*/
+int slk_init(int fmt);
+///ditto
+int slk_set(int labnum, char* label, int fmt);
+///ditto
+int slk_set(int labnum, wchar_t* label, int fmt);
+///ditto
+int slk_refresh();
+///ditto
+int slk_noutrefresh();
+///ditto
+char* slk_label(int labnum);
+///ditto
+int slk_clear();
+///ditto
+int slk_restore();
+///ditto
+int slk_touch();
+///ditto
+int slk_attron(chtype attrs);
+///ditto
+int slk_attroff(chtype attrs);
+///ditto
+int slk_attrset(chtype attrs);
+///ditto
+int slk_attr_on(A:attr_t, V:void)(A attrs, V* opts)
+{
+  if(opts == null)
+    return ERR;
+  return slk_attron(a);
+}
+///ditto
+int slk_attr_off(A:attr_t, V:void)(A attrs, V* opts)
+{
+  if(opts == null)
+    return ERR;
+  return slk_attroff(a);
+}
+///ditto
+int slk_attr_set(attr_t attrs, short color_pair_number, void* opts);
+///ditto
+attr_t slk_attr();
+///ditto
+int slk_color(short color_pair_number);
 
 /* window functions */
 WINDOW* newwin(int nlines, int ncols, int begin_y, int begin_x);
@@ -2087,35 +2654,6 @@ int syncok(WINDOW* win, bool bf);
 void wcursyncup(WINDOW* win);
 void wsyncdown(WINDOW* win);
 
-/* refresh functions */
-int refresh();
-int wrefresh(WINDOW* win);
-int wnoutrefresh(WINDOW* win);
-int doupdate();
-int redrawwin(WINDOW* win);
-int wredrawln(WINDOW* win, int beg_line, int num_lines);
-
-/* output options */
-int clearok(WINDOW* win, bool bf);
-int idlok(WINDOW* win, bool bf);
-void idcok(WINDOW* win, bool bf);
-void immedok(WINDOW* win, bool bf);
-int leaveok(WINDOW* win, bool bf);
-int wsetscrreg(WINDOW* win, int top, int bot);
-int setscrreg(N:int)(N top, N bot)
-{
-  return wsetscrreg(stdscr, top, bot);
-}
-int scrollok(WINDOW* win, bool bf);
-int nl();
-int nonl();
-
-/* screen <-> file functions */
-int scr_dump(char *filename);
-int scr_restore(char *filename);
-int scr_init(char *filename);
-int scr_set(char *filename);
-
 /* window <-> file functions */
 char* unctrl(chtype c);
 char* wunctrl(cchar_t* c);
@@ -2129,43 +2667,6 @@ WINDOW* getwin(FILE* filep);
 int delay_output(int ms);
 int flushinp();
 
-/* window overlay functions */
-int overlay(WINDOW* srcwin, WINDOW* dstwin);
-int overwrite(WINDOW* srcwin, WINDOW* dstwin);
-int copywin(WINDOW* srcwin, WINDOW* dstwin, int sminrow,
-     int smincol, int dminrow, int dmincol, int dmaxrow,
-     int dmaxcol, int overlay);
-
-/* cursor movement */
-int move(int y, int x);
-int wmove(WINDOW* win, int y, int x);
-
-/* printing functions */
-int printw(char* fmt, ...);
-int wprintw(WINDOW* win, char* fmt, ...);
-int mvprintw(int y, int x, char* fmt, ...);
-int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
-deprecated int vwprintw(WINDOW* win, char* fmt, va_list varglist);
-int vw_printw(WINDOW* win, char* fmt, va_list varglist);
-
-/* formatted input functions */
-int scanw(char* fmt, ...);
-int wscanw(WINDOW* win, char* fmt, ...);
-int mvscanw(int y, int x, char* fmt, ...);
-int mvwscanw(WINDOW* win, int y, int x, char* fmt, ...);
-int vw_scanw(WINDOW* win, char* fmt, va_list varglist);
-deprecated int vwscanw(WINDOW* win, char* fmt, va_list varglist);
-
-/* mouse functions */
-int getmouse(MEVENT* event);
-int ungetmouse(MEVENT* event);
-mmask_t mousemask(mmask_t newmask, mmask_t* oldmask);
-bool wenclose(WINDOW* win, int y, int x);
-bool mouse_trafo(int* pY, int* pX, bool to_screen);
-bool wmouse_trafo(WINDOW* win, int* pY, int* pX,
-    bool to_screen);
-int mouseinterval(int erval);
-
 
 /* error codes */
 enum
@@ -2174,36 +2675,6 @@ enum
   ERR = -1
 }
 
-
-/* mouse events */
-enum
-{
-  BUTTON1_RELEASED          = 0x1,
-  BUTTON1_PRESSED           = 0x2,
-  BUTTON1_CLICKED           = 0x4,
-  BUTTON1_DOUBLE_CLICKED    = 0x8,
-  BUTTON1_TRIPLE_CLICKED    = 0x10,
-  BUTTON2_RELEASED          = 0x40,
-  BUTTON2_PRESSED           = 0x80,
-  BUTTON2_CLICKED           = 0x100,
-  BUTTON2_DOUBLE_CLICKED    = 0x200,
-  BUTTON2_TRIPLE_CLICKED    = 0x400,
-  BUTTON3_RELEASED          = 0x1000,
-  BUTTON3_PRESSED           = 0x2000,
-  BUTTON3_CLICKED           = 0x4000,
-  BUTTON3_DOUBLE_CLICKED    = 0x8000,
-  BUTTON3_TRIPLE_CLICKED    = 0x10000,
-  BUTTON4_RELEASED          = 0x40000,
-  BUTTON4_PRESSED           = 0x80000,
-  BUTTON4_CLICKED           = 0x100000,
-  BUTTON4_DOUBLE_CLICKED    = 0x200000,
-  BUTTON4_TRIPLE_CLICKED    = 0x400000,
-  BUTTON_CTRL               = 0x1000000,
-  BUTTON_SHIFT              = 0x2000000,
-  BUTTON_ALT                = 0x4000000,
-  REPORT_MOUSE_POSITION     = 0x8000000,
-  ALL_MOUSE_EVENTS          = 0x7FFFFFF
-}
 
 
 /* acs symbols */

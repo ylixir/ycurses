@@ -2641,32 +2641,320 @@ attr_t slk_attr();
 ///ditto
 int slk_color(short color_pair_number);
 
-/* window functions */
-WINDOW* newwin(int nlines, int ncols, int begin_y, int begin_x);
-int delwin(WINDOW* win);
-int mvwin(WINDOW* win, int y, int x);
-WINDOW* subwin(WINDOW* orig, int nlines, int ncols, int begin_y, int begin_x);
-WINDOW* derwin(WINDOW* orig, int nlines, int ncols, int begin_y, int begin_x);
-int mvderwin(WINDOW* win, int par_y, int par_x);
-WINDOW* dupwin(WINDOW* win);
-void wsyncup(WINDOW* win);
-int syncok(WINDOW* win, bool bf);
-void wcursyncup(WINDOW* win);
-void wsyncdown(WINDOW* win);
+/**
+Get the output speed of the terminal in bits per second.
 
-/* window <-> file functions */
+See_also: man curs_termattrs
+*/
+int baudrate();
+/**
+Get the erase and kill characters.
+
+See_also: man curs_termattrs
+*/
+char erasechar();
+///ditto
+int erasewchar(wchar_t* ch);
+///ditto
+char killchar();
+///ditto
+int killwchar(wchar_t* ch);
+/**
+Check to see if the terminal has insert and delete character/line
+capabilities.
+
+See_also: man curs_termattrs
+*/
+bool has_ic();
+///ditto
+bool has_il();
+/**
+Get the terminal description.
+
+See_also: man curs_termattrs
+*/
+char* longname();
+///ditto
+char* termname();
+/**
+Find out what attributes are supported by the terminal.
+
+See_also: man curs_termattrs
+*/
+attr_t term_attrs();
+///ditto
+chtype termattrs();
+
+/* *****************************************************************
+ * The man pages have stuff for emulating the termcap library      *
+ * but i don't actually see them on my system, so this is a place  *
+ * holder for man curs_termcap, and curs_terminfo                  *
+ *******************************************************************/
+
+
+/**
+Touch the window or line, convincing curses that the whole thing needs
+to be redrawn.
+
+See_also: man curs_touch
+*/
+int touchwin(W:WINDOW)(W* win)
+{
+  return wtouchln(win, 0, getmaxy(win), 1);
+}
+///ditto
+int touchline(W:WINDOW, N:int)(W* win, N start, N count)
+{
+  return wtouchln(win, start, count, 1);
+}
+/**
+Tell curses nothing has changed since the last refresh.
+
+See_also: man curs_touch
+*/
+int untouchwin(W:WINDOW)(W* win)
+{
+  return wtouchln(win, 0, getmaxy(win), 0);
+}
+/**
+Make n lines, starting with y look as if they have been changed or not.
+
+See_also: man curs_touch
+*/
+int wtouchln(WINDOW* win, int y, int n, int changed);
+/**
+Check to see if the line/window was modified since the last refresh.
+
+See_also: man curs_touch
+*/
+bool is_linetouched(WINDOW* win, int line);
+///ditto
+bool is_wintouched(WINDOW* win);
+
+/**
+Debugging features of ncurses.
+
+See_also: man curs_trace
+*/
+void _tracef(char* format, ...);
+///ditto
+void _tracedump(char* label, WINDOW* win);
+///ditto
+char* _traceattr(attr_t attr);
+///ditto
+char* _traceattr2(int buffer, chtype ch);
+///ditto
+char* _nc_tracebits();
+///ditto
+char* _tracechar(ubyte ch);
+///ditto
+char* _tracechtype(chtype ch);
+///ditto
+char* _tracechtype2(int buffer, chtype ch);
+///ditto
+char* _tracemouse(MEVENT* event);
+///ditto
+void trace(uint param);
+
+/* trace masks */
+enum :uint
+{
+  TRACE_DISABLE  = 0x0000,
+  TRACE_TIMES    = 0x0001,
+  TRACE_TPUTS    = 0x0002,
+  TRACE_UPDATE   = 0x0004,
+  TRACE_MOVE     = 0x0008,
+  TRACE_CHARPUT  = 0x0010,
+  TRACE_ORDINARY = 0x001F,
+  TRACE_CALLS    = 0x0020,
+  TRACE_VIRTPUT  = 0x0040,
+  TRACE_IEVENT   = 0x0080,
+  TRACE_BITS     = 0x0100,
+  TRACE_ICALLS   = 0x0200,
+  TRACE_CCALLS   = 0x0400,
+  TRACE_DATABASE = 0x0800,
+  TRACE_ATTRS    = 0x1000,
+
+  TRACE_SHIFT    = 13,
+  TRACE_MAXIMUM  = ((1 << TRACE_SHIFT) - 1)
+}
+
+/**
+Get a string that is a printable representation of the character.
+
+See_also: man curs_util
+*/
 char* unctrl(chtype c);
+///ditto
 char* wunctrl(cchar_t* c);
+/**
+Get a string representation of the key.
+
+See_also: man curs_util
+*/
 char* keyname(int c);
+///ditto
 char* key_name(wchar_t w);
+/**
+See_also: man curs_util
+*/
 void filter();
+///ditto
 void nofilter();
+/**
+Tells curses to use or not use actual line and column size of the
+terminal.
+
+See_also: man curs_util
+*/
 void use_env(bool f);
+/**
+Save and restore window data from a file.
+
+See_also: man curs_util
+*/
 int putwin(WINDOW* win, FILE* filep);
+///ditto
 WINDOW* getwin(FILE* filep);
+/**
+Delay output by writing padding characters.
+
+See_also: man curs_util
+*/
 int delay_output(int ms);
+/**
+Flush the input queue.
+
+See_also: man curs_util
+*/
 int flushinp();
 
+/**
+Create a new window with the given size and coordinates.
+
+See_also: curs_window
+*/
+WINDOW* newwin(int nlines, int ncols, int begin_y, int begin_x);
+/**
+Free the memory associated with the window.
+
+See_also: curs_window
+*/
+int delwin(WINDOW* win);
+/**
+Move the window.
+
+See_also: curs_window
+*/
+int mvwin(WINDOW* win, int y, int x);
+/**
+Make a subwindow.
+
+See_also: curs_window
+*/
+WINDOW* subwin(WINDOW* orig, int nlines, int ncols, int begin_y, int begin_x);
+///ditto
+WINDOW* derwin(WINDOW* orig, int nlines, int ncols, int begin_y, int begin_x);
+/**
+Move a subwindow.
+
+See_also: curs_window
+*/
+int mvderwin(WINDOW* win, int par_y, int par_x);
+/**
+Create a duplicate window.
+
+See_also: curs_window
+*/
+WINDOW* dupwin(WINDOW* win);
+/**
+Touch all ancestors of the window.
+
+See_also: curs_window
+*/
+void wsyncup(WINDOW* win);
+/**
+Call wsyncup automatically or not.
+
+See_also: curs_window
+*/
+int syncok(WINDOW* win, bool bf);
+/**
+Update cursor position of ancestors of win.
+
+See_also: curs_window
+*/
+void wcursyncup(WINDOW* win);
+/**
+Touch each location in win that has been updated in ancestor windows.
+
+See_also: curs_window
+*/
+void wsyncdown(WINDOW* win);
+
+/**
+Assign terminal default colors to color number -1
+
+See_also: man default_colors
+*/
+int use_default_colors();
+/**
+Tells curses what colors to use for color pair 0.
+
+See_also: man default_colors
+*/
+int assume_default_colors(int fg, int bg);
+
+/**
+Define a keycode with corresponding control strings
+
+See_also: man define_key
+*/
+int define_key(char* definition, int keycode);
+/**
+Check and see if a string is bound to any keycode.
+
+See_also: man key_defined
+*/
+int key_defined(char* definition);
+/**
+Determine the string defined for a specific keycode.
+
+See_also: man keybound
+*/
+char* keybound(int keycode, int count);
+/**
+Enable/disable specific keycodes.
+
+See_also: man keyok
+*/
+int keyok(int keycode, bool enable);
+
+/**
+Check to see if resize_term would modify the window structures.
+
+See_also: man resizeterm
+*/
+bool is_term_resized(int lines, int columns);
+/**
+Resizes the terminal window, and blank fills the extended areas.
+
+See_also: man resizeterm
+*/
+int resize_term(int lines, int columns);
+/**
+Add bookkeeping for the SIGWINCH handler.
+
+See_also: man resizeterm
+*/
+int resizeterm(int lines, int columns);
+
+/**
+Reallocate storage for an ncurses window to adjust its dimensions.
+
+See_also: man wresize
+*/
+int wresize(WINDOW* win, int lines, int columns);
 
 /* error codes */
 enum

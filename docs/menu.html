@@ -478,7 +478,7 @@ man menu_format
 selection changes (after the change).
 <br><br>
 <b>See Also:</b><br>
-menu_hook
+man menu_hook
 <br><br>
 
 </dd>
@@ -502,7 +502,7 @@ menu_hook
 selection changes (before the change).
 <br><br>
 <b>See Also:</b><br>
-menu_hook
+man menu_hook
 <br><br>
 
 </dd>
@@ -526,7 +526,7 @@ menu_hook
 <span class="funcparam">menu</span> changes.
 <br><br>
 <b>See Also:</b><br>
-menu_hook
+man menu_hook
 <br><br>
 
 </dd>
@@ -550,7 +550,501 @@ menu_hook
 the <span class="funcparam">menu</span> changes.
 <br><br>
 <b>See Also:</b><br>
-menu_hook
+man menu_hook
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_menu_items</span>
+<script>explorer.outline.addDecl('set_menu_items');</script>
+
+(MENU* <span class="funcparam">menu</span>, ITEM** <span class="funcparam">items</span>);
+<br>ITEM** 
+<span class="currsymbol">menu_items</span>
+<script>explorer.outline.addDecl('menu_items');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/get array of <span class="funcparam">menu</span> <span class="funcparam">items</span> associated with the <span class="funcparam">menu</span>.
+Array is <b>null</b> terminated.
+<br><br>
+<b>See Also:</b><br>
+man menu_items
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">item_count</span>
+<script>explorer.outline.addDecl('item_count');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the number of items in the <span class="funcparam">menu</span>.
+<br><br>
+<b>See Also:</b><br>
+man menu_items
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_menu_mark</span>
+<script>explorer.outline.addDecl('set_menu_mark');</script>
+
+(MENU* <span class="funcparam">menu</span>, char* <span class="funcparam">mark</span>);
+<br>char* 
+<span class="currsymbol">menu_mark</span>
+<script>explorer.outline.addDecl('menu_mark');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/get the string used to <span class="funcparam">mark</span> the selected <span class="funcparam">menu</span> items.
+<br><br>
+<b>See Also:</b><br>
+man menu_mark
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">MENU* 
+<span class="currsymbol">new_menu</span>
+<script>explorer.outline.addDecl('new_menu');</script>
+
+(ITEM** <span class="funcparam">items</span>);
+<br>int 
+<span class="currsymbol">free_menu</span>
+<script>explorer.outline.addDecl('free_menu');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Allocate/deallocate a new menu.
+<br><br>
+<b>See Also:</b><br>
+man menu_new
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_menu_opts</span>
+<script>explorer.outline.addDecl('set_menu_opts');</script>
+
+(MENU* <span class="funcparam">menu</span>, OPTIONS <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">menu_opts_on</span>
+<script>explorer.outline.addDecl('menu_opts_on');</script>
+
+(MENU* <span class="funcparam">menu</span>, OPTIONS <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">menu_opts_off</span>
+<script>explorer.outline.addDecl('menu_opts_off');</script>
+
+(MENU* <span class="funcparam">menu</span>, OPTIONS <span class="funcparam">opts</span>);
+<br>OPTIONS 
+<span class="currsymbol">menu_opts</span>
+<script>explorer.outline.addDecl('menu_opts');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Sets/gets <span class="funcparam">menu</span> option bits.
+<br><br>
+<b>See Also:</b><br>
+man menu_opts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_menu_pattern</span>
+<script>explorer.outline.addDecl('set_menu_pattern');</script>
+
+(MENU* <span class="funcparam">menu</span>, char* <span class="funcparam">pattern</span>);
+<br>char* 
+<span class="currsymbol">menu_pattern</span>
+<script>explorer.outline.addDecl('menu_pattern');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/get the <span class="funcparam">pattern</span> match buffer for the <span class="funcparam">menu</span>.
+<br><br>
+<b>See Also:</b><br>
+man menu_pattern
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">post_menu</span>
+<script>explorer.outline.addDecl('post_menu');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+<br>int 
+<span class="currsymbol">unpost_menu</span>
+<script>explorer.outline.addDecl('unpost_menu');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Display/erase a <span class="funcparam">menu</span>.
+<br><br>
+<b>See Also:</b><br>
+man man menu_post
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">char* 
+<span class="currsymbol">menu_request_name</span>
+<script>explorer.outline.addDecl('menu_request_name');</script>
+
+(int <span class="funcparam">request</span>);
+<br>int 
+<span class="currsymbol">menu_request_by_name</span>
+<script>explorer.outline.addDecl('menu_request_by_name');</script>
+
+(char* <span class="funcparam">name</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Gets printable name of a <span class="funcparam">request</span> code, or visa versa
+<br><br>
+<b>See Also:</b><br>
+man menu_requestname
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_menu_spacing</span>
+<script>explorer.outline.addDecl('set_menu_spacing');</script>
+
+(MENU* <span class="funcparam">menu</span>, int <span class="funcparam">spc_description</span>, int <span class="funcparam">spc_rows</span>, int <span class="funcparam">spc_columns</span>);
+<br>int 
+<span class="currsymbol">menu_spacing</span>
+<script>explorer.outline.addDecl('menu_spacing');</script>
+
+(MENU* <span class="funcparam">menu</span>, int* <span class="funcparam">spc_description</span>, int* <span class="funcparam">spc_rows</span>, int* <span class="funcparam">spc_columns</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/retrieve the spacing information for the <span class="funcparam">menu</span>.
+<br><br>
+<b>See Also:</b><br>
+man menu_spacing
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_menu_userptr</span>
+<script>explorer.outline.addDecl('set_menu_userptr');</script>
+
+(MENU* <span class="funcparam">menu</span>, void* <span class="funcparam">userptr</span>);
+<br>void* 
+<span class="currsymbol">menu_userptr</span>
+<script>explorer.outline.addDecl('menu_userptr');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/retrieve the user pointer for the <span class="funcparam">menu</span>
+<br><br>
+<b>See Also:</b><br>
+man menu_userptr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_menu_win</span>
+<script>explorer.outline.addDecl('set_menu_win');</script>
+
+(MENU* <span class="funcparam">menu</span>, WINDOW* <span class="funcparam">win</span>);
+<br>WINDOW* 
+<span class="currsymbol">menu_win</span>
+<script>explorer.outline.addDecl('menu_win');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+<br>int 
+<span class="currsymbol">set_menu_sub</span>
+<script>explorer.outline.addDecl('set_menu_sub');</script>
+
+(MENU* <span class="funcparam">menu</span>, WINDOW* <span class="funcparam">sub</span>);
+<br>WINDOW* 
+<span class="currsymbol">menu_sub</span>
+<script>explorer.outline.addDecl('menu_sub');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get/set the windows associated with the menus.
+<br><br>
+<b>See Also:</b><br>
+man menu_win
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">scale_menu</span>
+<script>explorer.outline.addDecl('scale_menu');</script>
+
+(MENU* <span class="funcparam">menu</span>, int* <span class="funcparam">rows</span>, int* <span class="funcparam">columns</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the minimum required size of window for the <span class="funcparam">menu</span>.
+<br><br>
+<b>See Also:</b><br>
+man menu_win
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_current_item</span>
+<script>explorer.outline.addDecl('set_current_item');</script>
+
+(MENU* <span class="funcparam">menu</span>, ITEM* <span class="funcparam">item</span>);
+<br>ITEM* 
+<span class="currsymbol">current_item</span>
+<script>explorer.outline.addDecl('current_item');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get/set the current <span class="funcparam">menu</span> <span class="funcparam">item</span>.
+<br><br>
+<b>See Also:</b><br>
+man mitem_current
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_top_row</span>
+<script>explorer.outline.addDecl('set_top_row');</script>
+
+(MENU* <span class="funcparam">menu</span>, int <span class="funcparam">row</span>);
+<br>int 
+<span class="currsymbol">top_row</span>
+<script>explorer.outline.addDecl('top_row');</script>
+
+(MENU* <span class="funcparam">menu</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set the item that is the top <span class="funcparam">row</span> of the <span class="funcparam">menu</span>.
+<br><br>
+<b>See Also:</b><br>
+man mitem_current
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">item_index</span>
+<script>explorer.outline.addDecl('item_index');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the index of the <span class="funcparam">item</span> in the menu.
+<br><br>
+<b>See Also:</b><br>
+man mitem_current
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">char* 
+<span class="currsymbol">item_name</span>
+<script>explorer.outline.addDecl('item_name');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+<br>char* 
+<span class="currsymbol">item_description</span>
+<script>explorer.outline.addDecl('item_description');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the name and description of the <span class="funcparam">item</span>.
+<br><br>
+<b>See Also:</b><br>
+man mitem_name
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">ITEM* 
+<span class="currsymbol">new_item</span>
+<script>explorer.outline.addDecl('new_item');</script>
+
+(char* <span class="funcparam">name</span>, char* <span class="funcparam">description</span>);
+<br>int 
+<span class="currsymbol">free_item</span>
+<script>explorer.outline.addDecl('free_item');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Allocate/deallocate a menu item.
+<br><br>
+<b>See Also:</b><br>
+man mitem_new
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_item_opts</span>
+<script>explorer.outline.addDecl('set_item_opts');</script>
+
+(ITEM* <span class="funcparam">item</span>, OPTIONS <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">item_opts_on</span>
+<script>explorer.outline.addDecl('item_opts_on');</script>
+
+(ITEM* <span class="funcparam">item</span>, OPTIONS <span class="funcparam">opts</span>);
+<br>int 
+<span class="currsymbol">item_opts_off</span>
+<script>explorer.outline.addDecl('item_opts_off');</script>
+
+(ITEM* <span class="funcparam">item</span>, OPTIONS <span class="funcparam">opts</span>);
+<br>OPTIONS 
+<span class="currsymbol">item_opts</span>
+<script>explorer.outline.addDecl('item_opts');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/get an items option bits
+<br><br>
+<b>See Also:</b><br>
+man mitem_opts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_item_userptr</span>
+<script>explorer.outline.addDecl('set_item_userptr');</script>
+
+(ITEM* <span class="funcparam">item</span>, void* <span class="funcparam">userptr</span>);
+<br>void* 
+<span class="currsymbol">item_userptr</span>
+<script>explorer.outline.addDecl('item_userptr');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get set the user pointer associated with the <span class="funcparam">item</span>.
+<br><br>
+<b>See Also:</b><br>
+man mitem_userptr
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_item_value</span>
+<script>explorer.outline.addDecl('set_item_value');</script>
+
+(ITEM* <span class="funcparam">item</span>, bool <span class="funcparam">value</span>);
+<br>bool 
+<span class="currsymbol">item_value</span>
+<script>explorer.outline.addDecl('item_value');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get set whether an <span class="funcparam">item</span> in a multivalued menu is selected or not.
+<br><br>
+<b>See Also:</b><br>
+man mitem_value
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">bool 
+<span class="currsymbol">item_visible</span>
+<script>explorer.outline.addDecl('item_visible');</script>
+
+(ITEM* <span class="funcparam">item</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>See whether the <span class="funcparam">item</span> is visible or not.
+<br><br>
+<b>See Also:</b><br>
+man mitem_visible
 <br><br>
 
 </dd>
@@ -562,7 +1056,7 @@ menu_hook
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Mon Aug 25 13:24:24 2008
+			on Mon Aug 25 15:05:11 2008
 
 		</td></tr>
 	</table>

@@ -30,13 +30,21 @@ version(Tango)
 else
 {
   import std.c.stddef, std.c.stdio, std.c.stdarg;
+  version(Win32)
+  {
+    alias wchar wint_t;
+  }
+  else
+  {
+    alias dchar wint_t;
+  }
 }
 
 extern (C):
 
 /* types */
-typedef uint mmask_t;
-typedef uint  chtype;
+alias   uint mmask_t;
+alias   uint  chtype;
 alias   chtype   attr_t;
 typedef int OPTIONS;
 typedef void  SCREEN;
@@ -357,12 +365,12 @@ int mvwaddnwstr(W:WINDOW, N:int, WC:wchar_t)
  *     opts = reserved for future use.  Always use null.
  * See_also: man curs_attr
  */
-int attroff(N:int)(N attrs)
+int attroff(N:chtype)(N attrs)
 {
   return wattroff(stdscr, attrs);
 }
 ///ditto
-int wattroff(W:WINDOW, N:int)(W* win, N attrs)
+int wattroff(W:WINDOW, N:chtype)(W* win, N attrs)
 {
   return wattr_off(win, attrs, null);
 }
@@ -381,12 +389,12 @@ int wattr_off(WINDOW* win, attr_t attrs, void* opts);
  *     opts = reserved for future use.  Always use null.
  * See_also: man curs_attr
  */
-int attron(N:int)(N attrs)
+int attron(N:chtype)(N attrs)
 {
   return wattron(stdscr, attrs);
 }
 ///ditto
-int wattron(W:WINDOW, N:int)(W* win, N attrs)
+int wattron(W:WINDOW, N:chtype)(W* win, N attrs)
 {
   return wattr_on(win, cast(attr_t)attrs, null);
 }
@@ -405,12 +413,12 @@ int wattr_on(WINDOW* win, attr_t attrs, void* opts);
  *     opts = reserved for future use.  Always use null.
  * See_also: man curs_attr
  */
-int attrset(N:int)(N attrs)
+int attrset(N:chtype)(N attrs)
 {
   return wattrset(stdscr, attrs);
 }
 ///ditto
-int wattrset(W:WINDOW, N:int)(W* win, N attrs)
+int wattrset(W:WINDOW, N:chtype)(W* win, N attrs)
 {
   return win.attrs = attrs;
 }

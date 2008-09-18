@@ -1,0 +1,3 @@
+Sept 18, 2008
+-Added a definition of wint_t to the phobos code
+-Changed the parameter types of functions in curs_attr from int to chtype

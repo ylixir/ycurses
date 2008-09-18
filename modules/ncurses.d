@@ -204,7 +204,7 @@ int mvwaddch(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch) ///ditto
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
-  waddch(win, ch);
+  return waddch(win, ch);
 }
 
 /**

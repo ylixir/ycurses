@@ -39,13 +39,8 @@ int main(char[][] args) {
 
   create_box(starty, startx, width, height);
 
-version(Tango) {
-  mvprintw(starty, startx + 3, toUtf8z(" Hello world! "));
-  mvprintw(starty+1,startx+1, toUtf8z(" Type any char to exit       "));
-} else {
   mvprintw(starty, startx + 3, toStringz(" Hello world! "));
   mvprintw(starty+1,startx+1, toStringz(" Type any char to exit       "));
-}
 
   mvprintw(0,0,"");
   refresh();

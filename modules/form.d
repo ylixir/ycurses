@@ -195,46 +195,158 @@ enum :int
   MAX_FORM_COMMAND      = 0x238
 }
 
+/**
+Set the fields in the form to the given null terminated array
+
+See_also: man form_field
+*/
+int set_form_fields(FORM* form, FIELD** fields);
+/**
+Get the array of fields in the form.
+
+See_also: man form_field
+*/
+FIELD** form_fields(FORM* form);
+/**
+Find out how many fields are in the form.
+
+See_also: man form_field
+*/
+int field_count(FORM* form);
+/**
+Move the field to the specified place on the screen.
+
+See_also: man form_field
+*/
+int move_field(FIELD* field, int frow, int fcol);
+
+/**
+Get the attributes passed to a field when it was created.
+
+See_also: man form_field_info
+*/
+int field_info(FIELD* field, int* rows, int* cols,
+   int* frow, int* fcol, int* nrow, int* nbuf);
+/**
+Get the actual attributes of a field.
+
+See_also: man form_field_info
+*/
+int  dynamic_field_info(FIELD* field, int* rows, int* cols,
+   int* max);
+
+/**
+Allocate and initialize a new field.
+
+See_also: man form_field_new
+*/
 FIELD* new_field(int height, int width,
                 int toprow, int leftcol,
                 int offscreen, int nbuffers);
+/**
+Duplicate an existing field
+
+See_also: man form_field_new
+*/
 FIELD* dup_field(FIELD* field, int toprow, int leftcol);
+/**
+Duplicate a field, but share buffers with the original field.
+
+See_also: man form_field_new
+*/
 FIELD* link_field(FIELD* field, int toprow, int leftcol);
+/**
+Deallocate a field.
+
+See_also: man form_field_new
+*/
 int free_field(FIELD* field);
+
+/**
+Sets/gets a fields foreground attributes.
+
+See_also: man form_field_attributes
+*/
+int set_field_fore(FIELD* field, chtype attr);
+///ditto
+chtype field_fore(FIELD* field);
+/**
+Sets/gets a fields background attributes.
+
+See_also: man form_field_attributes
+*/
+int set_field_back(FIELD* field, chtype attr);
+///ditto
+chtype field_back(FIELD* field);
+/**
+Sets/gets a fields padding character attributes.
+
+See_also: man form_field_attributes
+*/
+int set_field_pad(FIELD* field, int pad);
+///ditto
+int field_pad(FIELD* field);
+
+/**
+Set the buffer of a field to contain a given string
+
+See_also: man form_field_buffer
+*/
+int set_field_buffer(FIELD* field, int buf, char* value);
+/**
+Get a pointer to a fields buffer
+
+See_also: man form_field_buffer
+*/
+char *field_buffer(FIELD* field, int buffer);
+/**
+Get/set a fields status.  True if changed.
+
+See_also: man form_field_buffer
+*/
+int set_field_status(FIELD* field, bool status);
+///ditto
+bool field_status(FIELD* field);
+/**
+Set the max size of a dynamic field.
+
+See_also: man form_field_buffer
+*/
+int set_max_field(FIELD* field, int max);
+
+/**
+Get/set a fields justification.
+
+See_also: man form_field_just
+*/
+int set_field_just(FIELD* field, int justification);
+///ditto
+int field_just(FIELD* field);
+enum :int
+{
+  ///Justification constants
+  NO_JUSTIFICATION = 0,
+  ///ditto
+  JUSTIFY_LEFT     = 1,
+  ///ditto
+  JUSTIFY_CENTER   = 2,
+  ///ditto
+  JUSTIFY_RIGHT    = 3
+}
+
 FORM* new_form(FIELD** fields);
 int free_form(FORM* form);
 int post_form(FORM* form);
 int unpost_form(FORM* form);
-int set_field_fore(FIELD* field, chtype attr);
-chtype field_fore(FIELD* field);
-int set_field_back(FIELD* field, chtype attr);
-chtype field_back(FIELD* field);
-int set_field_pad(FIELD* field, int pad);
-int field_pad(FIELD* field);
 int set_field_opts(FIELD* field, OPTIONS opts);
 int field_opts_on(FIELD* field, OPTIONS opts);
 int field_opts_off(FIELD* field, OPTIONS opts);
 OPTIONS field_opts(FIELD* field);
-int field_info(FIELD* field, int* rows, int* cols,
-   int* frow, int* fcol, int* nrow, int* nbuf);
-int  dynamic_field_info(FIELD* field, int* rows, int* cols,
-   int* max);
-int set_form_fields(FORM* form, FIELD** fields);
-FIELD** form_fields(FORM* form);
-int field_count(FORM* form);
-int move_field(FIELD* field, int frow, int fcol);
-int set_field_just(FIELD* field, int justification);
-int field_just(FIELD* field);
 int set_current_field(FORM* form, FIELD* field);
 FIELD* current_field(FORM* form);
 int set_form_page(FORM* form, int n);
 int form_page(FORM* form);
 int field_index(FIELD* field);
-int set_field_buffer(FIELD* field, int buf, char* value);
-char *field_buffer(FIELD* field, int buffer);
-int set_field_status(FIELD* field, bool status);
-bool field_status(FIELD* field);
-int set_max_field(FIELD* field, int max);
 int set_field_userptr(FIELD* field, void* userptr);
 void* field_userptr(FIELD* field);
 int set_form_win(FORM* form, WINDOW* win);
@@ -263,13 +375,6 @@ int set_fieldtype_choice(
 FIELDTYPE* link_fieldtype(FIELDTYPE* type1,
                          FIELDTYPE* type2);
 
-enum
-{
-  NO_JUSTIFICATION = 0,
-  JUSTIFY_LEFT     = 1,
-  JUSTIFY_CENTER   = 2,
-  JUSTIFY_RIGHT    = 3
-}
 enum :OPTIONS
 {
   /* form vals */

@@ -39,14 +39,6 @@ typedef void FIELD;
 typedef void FORM;
 typedef void FIELDTYPE;
 
-extern FIELDTYPE* TYPE_ALNUM;
-extern FIELDTYPE* TYPE_ALPHA;
-extern FIELDTYPE* TYPE_ENUM;
-extern FIELDTYPE* TYPE_INTEGER;
-extern FIELDTYPE* TYPE_NUMERIC;
-extern FIELDTYPE* TYPE_REGEXP;
-extern FIELDTYPE* TYPE_IPV4;
-
 /**
 Restores the cursor to the position required by the forms driver.
 
@@ -334,46 +326,161 @@ enum :int
   JUSTIFY_RIGHT    = 3
 }
 
-FORM* new_form(FIELD** fields);
-int free_form(FORM* form);
-int post_form(FORM* form);
-int unpost_form(FORM* form);
+/**
+Set all of a fields option bits.
+
+See_also: man form_field_opts
+*/
 int set_field_opts(FIELD* field, OPTIONS opts);
+/**
+Turn on a fields given option bits.
+
+See_also: man form_field_opts
+*/
 int field_opts_on(FIELD* field, OPTIONS opts);
+/**
+Turn off a fields given option bits.
+
+See_also: man form_field_opts
+*/
 int field_opts_off(FIELD* field, OPTIONS opts);
+/**
+Get a fields option bits.
+
+See_also: man form_field_opts
+*/
 OPTIONS field_opts(FIELD* field);
-int set_current_field(FORM* form, FIELD* field);
-FIELD* current_field(FORM* form);
-int set_form_page(FORM* form, int n);
-int form_page(FORM* form);
-int field_index(FIELD* field);
+
+/**
+Get/set a fields application specific data.
+
+See_also: man form_field_userptr
+*/
 int set_field_userptr(FIELD* field, void* userptr);
+///ditto
 void* field_userptr(FIELD* field);
-int set_form_win(FORM* form, WINDOW* win);
-WINDOW* form_win(FORM* form);
-int set_form_sub(FORM* form, WINDOW* sub);
-WINDOW* form_sub(FORM* form);
-int scale_form(FORM* form, int* rows, int* columns);
+
+/**
+Set/get a field type.
+
+See_also: man form_field_validation
+*/
 int set_field_type(FIELD* field, FIELDTYPE* type, ...);
+///ditto
 FIELDTYPE* field_type(FIELD* field);
+///ditto
 void* field_arg(FIELD* field);
-int set_new_page(FIELD* field, bool new_page_flag);
-bool new_page(FIELD* field);
+
+/**
+Valid field types.
+
+See_also: man form_field_validation
+*/
+extern FIELDTYPE* TYPE_ALNUM;
+///ditto
+extern FIELDTYPE* TYPE_ALPHA;
+///ditto
+extern FIELDTYPE* TYPE_ENUM;
+///ditto
+extern FIELDTYPE* TYPE_INTEGER;
+///ditto
+extern FIELDTYPE* TYPE_NUMERIC;
+///ditto
+extern FIELDTYPE* TYPE_REGEXP;
+///ditto
+extern FIELDTYPE* TYPE_IPV4;
+
+
+/**
+Create a new field type.
+
+See_also: man form_fieldtype
+*/
 FIELDTYPE* new_fieldtype(
    bool function(FIELD*, void*) field_check,
    bool function(int, void*) char_check);
+/**
+Free space allocated for a field type.
+
+See_also: man form_fieldtype
+*/
 int free_fieldtype(FIELDTYPE* fieldtype);
+/**
+Associate storage management functions with a field type.
+
+See_also: man form_fieldtype
+*/
 int set_fieldtype_arg(
    FIELDTYPE* fieldtype,
    void* function(va_list*) make_arg,
    void* function(void*) copy_arg,
    void  function(void*) free_arg);
+/**
+Define successor and predecessor functions for the field type.
+
+See_also: man form_fieldtype
+*/
 int set_fieldtype_choice(
    FIELDTYPE *fieldtype,
    bool function(FIELD*, void*) next_choice,
    bool function(FIELD*, void*) prev_choice);
+/**
+Create a new field type from two other types.
+
+See_also: man form_fieldtype
+*/
 FIELDTYPE* link_fieldtype(FIELDTYPE* type1,
                          FIELDTYPE* type2);
+
+/**
+Sets/gets a hook to be called at form post time and after a field changes.
+
+See_also: man form_hook
+*/
+int set_field_init(FORM* form, void function(FORM*) func);
+///ditto
+void function(FORM*) field_init(FORM* form);
+/**
+Sets/gets a hook to be called at form unpost time and before a field change.
+
+See_also: man form_hook
+*/
+int set_field_term(FORM* form, void function(FORM*) func);
+///ditto
+void function(FORM*) field_term(FORM* form);
+/**
+Sets/gets a hook to be called at form post time and after a page change.
+
+See_also: man form_hook
+*/
+int set_form_init(FORM *form, void function(FORM*) func);
+///ditto
+void function(FORM*) form_init(FORM* form);
+/**
+Sets/gets a hook to be called at form unpost time and before a page change.
+
+See_also: man form_hook
+*/
+int set_form_term(FORM *form, void function(FORM*) func);
+///ditto
+void function(FORM*) form_term(FORM* form);
+
+FORM* new_form(FIELD** fields);
+int free_form(FORM* form);
+int post_form(FORM* form);
+int unpost_form(FORM* form);
+int set_current_field(FORM* form, FIELD* field);
+FIELD* current_field(FORM* form);
+int set_form_page(FORM* form, int n);
+int form_page(FORM* form);
+int field_index(FIELD* field);
+int set_form_win(FORM* form, WINDOW* win);
+WINDOW* form_win(FORM* form);
+int set_form_sub(FORM* form, WINDOW* sub);
+WINDOW* form_sub(FORM* form);
+int scale_form(FORM* form, int* rows, int* columns);
+int set_new_page(FIELD* field, bool new_page_flag);
+bool new_page(FIELD* field);
 
 enum :OPTIONS
 {

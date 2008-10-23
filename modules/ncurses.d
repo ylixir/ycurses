@@ -732,6 +732,11 @@ int box(W:WINDOW, C:chtype)(W* win, C verch, C horch)
 {
   return wborder(win, verch, verch, horch, horch, 0, 0, 0, 0);
 }
+///ditto
+int box(W:WINDOW, C:int)(W* win, C verch, C horch)
+{
+  return wborder(win, verch, verch, horch, horch, 0, 0, 0, 0);
+}
 /**
 Draw a horizontal or vertical line in the window.
 

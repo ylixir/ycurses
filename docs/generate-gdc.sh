@@ -1,2 +1,2 @@
 #!/bin/bash
-gdmd -D -c -o- ../modules/*.d candydoc/candy.ddoc candydoc/modules.ddoc -I../modules
+gdc -fdoc -c -fsyntax-only ../modules/*.d -fdoc-inc=candydoc/candy.ddoc -fdoc-inc=candydoc/modules.ddoc -I ../modules

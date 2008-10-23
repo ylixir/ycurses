@@ -1169,6 +1169,334 @@ man form_hook
 <br><br>
 
 </dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">FORM* 
+<span class="currsymbol">new_form</span>
+<script>explorer.outline.addDecl('new_form');</script>
+
+(FIELD** <span class="funcparam">fields</span>);
+<br>int 
+<span class="currsymbol">free_form</span>
+<script>explorer.outline.addDecl('free_form');</script>
+
+(FORM* <span class="funcparam">form</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Create/destroy a new form.
+<br><br>
+<b>See Also:</b><br>
+man form_new
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_new_page</span>
+<script>explorer.outline.addDecl('set_new_page');</script>
+
+(FIELD* <span class="funcparam">field</span>, bool <span class="funcparam">new_page_flag</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set a <span class="funcparam">field</span> to be the beginning of a new page.
+<br><br>
+<b>See Also:</b><br>
+man form_new_page
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">bool 
+<span class="currsymbol">new_page</span>
+<script>explorer.outline.addDecl('new_page');</script>
+
+(FIELD* <span class="funcparam">field</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Check if a <span class="funcparam">field</span> is the beginning of a new page.
+<br><br>
+<b>See Also:</b><br>
+man form_new_page
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_form_opts</span>
+<script>explorer.outline.addDecl('set_form_opts');</script>
+
+(FORM* <span class="funcparam">form</span>, OPTIONS <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set all of a forms option bits.
+<br><br>
+<b>See Also:</b><br>
+man form_form_opts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">form_opts_on</span>
+<script>explorer.outline.addDecl('form_opts_on');</script>
+
+(FORM* <span class="funcparam">form</span>, OPTIONS <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Turn on a forms given option bits.
+<br><br>
+<b>See Also:</b><br>
+man form_form_opts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">form_opts_off</span>
+<script>explorer.outline.addDecl('form_opts_off');</script>
+
+(FORM* <span class="funcparam">form</span>, OPTIONS <span class="funcparam">opts</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Turn off a forms given option bits.
+<br><br>
+<b>See Also:</b><br>
+man form_form_opts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">OPTIONS 
+<span class="currsymbol">form_opts</span>
+<script>explorer.outline.addDecl('form_opts');</script>
+
+(FORM* <span class="funcparam">form</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get a forms option bits.
+<br><br>
+<b>See Also:</b><br>
+man form_form_opts
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_current_field</span>
+<script>explorer.outline.addDecl('set_current_field');</script>
+
+(FORM* <span class="funcparam">form</span>, FIELD* <span class="funcparam">field</span>);
+<br>FIELD* 
+<span class="currsymbol">current_field</span>
+<script>explorer.outline.addDecl('current_field');</script>
+
+(FORM* <span class="funcparam">form</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/get the forms current <span class="funcparam">field</span>.
+<br><br>
+<b>See Also:</b><br>
+man form_page
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_form_page</span>
+<script>explorer.outline.addDecl('set_form_page');</script>
+
+(FORM* <span class="funcparam">form</span>, int <span class="funcparam">n</span>);
+<br>int 
+<span class="currsymbol">form_page</span>
+<script>explorer.outline.addDecl('form_page');</script>
+
+(FORM* <span class="funcparam">form</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/get the forms current page.
+<br><br>
+<b>See Also:</b><br>
+man form_page
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">field_index</span>
+<script>explorer.outline.addDecl('field_index');</script>
+
+(FIELD* <span class="funcparam">field</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get a fields index in its form.
+<br><br>
+<b>See Also:</b><br>
+man form_page
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">post_form</span>
+<script>explorer.outline.addDecl('post_form');</script>
+
+(FORM* <span class="funcparam">form</span>);
+<br>int 
+<span class="currsymbol">unpost_form</span>
+<script>explorer.outline.addDecl('unpost_form');</script>
+
+(FORM* <span class="funcparam">form</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Display/erase a <span class="funcparam">form</span>
+<br><br>
+<b>See Also:</b><br>
+man form_post
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">char* 
+<span class="currsymbol">form_request_name</span>
+<script>explorer.outline.addDecl('form_request_name');</script>
+
+(int <span class="funcparam">request</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the printable name of a form <span class="funcparam">request</span> code
+<br><br>
+<b>See Also:</b><br>
+man form_requestname
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">form_request_by_name</span>
+<script>explorer.outline.addDecl('form_request_by_name');</script>
+
+(char* <span class="funcparam">name</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Search for a request code by it's printable <span class="funcparam">name</span>
+<br><br>
+<b>See Also:</b><br>
+man form_requestname
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_form_win</span>
+<script>explorer.outline.addDecl('set_form_win');</script>
+
+(FORM* <span class="funcparam">form</span>, WINDOW* <span class="funcparam">win</span>);
+<br>WINDOW* 
+<span class="currsymbol">form_win</span>
+<script>explorer.outline.addDecl('form_win');</script>
+
+(FORM* <span class="funcparam">form</span>);
+<br>int 
+<span class="currsymbol">set_form_sub</span>
+<script>explorer.outline.addDecl('set_form_sub');</script>
+
+(FORM* <span class="funcparam">form</span>, WINDOW* <span class="funcparam">sub</span>);
+<br>WINDOW* 
+<span class="currsymbol">form_sub</span>
+<script>explorer.outline.addDecl('form_sub');</script>
+
+(FORM* <span class="funcparam">form</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Set/remove <span class="funcparam">form</span> window associations.
+<br><br>
+<b>See Also:</b><br>
+man form_win
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">scale_form</span>
+<script>explorer.outline.addDecl('scale_form');</script>
+
+(FORM* <span class="funcparam">form</span>, int* <span class="funcparam">rows</span>, int* <span class="funcparam">columns</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get the minimum size required for a forms subwindow
+<br><br>
+<b>See Also:</b><br>
+man form_win
+<br><br>
+
+</dd>
+
+<script>explorer.outline.writeEnabled = true;</script>
+<dt><span class="decl">int 
+<span class="currsymbol">set_form_userptr</span>
+<script>explorer.outline.addDecl('set_form_userptr');</script>
+
+(FORM* <span class="funcparam">form</span>, void* <span class="funcparam">userptr</span>);
+<br>void* 
+<span class="currsymbol">form_userptr</span>
+<script>explorer.outline.addDecl('form_userptr');</script>
+
+(FORM* <span class="funcparam">form</span>);
+</span></dt>
+<script>explorer.outline.writeEnabled = false;</script>
+
+
+<dd>Get/set a forms application specific data.
+<br><br>
+<b>See Also:</b><br>
+man form_field_userptr
+<br><br>
+
+</dd>
 </dl>
 <script>explorer.outline.decSymbolLevel();</script>
 
@@ -1177,7 +1505,7 @@ man form_hook
 		<tr><td id="docfooter">
 			Page was generated with
 			<img src="candydoc/img/candydoc.gif" style="vertical-align:middle; position:relative; top:-1px">
-			on Thu Oct 23 14:50:32 2008
+			on Thu Oct 23 15:08:17 2008
 
 		</td></tr>
 	</table>

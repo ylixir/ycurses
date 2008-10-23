@@ -465,22 +465,126 @@ int set_form_term(FORM *form, void function(FORM*) func);
 ///ditto
 void function(FORM*) form_term(FORM* form);
 
+/**
+Create/destroy a new form.
+
+See_also: man form_new
+*/
 FORM* new_form(FIELD** fields);
+///ditto
 int free_form(FORM* form);
-int post_form(FORM* form);
-int unpost_form(FORM* form);
-int set_current_field(FORM* form, FIELD* field);
-FIELD* current_field(FORM* form);
-int set_form_page(FORM* form, int n);
-int form_page(FORM* form);
-int field_index(FIELD* field);
-int set_form_win(FORM* form, WINDOW* win);
-WINDOW* form_win(FORM* form);
-int set_form_sub(FORM* form, WINDOW* sub);
-WINDOW* form_sub(FORM* form);
-int scale_form(FORM* form, int* rows, int* columns);
+
+/**
+Set a field to be the beginning of a new page.
+
+See_also: man form_new_page
+*/
 int set_new_page(FIELD* field, bool new_page_flag);
+/**
+Check if a field is the beginning of a new page.
+
+See_also: man form_new_page
+*/
 bool new_page(FIELD* field);
+
+
+/**
+Set all of a forms option bits.
+
+See_also: man form_form_opts
+*/
+int set_form_opts(FORM* form, OPTIONS opts);
+/**
+Turn on a forms given option bits.
+
+See_also: man form_form_opts
+*/
+int form_opts_on(FORM* form, OPTIONS opts);
+/**
+Turn off a forms given option bits.
+
+See_also: man form_form_opts
+*/
+int form_opts_off(FORM* form, OPTIONS opts);
+/**
+Get a forms option bits.
+
+See_also: man form_form_opts
+*/
+OPTIONS form_opts(FORM* form);
+
+/**
+Set/get the forms current field.
+
+See_also: man form_page
+*/
+int set_current_field(FORM* form, FIELD* field);
+///ditto
+FIELD* current_field(FORM* form);
+/**
+Set/get the forms current page.
+
+See_also: man form_page
+*/
+int set_form_page(FORM* form, int n);
+///ditto
+int form_page(FORM* form);
+/**
+Get a fields index in its form.
+
+See_also: man form_page
+*/
+int field_index(FIELD* field);
+
+/**
+Display/erase a form
+
+See_also: man form_post
+*/
+int post_form(FORM* form);
+///ditto
+int unpost_form(FORM* form);
+
+/**
+Get the printable name of a form request code
+
+See_also: man form_requestname
+*/
+char* form_request_name(int request);
+/**
+Search for a request code by it's printable name
+
+See_also: man form_requestname
+*/
+int form_request_by_name(char* name);
+
+/**
+Set/remove form window associations.
+
+See_also: man form_win
+*/
+int set_form_win(FORM* form, WINDOW* win);
+///ditto
+WINDOW* form_win(FORM* form);
+///ditto
+int set_form_sub(FORM* form, WINDOW* sub);
+///ditto
+WINDOW* form_sub(FORM* form);
+/**
+Get the minimum size required for a forms subwindow
+
+See_also: man form_win
+*/
+int scale_form(FORM* form, int* rows, int* columns);
+
+/**
+Get/set a forms application specific data.
+
+See_also: man form_field_userptr
+*/
+int set_form_userptr(FORM* form, void* userptr);
+///ditto
+void* form_userptr(FORM* form);
 
 enum :OPTIONS
 {

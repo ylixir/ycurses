@@ -1,6 +1,0 @@
-MODULES = 
-	$(MODULE ncurses)
-	$(MODULE panel)
-	$(MODULE menu)
-	$(MODULE form)
-	$(MODULE eti)

@@ -1,4 +1,6 @@
-#include <ncurses.h>
+import ncurses;
+
+extern(C) int system(char *command);
 
 int main()
 {	
@@ -14,6 +16,7 @@ int main()
 					/* Screen contents		  */
 	printw("Another String\n");	/* Back to curses use the full    */
 	refresh();			/* capabilities of curses	  */
+        getch();
 	endwin();			/* End curses mode		  */
 
 	return 0;

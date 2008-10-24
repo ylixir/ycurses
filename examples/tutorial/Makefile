@@ -3,8 +3,8 @@
 all:	
 #	cd JustForFun 	&& $(MAKE)
 	cd basics	&& $(MAKE)
-#	cd forms	&& $(MAKE)
-#	cd menus	&& $(MAKE)
+	cd forms	&& $(MAKE)
+	cd menus	&& $(MAKE)
 #	cd panels	&& $(MAKE)
 	@echo 
 	@echo "*********************************************"

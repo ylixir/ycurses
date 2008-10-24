@@ -4,7 +4,7 @@
 
 DC=gdc
 LIBS=-lncurses
-IMPORTS=~/code/ycurses/modules/
+IMPORTS=-I ~/code/ycurses/modules/
 
 SRC_DIR=.
 EXE_DIR=../demo/exe
@@ -29,7 +29,7 @@ ${EXE_DIR}/%: %.o
 	${DC} -o $@ $< ${LIBS}
 
 %.o: ${SRC_DIR}/%.d
-	${DC} -o $@ -c $< -I ${IMPORTS}
+	${DC} -o $@ -c $< ${IMPORTS}
 
 all:    ${EXES}
 

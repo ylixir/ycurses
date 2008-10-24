@@ -1,26 +1,26 @@
-#include <form.h>
+import form;
 
-#define STARTX 15
-#define STARTY 4
-#define WIDTH 25
+const int STARTX = 15;
+const int STARTY = 4;
+const int WIDTH  = 25;
 
-#define N_FIELDS 3
+const int N_FIELDS = 3;
 
 int main()
-{	FIELD *field[N_FIELDS];
-	FORM  *my_form;
+{	FIELD*[N_FIELDS] field;
+	FORM*  my_form;
 	int ch, i;
 	
 	/* Initialize curses */
 	initscr();
 	cbreak();
 	noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
 
 	/* Initialize the fields */
 	for(i = 0; i < N_FIELDS - 1; ++i)
 		field[i] = new_field(1, WIDTH, STARTY + i * 2, STARTX, 0, 0);
-	field[N_FIELDS - 1] = NULL;
+	field[N_FIELDS - 1] = null;
 
 	/* Set field options */
 	set_field_back(field[1], A_UNDERLINE); 	/* Print a line for the option 	*/
@@ -31,7 +31,7 @@ int main()
 					      /* after last character is entered */
 	
 	/* Create the form and post it */
-	my_form = new_form(field);
+	my_form = new_form(field.ptr);
 	post_form(my_form);
 	refresh();
 	

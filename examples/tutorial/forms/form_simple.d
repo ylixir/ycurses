@@ -1,20 +1,20 @@
-#include <form.h>
+import form;
 
 int main()
-{	FIELD *field[3];
-	FORM  *my_form;
+{	FIELD*[3] field;
+	FORM*  my_form;
 	int ch;
 	
 	/* Initialize curses */
 	initscr();
 	cbreak();
 	noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
 
 	/* Initialize the fields */
 	field[0] = new_field(1, 10, 4, 18, 0, 0);
 	field[1] = new_field(1, 10, 6, 18, 0, 0);
-	field[2] = NULL;
+	field[2] = null;
 
 	/* Set field options */
 	set_field_back(field[0], A_UNDERLINE); 	/* Print a line for the option 	*/
@@ -24,7 +24,7 @@ int main()
 	field_opts_off(field[1], O_AUTOSKIP);
 
 	/* Create the form and post it */
-	my_form = new_form(field);
+	my_form = new_form(field.ptr);
 	post_form(my_form);
 	refresh();
 	

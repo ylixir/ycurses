@@ -1,8 +1,8 @@
-#include <form.h>
+import form;
 
 int main()
-{	FIELD *field[3];
-	FORM  *my_form;
+{	FIELD*[3] field;
+	FORM*  my_form;
 	int ch;
 	
 	/* Initialize curses */
@@ -10,7 +10,8 @@ int main()
 	start_color();
 	cbreak();
 	noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
+	scope(exit) endwin();
 
 	/* Initialize few color pairs */
 	init_pair(1, COLOR_WHITE, COLOR_BLUE);
@@ -19,7 +20,7 @@ int main()
 	/* Initialize the fields */
 	field[0] = new_field(1, 10, 4, 18, 0, 0);
 	field[1] = new_field(1, 10, 6, 18, 0, 0);
-	field[2] = NULL;
+	field[2] = null;
 
 	/* Set field options */
 	set_field_fore(field[0], COLOR_PAIR(1));/* Put the field with blue background */
@@ -31,7 +32,7 @@ int main()
 	field_opts_off(field[1], O_AUTOSKIP);
 
 	/* Create the form and post it */
-	my_form = new_form(field);
+	my_form = new_form(field.ptr);
 	post_form(my_form);
 	refresh();
 	
@@ -42,6 +43,7 @@ int main()
 	refresh();
 
 	/* Loop through to get user requests */
+while_loop:
 	while((ch = getch()) != KEY_F(1))
 	{	switch(ch)
 		{	case KEY_DOWN:
@@ -70,6 +72,5 @@ int main()
 	free_field(field[0]);
 	free_field(field[1]); 
 
-	endwin();
 	return 0;
 }

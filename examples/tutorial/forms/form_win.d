@@ -1,12 +1,10 @@
-#include <form.h>
-
-void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color);
+import form;
 
 int main()
 {
-	FIELD *field[3];
-	FORM  *my_form;
-	WINDOW *my_form_win;
+	FIELD*[3] field;
+	FORM*  my_form;
+	WINDOW* my_form_win;
 	int ch, rows, cols;
 	
 	/* Initialize curses */
@@ -14,7 +12,7 @@ int main()
 	start_color();
 	cbreak();
 	noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
 
 	/* Initialize few color pairs */
    	init_pair(1, COLOR_RED, COLOR_BLACK);
@@ -22,7 +20,7 @@ int main()
 	/* Initialize the fields */
 	field[0] = new_field(1, 10, 6, 1, 0, 0);
 	field[1] = new_field(1, 10, 8, 1, 0, 0);
-	field[2] = NULL;
+	field[2] = null;
 
 	/* Set field options */
 	set_field_back(field[0], A_UNDERLINE);
@@ -32,14 +30,14 @@ int main()
 	field_opts_off(field[1], O_AUTOSKIP);
 	
 	/* Create the form and post it */
-	my_form = new_form(field);
+	my_form = new_form(field.ptr);
 	
 	/* Calculate the area required for the form */
 	scale_form(my_form, &rows, &cols);
 
 	/* Create the window to be associated with the form */
         my_form_win = newwin(rows + 4, cols + 4, 4, 4);
-        keypad(my_form_win, TRUE);
+        keypad(my_form_win, true);
 
 	/* Set main window and sub window */
         set_form_win(my_form, my_form_win);
@@ -88,11 +86,11 @@ int main()
 	return 0;
 }
 
-void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color)
+void print_in_middle(WINDOW *win, int starty, int startx, int width, char[] string, chtype color)
 {	int length, x, y;
 	float temp;
 
-	if(win == NULL)
+	if(win == null)
 		win = stdscr;
 	getyx(win, y, x);
 	if(startx != 0)
@@ -102,11 +100,11 @@ void print_in_middle(WINDOW *win, int starty, int startx, int width, char *strin
 	if(width == 0)
 		width = 80;
 
-	length = strlen(string);
+	length = string.length;
 	temp = (width - length)/ 2;
-	x = startx + (int)temp;
+	x = startx + cast(int)temp;
 	wattron(win, color);
-	mvwprintw(win, y, x, "%s", string);
+	mvwprintw(win, y, x, "%s", (string~'\0').ptr);
 	wattroff(win, color);
 	refresh();
 }

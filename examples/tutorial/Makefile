@@ -16,6 +16,6 @@ all:
 clean:
 #	cd JustForFun 	&& $(MAKE) clean
 	cd basics	&& $(MAKE) clean
-#	cd forms	&& $(MAKE) clean
-#	cd menus	&& $(MAKE) clean
+	cd forms	&& $(MAKE) clean
+	cd menus	&& $(MAKE) clean
 #	cd panels	&& $(MAKE) clean

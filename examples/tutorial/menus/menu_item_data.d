@@ -1,38 +1,36 @@
-#include <curses.h>
-#include <menu.h>
+import menu;
 
-#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define CTRLD 	4
+const int CTRLD = 4;
 
-char *choices[] = {
+char[][] choices = [
                         "Choice 1",
                         "Choice 2",
                         "Choice 3",
                         "Choice 4",
-                        "Exit",
-                  };
+                        "Exit"
+                  ];
 
 int main()
-{	ITEM **my_items;
+{	ITEM*[] my_items;
 	int c;				
-	MENU *my_menu;
+	MENU* my_menu;
         int n_choices, i;
-	ITEM *cur_item;
+	ITEM* cur_item;
 	
 	
 	initscr();
         cbreak();
         noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
 	
-        n_choices = ARRAY_SIZE(choices);
-        my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+        n_choices = choices.length;
+        my_items.length = n_choices+1;
 
         for(i = 0; i < n_choices; ++i)
-                my_items[i] = new_item(choices[i], choices[i]);
-	my_items[n_choices] = (ITEM *)NULL;
+                my_items[i] = new_item((choices[i]~'\0').ptr, (choices[i]~'\0').ptr);
+	my_items[n_choices] = null;
 
-	my_menu = new_menu((ITEM **)my_items);
+	my_menu = new_menu(my_items.ptr);
 	post_menu(my_menu);
 	refresh();
 
@@ -55,6 +53,8 @@ int main()
 				refresh();
 				pos_menu_cursor(my_menu);
 				break;
+                        default:
+                                break;
 		}
 	}	
 
@@ -62,5 +62,6 @@ int main()
         free_item(my_items[1]);
 	free_menu(my_menu);
 	endwin();
+        return 0;
 }
 	

@@ -2,8 +2,9 @@
 
 # A few variables
 
-CC=gcc
+DC=gdc
 LIBS=-lmenu -lncurses
+IMPORTS=-I ~/code/ycurses/modules/
 
 SRC_DIR=.
 EXE_DIR=../demo/exe
@@ -19,10 +20,10 @@ EXES = \
 	${EXE_DIR}/menu_win
 
 ${EXE_DIR}/%: %.o
-	${CC} -o $@ $< ${LIBS}
+	${DC} -o $@ $< ${LIBS}
 
-%.o: ${SRC_DIR}/%.c
-	${CC} -o $@ -c $<
+%.o: ${SRC_DIR}/%.d
+	${DC} -o $@ -c $< ${IMPORTS}
 
 all:    ${EXES}
 

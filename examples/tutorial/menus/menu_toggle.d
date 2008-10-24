@@ -1,10 +1,8 @@
-#include <curses.h>
-#include <menu.h>
+import menu;
 
-#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define CTRLD 	4
+const int CTRLD = 4;
 
-char *choices[] = {
+char[][] choices = [
                         "Choice 1",
                         "Choice 2",
                         "Choice 3",
@@ -12,30 +10,30 @@ char *choices[] = {
 			"Choice 5",
 			"Choice 6",
 			"Choice 7",
-                        "Exit",
-                  };
+                        "Exit"
+                  ];
 
 int main()
-{	ITEM **my_items;
+{	ITEM*[] my_items;
 	int c;				
-	MENU *my_menu;
+	MENU* my_menu;
         int n_choices, i;
-	ITEM *cur_item;
+	ITEM* cur_item;
 	
 	/* Initialize curses */	
 	initscr();
         cbreak();
         noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
 
 	/* Initialize items */
-        n_choices = ARRAY_SIZE(choices);
-        my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+        n_choices = choices.length;
+        my_items.length = n_choices + 1;
         for(i = 0; i < n_choices; ++i)
-                my_items[i] = new_item(choices[i], choices[i]);
-	my_items[n_choices] = (ITEM *)NULL;
+                my_items[i] = new_item((choices[i]~'\0').ptr, (choices[i]~'\0').ptr);
+	my_items[n_choices] = null;
 
-	my_menu = new_menu((ITEM **)my_items);
+	my_menu = new_menu(my_items.ptr);
 
 	/* Make the menu multi valued */
 	menu_opts_off(my_menu, O_ONEVALUE);
@@ -57,22 +55,30 @@ int main()
 				menu_driver(my_menu, REQ_TOGGLE_ITEM);
 				break;
 			case 10:	/* Enter */
-			{	char temp[200];
+			{	char temp[];
 				ITEM **items;
 
 				items = menu_items(my_menu);
-				temp[0] = '\0';
+                                temp = "";
 				for(i = 0; i < item_count(my_menu); ++i)
-					if(item_value(items[i]) == TRUE)
-					{	strcat(temp, item_name(items[i]));
-						strcat(temp, " ");
+					if(item_value(items[i]) == true)
+					{
+                                          char* tmp;
+                                          for(tmp = item_name(items[i]);
+                                              *tmp != '\0'; tmp++)
+                                          {
+                                            temp~=*tmp;
+                                          }
+                                          temp~= " ";
 					}
 				move(20, 0);
 				clrtoeol();
-				mvprintw(20, 0, temp);
+				mvprintw(20, 0, (temp~'\0').ptr);
 				refresh();
 			}
 			break;
+                        default:
+                        break;
 		}
 	}	
 
@@ -80,5 +86,6 @@ int main()
         free_item(my_items[1]);
 	free_menu(my_menu);
 	endwin();
+        return 0;
 }
 	

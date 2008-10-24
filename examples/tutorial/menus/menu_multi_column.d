@@ -1,23 +1,21 @@
-#include <curses.h>
-#include <menu.h>
+import menu;
 
-#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define CTRLD 	4
+const int CTRLD = 4;
 
-char *choices[] = {
+char[][] choices = [
                         "Choice 1", "Choice 2", "Choice 3", "Choice 4", "Choice 5",
 			"Choice 6", "Choice 7", "Choice 8", "Choice 9", "Choice 10",
 			"Choice 11", "Choice 12", "Choice 13", "Choice 14", "Choice 15",
 			"Choice 16", "Choice 17", "Choice 18", "Choice 19", "Choice 20",
                         "Exit",
-                        (char *)NULL,
-                  };
+                        null
+                  ];
 
 int main()
-{	ITEM **my_items;
+{	ITEM*[] my_items;
 	int c;				
-	MENU *my_menu;
-        WINDOW *my_menu_win;
+	MENU* my_menu;
+        WINDOW* my_menu_win;
         int n_choices, i;
 	
 	/* Initialize curses */
@@ -25,25 +23,25 @@ int main()
 	start_color();
         cbreak();
         noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
 	init_pair(1, COLOR_RED, COLOR_BLACK);
 	init_pair(2, COLOR_CYAN, COLOR_BLACK);
 
 	/* Create items */
-        n_choices = ARRAY_SIZE(choices);
-        my_items = (ITEM **)calloc(n_choices, sizeof(ITEM *));
+        n_choices = choices.length;
+        my_items.length = n_choices;
         for(i = 0; i < n_choices; ++i)
-                my_items[i] = new_item(choices[i], choices[i]);
+                my_items[i] = new_item((choices[i]~'\0').ptr, (choices[i]~'\0').ptr);
 
 	/* Crate menu */
-	my_menu = new_menu((ITEM **)my_items);
+	my_menu = new_menu(my_items.ptr);
 
 	/* Set menu option not to show the description */
 	menu_opts_off(my_menu, O_SHOWDESC);
 
 	/* Create the window to be associated with the menu */
         my_menu_win = newwin(10, 70, 4, 4);
-        keypad(my_menu_win, TRUE);
+        keypad(my_menu_win, true);
      
 	/* Set main window and sub window */
         set_menu_win(my_menu, my_menu_win);
@@ -84,6 +82,8 @@ int main()
 			case KEY_PPAGE:
 				menu_driver(my_menu, REQ_SCR_UPAGE);
 				break;
+                        default:
+                                break;
 		}
                 wrefresh(my_menu_win);
 	}	
@@ -94,4 +94,6 @@ int main()
         for(i = 0; i < n_choices; ++i)
                 free_item(my_items[i]);
 	endwin();
+
+        return 0;
 }

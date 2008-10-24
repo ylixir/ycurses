@@ -15,11 +15,11 @@ EXES = \
 	${EXE_DIR}/init_func_example \
 	${EXE_DIR}/key_code \
 	${EXE_DIR}/mouse_menu \
-#	${EXE_DIR}/other_border \
-#	${EXE_DIR}/printw_example \
-#	${EXE_DIR}/scanw_example \
-#	${EXE_DIR}/simple_attr \
-#	${EXE_DIR}/simple_color \
+	${EXE_DIR}/other_border \
+	${EXE_DIR}/printw_example \
+	${EXE_DIR}/scanw_example \
+	${EXE_DIR}/simple_attr \
+	${EXE_DIR}/simple_color \
 #	${EXE_DIR}/simple_key \
 #	${EXE_DIR}/temp_leave \
 #	${EXE_DIR}/win_border \

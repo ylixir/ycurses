@@ -200,11 +200,19 @@ int mvaddch(N:int, C:chtype)(N y, N x, C ch)    ///ditto
 {
   return mvwaddch(stdscr, y, x, ch);
 }
+int mvaddch(N:int, C:char)(N y, N x, C ch)      ///ditto
+{
+  return mvwaddch(stdscr, y, x, ch);
+}
 int mvwaddch(W:WINDOW, N:int, C:chtype)(W* win, N y, N x, C ch) ///ditto
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
   return waddch(win, ch);
+}
+int mvwaddch(W:WINDOW, N:int, C:char)(W* win, N y, N x, C ch) ///ditto
+{
+  return mvwaddch(stdscr, y, x, cast(chtype)ch);
 }
 
 /**

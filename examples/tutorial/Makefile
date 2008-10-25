@@ -1,7 +1,7 @@
 # The top level Makefile
 
-DC=gdc
-IMPORTS=-I ~/code/ycurses/modules/
+DC=gdmd
+IMPORTS=-I~/code/ycurses/modules/
 
 all:	
 #	cd JustForFun 	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"

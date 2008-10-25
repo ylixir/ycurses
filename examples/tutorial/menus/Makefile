@@ -2,7 +2,7 @@
 
 # A few variables
 
-LIBS=-lmenu -lncurses
+LIBS=-L-lmenu -L-lncurses
 
 SRC_DIR=.
 EXE_DIR=../demo/exe
@@ -18,10 +18,10 @@ EXES = \
 	${EXE_DIR}/menu_win
 
 ${EXE_DIR}/%: %.o
-	${DC} -o $@ $< ${LIBS}
+	${DC} -of$@ $< ${LIBS}
 
 %.o: ${SRC_DIR}/%.d
-	${DC} -o $@ -c $< ${IMPORTS}
+	${DC} -of$@ -c $< ${IMPORTS}
 
 all:    ${EXES}
 

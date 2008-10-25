@@ -2,7 +2,7 @@
 
 # A few variables
 
-LIBS=-lncurses
+LIBS=-L-lncurses
 
 SRC_DIR=.
 EXE_DIR=../demo/exe
@@ -24,10 +24,10 @@ EXES = \
 	${EXE_DIR}/with_chgat
 
 ${EXE_DIR}/%: %.o
-	${DC} -o $@ $< ${LIBS}
+	${DC} -of$@ $< ${LIBS}
 
 %.o: ${SRC_DIR}/%.d
-	${DC} -o $@ -c $< ${IMPORTS}
+	${DC} -of$@ -c $< ${IMPORTS}
 
 all:    ${EXES}
 

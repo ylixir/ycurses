@@ -2,9 +2,7 @@
 
 # A few variables
 
-DC=gcc
 LIBS=-lpanel -lncurses
-IMPORTS=-I ~/code/ycurses/modules/
 
 SRC_DIR=.
 EXE_DIR=../demo/exe
@@ -18,7 +16,7 @@ EXES = \
 ${EXE_DIR}/%: %.o
 	${DC} -o $@ $< ${LIBS}
 
-%.o: ${SRC_DIR}/%.c
+%.o: ${SRC_DIR}/%.d
 	${DC} -o $@ -c $< ${IMPORTS}
 
 all:    ${EXES}

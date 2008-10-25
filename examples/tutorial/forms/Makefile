@@ -2,9 +2,7 @@
 
 # A few variables
 
-DC=gdc
 LIBS=-lform -lncurses
-IMPORTS=-I ~/code/ycurses/modules/
 
 SRC_DIR=.
 EXE_DIR=../demo/exe

@@ -1,16 +1,14 @@
-#include <panel.h>
+import panel;
+import std.c.stdio:sprintf;
 
-#define NLINES 10
-#define NCOLS 40
+const int NLINES = 10;
+const int NCOLS = 40;
 
-void init_wins(WINDOW **wins, int n);
-void win_show(WINDOW *win, char *label, int label_color);
-void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color);
 
 int main()
-{	WINDOW *my_wins[3];
-	PANEL  *my_panels[3];
-	PANEL  *top;
+{	WINDOW*[3] my_wins;
+	PANEL*[3]  my_panels;
+	PANEL*  top;
 	int ch;
 
 	/* Initialize curses */
@@ -18,7 +16,8 @@ int main()
 	start_color();
 	cbreak();
 	noecho();
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
+	scope(exit) endwin();
 
 	/* Initialize all the colors */
 	init_pair(1, COLOR_RED, COLOR_BLACK);
@@ -26,7 +25,7 @@ int main()
 	init_pair(3, COLOR_BLUE, COLOR_BLACK);
 	init_pair(4, COLOR_CYAN, COLOR_BLACK);
 
-	init_wins(my_wins, 3);
+	init_wins(my_wins.ptr, 3);
 	
 	/* Attach a panel to each window */ 	/* Order is bottom up */
 	my_panels[0] = new_panel(my_wins[0]); 	/* Push 0, order: stdscr-0 */
@@ -51,14 +50,15 @@ int main()
 	while((ch = getch()) != KEY_F(1))
 	{	switch(ch)
 		{	case 9:
-				top = (PANEL *)panel_userptr(top);
+				top = cast(PANEL*)panel_userptr(top);
 				top_panel(top);
 				break;
+                  default:
+                                break;
 		}
 		update_panels();
 		doupdate();
 	}
-	endwin();
 	return 0;
 }
 
@@ -66,38 +66,39 @@ int main()
 void init_wins(WINDOW **wins, int n)
 {	int x, y, i;
 	char label[80];
+        size_t label_length;
 
 	y = 2;
 	x = 10;
 	for(i = 0; i < n; ++i)
 	{	wins[i] = newwin(NLINES, NCOLS, y, x);
-		sprintf(label, "Window Number %d", i + 1);
-		win_show(wins[i], label, i + 1);
+		label_length = sprintf(label.ptr, "Window Number %d", i + 1);
+		win_show(wins[i], label[0..label_length], i + 1);
 		y += 3;
 		x += 7;
 	}
 }
 
 /* Show the window with a border and a label */
-void win_show(WINDOW *win, char *label, int label_color)
+void win_show(WINDOW* win, char[] label, int label_color)
 {	int startx, starty, height, width;
 
 	getbegyx(win, starty, startx);
 	getmaxyx(win, height, width);
 
 	box(win, 0, 0);
-	mvwaddch(win, 2, 0, ACS_LTEE); 
-	mvwhline(win, 2, 1, ACS_HLINE, width - 2); 
-	mvwaddch(win, 2, width - 1, ACS_RTEE); 
+	mvwaddch(win, 2, 0, acs_map[ACS.LTEE]); 
+	mvwhline(win, 2, 1, acs_map[ACS.HLINE], width - 2); 
+	mvwaddch(win, 2, width - 1, acs_map[ACS.RTEE]); 
 	
 	print_in_middle(win, 1, 0, width, label, COLOR_PAIR(label_color));
 }
 
-void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color)
+void print_in_middle(WINDOW *win, int starty, int startx, int width, char[] string, chtype color)
 {	int length, x, y;
 	float temp;
 
-	if(win == NULL)
+	if(win == null)
 		win = stdscr;
 	getyx(win, y, x);
 	if(startx != 0)
@@ -107,11 +108,11 @@ void print_in_middle(WINDOW *win, int starty, int startx, int width, char *strin
 	if(width == 0)
 		width = 80;
 
-	length = strlen(string);
+        length = string.length;
 	temp = (width - length)/ 2;
-	x = startx + (int)temp;
+	x = startx + cast(int)temp;
 	wattron(win, color);
-	mvwprintw(win, y, x, "%s", string);
+	mvwprintw(win, y, x, "%s", (string~'\0').ptr);
 	wattroff(win, color);
 	refresh();
 }

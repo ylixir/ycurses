@@ -1,11 +1,14 @@
 # The top level Makefile
 
+DC=gdc
+IMPORTS=-I ~/code/ycurses/modules/
+
 all:	
-#	cd JustForFun 	&& $(MAKE)
-	cd basics	&& $(MAKE)
-	cd forms	&& $(MAKE)
-	cd menus	&& $(MAKE)
-#	cd panels	&& $(MAKE)
+#	cd JustForFun 	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
+	cd basics	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
+	cd forms	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
+	cd menus	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
+	cd panels	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	@echo 
 	@echo "*********************************************"
 	@echo "All files Built"
@@ -18,4 +21,4 @@ clean:
 	cd basics	&& $(MAKE) clean
 	cd forms	&& $(MAKE) clean
 	cd menus	&& $(MAKE) clean
-#	cd panels	&& $(MAKE) clean
+	cd panels	&& $(MAKE) clean

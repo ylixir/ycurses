@@ -1,8 +1,8 @@
-#include <panel.h>
+import panel;
 
 int main()
-{	WINDOW *my_wins[3];
-	PANEL  *my_panels[3];
+{	WINDOW*[3] my_wins;
+	PANEL*[3]  my_panels;
 	int lines = 10, cols = 40, y = 2, x = 4, i;
 
 	initscr();
@@ -34,5 +34,7 @@ int main()
 	
 	getch();
 	endwin();
+
+        return 0;
 }
 

@@ -4,7 +4,7 @@ DC=gdmd
 IMPORTS=-I~/code/ycurses/modules/
 
 all:	
-#	cd JustForFun 	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
+	cd JustForFun 	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	cd basics	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	cd forms	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	cd menus	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
@@ -17,7 +17,7 @@ all:
 	@echo "*********************************************"
 	@echo
 clean:
-#	cd JustForFun 	&& $(MAKE) clean
+	cd JustForFun 	&& $(MAKE) clean
 	cd basics	&& $(MAKE) clean
 	cd forms	&& $(MAKE) clean
 	cd menus	&& $(MAKE) clean

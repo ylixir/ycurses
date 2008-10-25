@@ -1,4 +1,12 @@
 import ncurses;
+version(Tango)
+{
+  import tango.stdc.stdio: printf;
+}
+else
+{
+  import std.c.stdio: printf;
+}
 
 int main(char[][] args)
 {	initscr();			/* Start curses mode 		*/

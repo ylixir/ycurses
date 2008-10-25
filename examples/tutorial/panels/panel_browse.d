@@ -1,5 +1,12 @@
 import panel;
-import std.c.stdio:sprintf;
+version(Tango)
+{
+  import tango.stdc.stdio: sprintf;
+}
+else
+{
+  import std.c.stdio:sprintf;
+}
 
 const int NLINES = 10;
 const int NCOLS = 40;

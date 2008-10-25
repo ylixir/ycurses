@@ -1,5 +1,12 @@
 import ncurses;
-import std.stdio: writefln;
+version(Tango)
+{
+  import tango.stdc.stdio: printf;
+}
+else
+{
+  import std.c.stdio: printf;
+}
 void main()
 {	int ch;
 
@@ -10,5 +17,5 @@ void main()
 
 	ch = getch();
 	endwin();
-	writefln("The key pressed is %d", ch);
+	printf("The key pressed is %d\n", ch);
 }

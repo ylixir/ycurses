@@ -1,0 +1,19 @@
+This is the port to D of the header files necessary to
+link to ncurses from the D Programming Language.
+
+Note: all of these include imports of the Tango std.
+That is deprecated and is scheduled to be removed/moved to it's own folder.
+
+let me repeat. Tango currently only supports D1.
+If you use the Tango std, and attempt to use this, it will complain and not compile.
+To fix this, simply strip __gshared from all variables in all files.
+
+The changes I have made remove backwards compatibility.
+
+D2 currently utilizes TLS by default in all variables.
+TLS is incompatible with interfacing with C
+
+Please also note that you will have unexpected results if you pass any TLS variables
+to ncurses.  Most notably is the printing of random characters from printw()
+
+As a result, immutable and __gshared will be indespensable to you.

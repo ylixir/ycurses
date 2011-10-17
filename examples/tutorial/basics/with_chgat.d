@@ -1,11 +1,12 @@
+import std.string: toStringz;
 import ncurses;
 
-int main(char[][] args)
-{	initscr();			/* Start curses mode 		*/
-	start_color();			/* Start color functionality	*/
+void main()
+{	initscr();			//Start curses mode
+	start_color();		//Start color functionality
 	
 	init_pair(1, COLOR_CYAN, COLOR_BLACK);
-	printw("A Big string which i didn't care to type fully ");
+	printw(toStringz("A Big string which i didn't care to type fully "));
 	mvchgat(0, 0, -1, cast(attr_t)A_BLINK, cast(short)1, null);	
 	/* 
 	 * First two parameters specify the position at which to start 
@@ -18,7 +19,6 @@ int main(char[][] args)
 	 * Sixth one is always NULL 
 	 */
 	refresh();
-    	getch();
-	endwin();			/* End curses mode		  */
-	return 0;
+    getch();
+	endwin();			//End curses mode
 }

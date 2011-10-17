@@ -1,21 +1,21 @@
+//Modified by: 1100110
+
+import std.stdio: writefln;
 import ncurses;
-version(Tango)
-{
-  import tango.stdc.stdio: printf;
-}
-else
-{
-  import std.c.stdio: printf;
-}
+
+
 void main()
-{	int ch;
+{
+	//I'm going to assume that you've played with
+	//a bunch of the other tutorials by now...
+	int ch;
 
 	initscr();
-	cbreak();
+	cbreak();				//Line buffering disabled?
 	noecho();
-	keypad(stdscr, true);
+	keypad(stdscr, true);	
 
 	ch = getch();
 	endwin();
-	printf("The key pressed is %d\n", ch);
+	writefln("The key pressed is: %d", ch);
 }

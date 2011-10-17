@@ -1,3 +1,23 @@
+All have been reworked except for simple_key.d, simple_attr.d probably won't work
+and mouse_menu.d
+the rest should work beautifully.
+
+What none of these explains is how to prevent memory leaks.
+D is a Garbage Collected language, and C is not.
+D cannot automatically reclaim memory that C has used
+since there is no way to tell if C is still using it.
+
+To compile any of these files, copy the file into the module
+folder.
+
+you'll need to enable deprecated features since I don't know enough yet
+to fix one problem.
+
+example:
+	dmd -d acs_vars.d  -L-lncurses
+	gdmd -d acs_vars.d -L-lncurses
+
+
 Description of files 
 --------------------
   basics

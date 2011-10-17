@@ -24,27 +24,19 @@ IN THE SOFTWARE.
 //Edited by 1100110 for use with D2.
 //Credit goes where credit is due.
 //Since this seems to be abandoned, I will take over development.
-//If this works, host it on github.
 
 module ncurses;
 
-
-version(Tango)
+import std.c.stddef, std.c.stdio, std.c.stdarg;
+version(Win32)
 {
-  import tango.stdc.stddef, tango.stdc.stdio, tango.stdc.stdarg;
+  alias wchar wint_t;
 }
 else
 {
-  import std.c.stddef, std.c.stdio, std.c.stdarg;
-  version(Win32)
-  {
-    alias wchar wint_t;
-  }
-  else
-  {
-    alias dchar wint_t;
-  }
+  alias dchar wint_t;
 }
+
 
 extern (C):
 
@@ -282,41 +274,41 @@ int  mvwaddchnstr(W:WINDOW, N:int, C:chtype)
  * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
  * See_also: man curs_addstr
  */
-int addstr(C:char)(C* str)
+int addstr(C:immutable char)(C* str)
 {
   return waddnstr(stdscr, str, -1);
 }
 ///ditto
-int addnstr(C:char, N:int)(C* str, N n)
+int addnstr(C:immutable char, N:int)(C* str, N n)
 {
   return waddnstr(stdscr, str, n);
 }
 ///ditto
-int waddstr(W:WINDOW, C:char)(W* win, C* str)
+int waddstr(W:WINDOW, C:immutable char)(W* win, C* str)
 {
   return waddnstr(win, str, -1);
 }
 ///ditto
-int waddnstr(WINDOW* win, char* str, int n);
+int waddnstr(WINDOW* win, immutable char* str, int n);
 ///ditto
-int mvaddstr(N:int, C:char)(N y, N x, C* str)
+int mvaddstr(N:int, C:immutable char)(N y, N x, C* str)
 {
   return mvwaddstr(stdscr, y, x, str);
 }
 ///ditto
-int mvaddnstr(N:int, C:char)(N y, N x, C* str, N n)
+int mvaddnstr(N:int, C:immutable char)(N y, N x, C* str, N n)
 {
   return mvwaddnstr(stdscr, y, x, str, n);
 }
 ///ditto
-int mvwaddstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
+int mvwaddstr(W:WINDOW, N:int, C:immutable char)(W* win, N y, N x, C* str)
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
   return waddnstr(win, str, -1);
 }
 ///ditto
-int mvwaddnstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str, N n)
+int mvwaddnstr(W:WINDOW, N:int, C:immutable char)(W* win, N y, N x, C* str, N n)
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
@@ -2505,17 +2497,17 @@ Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
 
 See_also: man curs_printw
 */
-int printw(char* fmt, ...);
+int printw(immutable char* fmt, ...);
 ///ditto
-int wprintw(WINDOW* win, char* fmt, ...);
+int wprintw(WINDOW* win, immutable char* fmt, ...);
 ///ditto
-int mvprintw(int y, int x, char* fmt, ...);
+int mvprintw(int y, int x, immutable char* fmt, ...);
 ///ditto
-int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
+int mvwprintw(WINDOW* win, int y, int x, immutable char* fmt, ...);
 ///ditto
-int vwprintw(WINDOW* win, char* fmt, va_list varglist);
+int vwprintw(WINDOW* win, immutable char* fmt, va_list varglist);
 ///ditto
-int vw_printw(W:WINDOW, C:char, V:va_list)(W* win, C* fmt, V varglist)
+int vw_printw(W:WINDOW, C:immutable char, V:va_list)(W* win, C* fmt, V varglist)
 {
   return vwprintw(win, fmt, varglist);
 }

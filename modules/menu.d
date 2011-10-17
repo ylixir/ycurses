@@ -23,7 +23,7 @@ IN THE SOFTWARE.
 //Updated by 1100110
 //Fixed to compile under D2
 //This has NOT been tested.
-module menu;
+module curses.menu;
 
 public import ncurses, eti;
 
@@ -93,7 +93,7 @@ Routine to handle menu input.
 See_also: man menu_driver
 */
 int menu_driver(MENU* menu, int c);
-__gshared enum :int
+immutable enum :int
 {
   ///move to item on the left
   REQ_LEFT_ITEM     = 0x200,
@@ -201,7 +201,7 @@ Set/get the string used to mark the selected menu items.
 
 See_also: man menu_mark
 */
-int set_menu_mark(MENU* menu, char* mark);
+int set_menu_mark(MENU* menu, immutable char* mark);
 ///ditto
 char* menu_mark(MENU* menu);
 
@@ -233,7 +233,7 @@ Set/get the pattern match buffer for the menu.
 
 See_also: man menu_pattern
 */
-int set_menu_pattern(MENU* menu, char* pattern);
+int set_menu_pattern(MENU* menu, immutable char* pattern);
 ///ditto
 char* menu_pattern(MENU* menu);
 
@@ -253,7 +253,7 @@ See_also: man menu_requestname
 */
 char* menu_request_name(int request);
 ///ditto
-int menu_request_by_name(char* name);
+int menu_request_by_name(immutable char* name);
 
 /**
 Set/retrieve the spacing information for the menu.
@@ -331,7 +331,7 @@ Allocate/deallocate a menu item.
 
 See_also: man mitem_new
 */
-ITEM* new_item(char* name, char* description);
+ITEM* new_item(immutable char* name, immutable char* description);
 ///ditto
 int free_item(ITEM* item);
 
@@ -373,7 +373,7 @@ See_also: man mitem_visible
 */
 bool item_visible(ITEM* item);
 
-__gshared enum :OPTIONS
+immutable enum :OPTIONS
 {
   /* menu vals */
   O_ONEVALUE      = 0x01,

@@ -24,14 +24,8 @@ IN THE SOFTWARE.
 //Fixed to compile under D2
 //This has NOT been tested.module form;
 
-version(Tango)
-{
-  import tango.stdc.stdarg;
-}
-else
-{
-  import std.c.stdarg;
-}
+import std.c.stdarg;
+
 
 public import ncurses, eti;
 
@@ -64,7 +58,7 @@ See_also: man form_driver
 */
 int form_driver(FORM* form, int c);
 //driver requests
-__gshared enum :int
+immutable enum :int
 {
   ///move to the given page
   REQ_NEXT_PAGE         = 0x200,
@@ -286,7 +280,7 @@ Set the buffer of a field to contain a given string
 
 See_also: man form_field_buffer
 */
-int set_field_buffer(FIELD* field, int buf, char* value);
+int set_field_buffer(FIELD* field, int buf, immutable char* value);
 /**
 Get a pointer to a fields buffer
 
@@ -316,7 +310,7 @@ See_also: man form_field_just
 int set_field_just(FIELD* field, int justification);
 ///ditto
 int field_just(FIELD* field);
-__gshared enum :int
+immutable enum :int
 {
   ///Justification constants
   NO_JUSTIFICATION = 0,
@@ -558,7 +552,7 @@ Search for a request code by it's printable name
 
 See_also: man form_requestname
 */
-int form_request_by_name(char* name);
+int form_request_by_name(immutable char* name);
 
 /**
 Set/remove form window associations.
@@ -588,7 +582,7 @@ int set_form_userptr(FORM* form, void* userptr);
 ///ditto
 void* form_userptr(FORM* form);
 
-__gshared enum :OPTIONS
+immutable enum :OPTIONS
 {
   /* form vals */
   O_VISIBLE  = 0x0001,

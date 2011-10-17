@@ -23,7 +23,7 @@ IN THE SOFTWARE.
 //Chedked by 1100110
 //Nothing was modified, it should already work with D2
 
-module panel;
+module curses.panel;
 
 public import ncurses;
 

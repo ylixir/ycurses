@@ -28,9 +28,9 @@ parts of the ncurses package.
 //Fixed to compile under D2
 //This has NOT been tested.
 
-module eti;
+module curses.eti;
 
-__gshared enum :int
+immutable enum :int
 {
   ///Success
   E_OK                  = 0,

@@ -7,13 +7,7 @@ const int HEIGHT = 10;
 int startx = 0;
 int starty = 0;
 
-char[][] choices = [ 
-			"Choice 1",
-			"Choice 2",
-			"Choice 3",
-			"Choice 4",
-			"Exit"
-		  ];
+immutable char[][] choices = ["Choice 1", "Choice 2", "Choice 3", "Choice 4", "Exit"];
 
 int main()
 {	WINDOW* menu_win;

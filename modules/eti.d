@@ -28,7 +28,7 @@ parts of the ncurses package.
 //Fixed to compile under D2
 //This has NOT been tested.
 
-module curses.eti;
+module eti;
 
 immutable enum :int
 {

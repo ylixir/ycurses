@@ -11,7 +11,7 @@
  * Modified by: 1100110
  */
 import std.string: toStringz; 	//I don't need anything but toStringz()
-import curses.ncurses;			//Your inport path might(will) be different
+import ncurses;			//Your inport path might(will) be different
 
 void main()
 {	//toStringz returns immutable char*   Which is what most of these

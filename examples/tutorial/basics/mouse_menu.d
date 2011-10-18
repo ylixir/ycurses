@@ -7,7 +7,7 @@
  * works... That is the most that I can say about it.
  */
 import std.string: toStringz;
-import curses.ncurses;
+import ncurses;
 
 //immutable maybe??
 immutable int WIDTH 	= 30;

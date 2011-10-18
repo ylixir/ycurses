@@ -23,7 +23,7 @@ IN THE SOFTWARE.
 //Updated by 1100110
 //Fixed to compile under D2
 //This has NOT been tested.
-module curses.menu;
+module menu;
 
 public import ncurses, eti;
 

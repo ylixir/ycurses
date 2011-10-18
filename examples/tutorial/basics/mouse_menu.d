@@ -4,25 +4,19 @@
  * kiddies, appreciate the effort that went into this one...
  *
  * This is... terrible.
- * Relies heavily on deprecated features...
- * Much must be rewritten.
- * Skipping for now.
+ * works... That is the most that I can say about it.
  */
 import std.string: toStringz;
 import curses.ncurses;
 
 //immutable maybe??
-const int WIDTH 	= 30;
-const int HEIGHT 	= 10;
+immutable int WIDTH 	= 30;
+immutable int HEIGHT 	= 10;
 
 int startx = 0;
 int starty = 0;
 
-//change this to a string, mayhaps?
-//why are you global???
-//hard coded sizes are asking for trouble...
-//kids, ignore the bad coding habits...
-int [char[]] choices = ['Choice 1', 'Choice 2', 'Choice 3','Choice 4', 'Exit'];
+immutable char[][] choices = ["Choice 1", "Choice 2", "Choice 3","Choice 4", "Exit"];
 
 void main()
 {
@@ -54,15 +48,16 @@ void main()
 //while_loop:  I'm not entirely sure why this was in there...
 //oh god, please tell me he isn't using labels...  he is...
 //trying to route around it...
+//failing miserably...
 	c = wgetch(menu_win);
-	while(c != 'q')
+	while(c != -1)
 	{
 		switch(c)
 		{
 		case KEY_MOUSE:
 			if(getmouse(&event) == OK)
 			{
-				mvprintw(21, 1, toStringz("x = %d y = %d bstate = %x"),
+				mvprintw(21, 1, toStringz("x=%d y=%d bstate=%x"),
 											event.x, event.y, event.bstate);
 				refresh();
 
@@ -71,11 +66,11 @@ void main()
 					int choice = report_choice(event.x+1, event.y+1);
 					if(choice == -1)
 					{
-						c = 'q';
+						c = -1;
 						break;
 					}//if
 
-					mvprintw(22, 1, toStringz("Choice made is: %d String Chosen is \"%10s\""),
+					mvprintw(22, 1, toStringz("Choice made is: %d String Chosen is\"%10s\""),
 								choice, (choices[choice]~'\0').ptr);
 					refresh();
 					print_menu(menu_win, choice + 1);
@@ -86,6 +81,8 @@ void main()
 		default:
 			break;
     }//switch-case()
+    if(c != -1)
+		c = wgetch(menu_win);
   }//while
 
 }//main
@@ -120,7 +117,7 @@ int report_choice(int mouse_x, int mouse_y)
 			if(choice == choices.length - 1)
 				report = -1;
 		else
-			report = choices;
+			report = choice;
 		}//if
 	}//foreach
 	return report;

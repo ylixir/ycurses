@@ -85,7 +85,7 @@ __gshared struct  WINDOW
   short yoffset;
   cchar_t bkgrnd;
 }
-__gshared const size_t CCHARW_MAX = 5;
+immutable size_t CCHARW_MAX = 5;
 __gshared struct cchar_t
 {
   attr_t attr;
@@ -559,7 +559,7 @@ short PAIR_NUMBER(A:attr_t)(A attrs)
   Attributes that can be passed to attron, attrset, attroff or OR'd with
   the characters passed to addch.
   */
-__gshared enum :chtype
+immutable enum :chtype
 {
 ///Normal
   A_NORMAL      = 0x0,
@@ -992,7 +992,7 @@ Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
 See_also: man curs_color
 */
 int pair_content(short pair, short* f, short* b);
-__gshared enum :chtype
+immutable enum :chtype
 {
 ///Predefined colors
   COLOR_BLACK   = 0,
@@ -1252,7 +1252,7 @@ int has_key(int ch);
 Codes that might be returned by getch if keypad is enabled.
 See_also: man curs_getch
 */
-__gshared enum :int
+immutable enum :int
 {
   KEY_CODE_YES  = 0x100,
   KEY_MIN       = 0x101,
@@ -2292,7 +2292,7 @@ See_also: man curs_mouse
 */
 int mouseinterval(int erval);
 /* mouse events */
-__gshared enum :mmask_t
+immutable enum :mmask_t
 {
   BUTTON1_RELEASED          = 0x1,      ///button up
   ///ditto
@@ -2776,7 +2776,7 @@ char* _tracemouse(MEVENT* event);
 void trace(uint param);
 
 /* trace masks */
-__gshared enum :uint
+immutable enum :uint
 {
   TRACE_DISABLE  = 0x0000,
   TRACE_TIMES    = 0x0001,
@@ -2976,7 +2976,7 @@ See_also: man wresize
 int wresize(WINDOW* win, int lines, int columns);
 
 /* error codes */
-__gshared enum
+immutable enum
 {
   OK = 0,
   ERR = -1
@@ -2985,7 +2985,7 @@ __gshared enum
 
 
 /* acs symbols */
-__gshared enum ACS
+immutable enum ACS
 {
   ULCORNER      = 'l',
   LLCORNER      = 'm',

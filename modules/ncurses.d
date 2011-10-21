@@ -21,24 +21,22 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 */
 
+//Edited by 1100110 for use with D2.
+//Credit goes where credit is due.
+//Since this seems to be abandoned, I will take over development.
+
 module ncurses;
 
-version(Tango)
+import std.c.stddef, std.c.stdio, std.c.stdarg;
+version(Win32)
 {
-  import tango.stdc.stddef, tango.stdc.stdio, tango.stdc.stdarg;
+  alias wchar wint_t;
 }
 else
 {
-  import std.c.stddef, std.c.stdio, std.c.stdarg;
-  version(Win32)
-  {
-    alias wchar wint_t;
-  }
-  else
-  {
-    alias dchar wint_t;
-  }
+  alias dchar wint_t;
 }
+
 
 extern (C):
 
@@ -48,7 +46,7 @@ alias   uint  chtype;
 alias   chtype   attr_t;
 typedef int OPTIONS;
 typedef void  SCREEN;
-struct  WINDOW
+__gshared struct  WINDOW
 {
   short   cury,
           curx,
@@ -87,25 +85,25 @@ struct  WINDOW
   short yoffset;
   cchar_t bkgrnd;
 }
-const size_t CCHARW_MAX = 5;
-struct cchar_t
+immutable size_t CCHARW_MAX = 5;
+__gshared struct cchar_t
 {
   attr_t attr;
   wchar_t chars[CCHARW_MAX];
 }
 
 /* global variables */
-extern WINDOW* stdscr;
-extern WINDOW* curscr;
-extern WINDOW* newscr;
+__gshared extern WINDOW* stdscr;
+__gshared extern WINDOW* curscr;
+__gshared extern WINDOW* newscr;
 
-extern int     LINES;
-extern int     COLS;
-extern int     TABSIZE;
+__gshared extern int     LINES;
+__gshared extern int     COLS;
+__gshared extern int     TABSIZE;
 
-extern int     ESCDELAY;
+__gshared extern int     ESCDELAY;
 
-extern chtype acs_map[256];
+__gshared extern chtype acs_map[256];
 
 /**
  * Add a complex character to a window, and advance the cursor.
@@ -276,41 +274,41 @@ int  mvwaddchnstr(W:WINDOW, N:int, C:chtype)
  * Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
  * See_also: man curs_addstr
  */
-int addstr(C:char)(C* str)
+int addstr(C:immutable char)(C* str)
 {
   return waddnstr(stdscr, str, -1);
 }
 ///ditto
-int addnstr(C:char, N:int)(C* str, N n)
+int addnstr(C:immutable char, N:int)(C* str, N n)
 {
   return waddnstr(stdscr, str, n);
 }
 ///ditto
-int waddstr(W:WINDOW, C:char)(W* win, C* str)
+int waddstr(W:WINDOW, C:immutable char)(W* win, C* str)
 {
   return waddnstr(win, str, -1);
 }
 ///ditto
-int waddnstr(WINDOW* win, char* str, int n);
+int waddnstr(WINDOW* win, immutable char* str, int n);
 ///ditto
-int mvaddstr(N:int, C:char)(N y, N x, C* str)
+int mvaddstr(N:int, C:immutable char)(N y, N x, C* str)
 {
   return mvwaddstr(stdscr, y, x, str);
 }
 ///ditto
-int mvaddnstr(N:int, C:char)(N y, N x, C* str, N n)
+int mvaddnstr(N:int, C:immutable char)(N y, N x, C* str, N n)
 {
   return mvwaddnstr(stdscr, y, x, str, n);
 }
 ///ditto
-int mvwaddstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str)
+int mvwaddstr(W:WINDOW, N:int, C:immutable char)(W* win, N y, N x, C* str)
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
   return waddnstr(win, str, -1);
 }
 ///ditto
-int mvwaddnstr(W:WINDOW, N:int, C:char)(W* win, N y, N x, C* str, N n)
+int mvwaddnstr(W:WINDOW, N:int, C:immutable char)(W* win, N y, N x, C* str, N n)
 {
   if(wmove(win, y, x) == ERR)
     return ERR;
@@ -561,7 +559,7 @@ short PAIR_NUMBER(A:attr_t)(A attrs)
   Attributes that can be passed to attron, attrset, attroff or OR'd with
   the characters passed to addch.
   */
-enum :chtype
+immutable enum :chtype
 {
 ///Normal
   A_NORMAL      = 0x0,
@@ -931,9 +929,9 @@ int clrtoeol()()
 int wclrtoeol(WINDOW* win);
 
 ///Maximum number of colors supported
-extern int COLORS;
+__gshared extern int COLORS;
 ///Maximum number of color pairs supported
-extern int COLOR_PAIRS;
+__gshared extern int COLOR_PAIRS;
 /**
 Call before using any other color manipulation routines.
 
@@ -994,7 +992,7 @@ Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
 See_also: man curs_color
 */
 int pair_content(short pair, short* f, short* b);
-enum :chtype
+immutable enum :chtype
 {
 ///Predefined colors
   COLOR_BLACK   = 0,
@@ -1254,7 +1252,7 @@ int has_key(int ch);
 Codes that might be returned by getch if keypad is enabled.
 See_also: man curs_getch
 */
-enum :int
+immutable enum :int
 {
   KEY_CODE_YES  = 0x100,
   KEY_MIN       = 0x101,
@@ -1680,7 +1678,7 @@ Get a character and attributes from a window.
 
 See_also: man curs_inch
 */
-chtype inch()()
+__gshared chtype inch()()
 {
   return winch(stdscr);
 }
@@ -2234,7 +2232,7 @@ void setsyx(T:int)(T y, T x)
 /**
 Mouse event data
 */
-struct MEVENT
+__gshared struct MEVENT
 {
   short id;         /// mouse device ID
   int x,            /// event coordinates
@@ -2294,7 +2292,7 @@ See_also: man curs_mouse
 */
 int mouseinterval(int erval);
 /* mouse events */
-enum :mmask_t
+immutable enum :mmask_t
 {
   BUTTON1_RELEASED          = 0x1,      ///button up
   ///ditto
@@ -2499,17 +2497,17 @@ Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
 
 See_also: man curs_printw
 */
-int printw(char* fmt, ...);
+int printw(immutable char* fmt, ...);
 ///ditto
-int wprintw(WINDOW* win, char* fmt, ...);
+int wprintw(WINDOW* win, immutable char* fmt, ...);
 ///ditto
-int mvprintw(int y, int x, char* fmt, ...);
+int mvprintw(int y, int x, immutable char* fmt, ...);
 ///ditto
-int mvwprintw(WINDOW* win, int y, int x, char* fmt, ...);
+int mvwprintw(WINDOW* win, int y, int x, immutable char* fmt, ...);
 ///ditto
-int vwprintw(WINDOW* win, char* fmt, va_list varglist);
+int vwprintw(WINDOW* win, immutable char* fmt, va_list varglist);
 ///ditto
-int vw_printw(W:WINDOW, C:char, V:va_list)(W* win, C* fmt, V varglist)
+int vw_printw(W:WINDOW, C:immutable char, V:va_list)(W* win, C* fmt, V varglist)
 {
   return vwprintw(win, fmt, varglist);
 }
@@ -2778,7 +2776,7 @@ char* _tracemouse(MEVENT* event);
 void trace(uint param);
 
 /* trace masks */
-enum :uint
+immutable enum :uint
 {
   TRACE_DISABLE  = 0x0000,
   TRACE_TIMES    = 0x0001,
@@ -2978,7 +2976,7 @@ See_also: man wresize
 int wresize(WINDOW* win, int lines, int columns);
 
 /* error codes */
-enum
+immutable enum
 {
   OK = 0,
   ERR = -1
@@ -2987,7 +2985,7 @@ enum
 
 
 /* acs symbols */
-enum ACS
+immutable enum ACS
 {
   ULCORNER      = 'l',
   LLCORNER      = 'm',

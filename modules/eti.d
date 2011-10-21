@@ -24,9 +24,13 @@ IN THE SOFTWARE.
 Description: This module contains a set of constant error codes used by
 parts of the ncurses package.
 */
+//Updated by 1100110
+//Fixed to compile under D2
+//This has NOT been tested.
+
 module eti;
 
-enum :int
+immutable enum :int
 {
   ///Success
   E_OK                  = 0,

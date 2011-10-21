@@ -2,3 +2,11 @@ Sept 18, 2008
 -Added a definition of wint_t to the phobos code
 -Changed the parameter types of functions in curs_attr from int to chtype
 -added a missing return statement to mvwaddch
+
+1100110:
+Oct 16, 2011
+-Updated ncurses.d to work with D2
+-Updated eti.d to work with D2
+-Updated form.d to work with D2
+-Updated menu.d to work with D2
+-Looked at panel.d, no changes were necessary.

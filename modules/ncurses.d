@@ -21,10 +21,6 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 */
 
-//Edited by 1100110 for use with D2.
-//Credit goes where credit is due.
-//Since this seems to be abandoned, I will take over development.
-
 module ncurses;
 
 import std.c.stddef, std.c.stdio, std.c.stdarg;

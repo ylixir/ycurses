@@ -20,9 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 */
-//Updated by 1100110
-//Fixed to compile under D2
-//This has NOT been tested.
+
 module menu;
 
 public import ncurses, eti;

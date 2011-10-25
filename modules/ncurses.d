@@ -1,5 +1,6 @@
 /**
  * Authors: Jon "ylixir" Allen, ylixir@gmail.com
+ *     And: Jude "1100110" Young, 10equals2@gmail.com
  * Copyright: Copyright (c) 2008 ylixir. All rights reserved.
  * License:
     Permission is hereby granted, free of charge, to any person obtaining

@@ -7,24 +7,24 @@ void main()
 {
     initscr();
 
-	//Please note: you might want to maximize your terminal before you try to
-	//run this.  It does not check the size or enable scrolling.
-	//That is left as an exersize for the reader.
-	//Plus I'm lazy and I still have to port the rest of the tutorials.. ;)
-	//The spaces are for readability on the screen when you run the program.
-	
+    //Please note: you might want to maximize your terminal before you try to
+    //run this.  It does not check the size or enable scrolling.
+    //That is left as an exersize for the reader.
+    //Plus I'm lazy and I still have to port the rest of the tutorials.. ;)
+    //The spaces are for readability on the screen when you run the program.
+
     printw(toStringz("Upper left corner           "));
     addch(acs_map[ACS.ULCORNER]);
     printw("\n");
-    
+
     printw(toStringz("Lower left corner           "));
     addch(acs_map[ACS.LLCORNER]);
     printw("\n");
-    
+
     printw(toStringz("Lower right corner          "));
     addch(acs_map[ACS.LRCORNER]);
     printw("\n");
-    
+
     printw(toStringz("Tee pointing right          "));
     addch(acs_map[ACS.LTEE]);
     printw("\n");

@@ -555,6 +555,21 @@ short PAIR_NUMBER(A:attr_t)(A attrs)
   Attributes that can be passed to attron, attrset, attroff or OR'd with
   the characters passed to addch.
   */
+//TODO fix this before next commit.
+//found this under someone else's half completed ncurses port.
+//Unfortunately I have no idea where I found it. BSD license, free for all
+//use IIRC
+//I like the bitmask, but I don't believe that is compatible with Deimos...
+// TODO: Replace this with compile-time function
+/*
+ * Copyright (c) 2007 Dejan Lekic , http://dejan.lekic.org
+ *                    dejan.lekic @ (gmail.com || kcl.ac.uk)
+ */
+//template NCURSES_BITS(uint mask, ubyte shift)
+//{
+  //const chtype NCURSES_BITS = mask << (shift + NCURSES_ATTR_SHIFT);
+//} // NCURSES_BITS() template function
+
 immutable enum :chtype
 {
 ///Normal
@@ -2184,7 +2199,9 @@ Returns: $(D_PARAM OK) when successful and $(D_PARAM ERR) when not.
 
 See_also: man curs_kernel
 */
-int ripoffline(int line, int (*init)(WINDOW* win, int cols));
+//TODO make sure that this works.
+int function(int line, int function(WINDOW* win, int cols) init) ripoffline;
+//int ripoffline(int line, int (*init)(WINDOW* win, int cols));
 /**
 Set cursor visibility to invisible (0), normal (1) or very visible (2).
 

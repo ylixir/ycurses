@@ -5,7 +5,7 @@
 LIBS=-L-lncurses
 
 SRC_DIR=.
-EXE_DIR=../demo/exe
+EXE_DIR=../../demo/exe
 
 EXES = \
 	${EXE_DIR}/acs_vars \

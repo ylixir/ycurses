@@ -1,12 +1,12 @@
 # The top level Makefile
 
-DC=gdmd
+DC=dmd
 IMPORTS=-I../../../modules/
 
 all:
 #	cd JustForFun 	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	cd basics	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
-	cd forms	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
+#	cd forms	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	cd menus	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	cd panels	&& $(MAKE) DC=${DC} IMPORTS="${IMPORTS}"
 	@echo

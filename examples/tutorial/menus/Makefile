@@ -5,7 +5,7 @@
 LIBS=-L-lmenu -L-lncurses
 
 SRC_DIR=.
-EXE_DIR=../demo/exe
+EXE_DIR=../../demo/exe
 
 EXES = \
 	${EXE_DIR}/menu_attrib\
@@ -13,7 +13,7 @@ EXES = \
 	${EXE_DIR}/menu_multi_column \
 	${EXE_DIR}/menu_scroll \
 	${EXE_DIR}/menu_simple \
-	${EXE_DIR}/menu_toggle \
+#	${EXE_DIR}/menu_toggle \
 	${EXE_DIR}/menu_userptr \
 	${EXE_DIR}/menu_win
 

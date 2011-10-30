@@ -6,16 +6,16 @@ import ncurses;
 
 void main()
 {
-	//I'm going to assume that you've played with
-	//a bunch of the other tutorials by now...
-	int ch;
+    //I'm going to assume that you've played with
+    //a bunch of the other tutorials by now...
+    int ch;
 
-	initscr();
-	cbreak();				//Line buffering disabled?
-	noecho();
-	keypad(stdscr, true);	
+    initscr();
+    cbreak();               //Line buffering disabled
+    noecho();
+    keypad(stdscr, true);
 
-	ch = getch();
-	endwin();
-	writefln("The key pressed is: %d", ch);
+    ch = getch();
+    endwin();
+    writefln("The key pressed is: %d", ch);
 }

@@ -1,3 +1,4 @@
+import std.string: toStringz;
 import menu;
 
 const int CTRLD = 4;
@@ -46,11 +47,11 @@ int main()
 
     /* Print a border around the main window and print a title */
         box(my_menu_win, 0, 0);
-    print_in_middle(my_menu_win, 1, 0, 40, "My Menu", COLOR_PAIR(1));
+    print_in_middle(my_menu_win, 1, 0, 40, cast(char[])"My Menu", COLOR_PAIR(1));
     mvwaddch(my_menu_win, 2, 0, acs_map[ACS.LTEE]);
     mvwhline(my_menu_win, 2, 1, acs_map[ACS.HLINE], 38);
     mvwaddch(my_menu_win, 2, 39, acs_map[ACS.RTEE]);
-    mvprintw(LINES - 2, 0, "F1 to exit");
+    mvprintw(LINES - 2, 0, toStringz("F1 to exit"));
     refresh();
 
     /* Post the menu */
@@ -80,7 +81,7 @@ int main()
         return 0;
 }
 
-void print_in_middle(WINDOW *win, int starty, int startx, int width, char[] string, chtype color)
+void print_in_middle(WINDOW *win, int starty, int startx, int width, char[] strtemp, chtype color)
 {   int length, x, y;
     float temp;
 
@@ -94,11 +95,11 @@ void print_in_middle(WINDOW *win, int starty, int startx, int width, char[] stri
     if(width == 0)
         width = 80;
 
-    length = string.length;
+    length = strtemp.length;
     temp = (width - length)/ 2;
     x = startx + cast(int)temp;
     wattron(win, color);
-    mvwprintw(win, y, x, "%s", (string~'\0').ptr);
+    mvwprintw(win, y, x, "%s", (strtemp~'\0').ptr);
     wattroff(win, color);
     refresh();
 }

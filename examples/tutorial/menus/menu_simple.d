@@ -41,8 +41,8 @@ int main()
             case KEY_UP:
                 menu_driver(my_menu, REQ_UP_ITEM);
                 break;
-                        default:
-                                break;
+            default:
+                break;
         }
     }
 

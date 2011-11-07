@@ -1,4 +1,7 @@
 # Makefile for JustForFun Files
+#	${EXE_DIR}/menu_toggle \
+#	${EXE_DIR}/menu_userptr \
+
 
 # A few variables
 
@@ -13,8 +16,6 @@ EXES = \
 	${EXE_DIR}/menu_multi_column \
 	${EXE_DIR}/menu_scroll \
 	${EXE_DIR}/menu_simple \
-#	${EXE_DIR}/menu_toggle \
-	${EXE_DIR}/menu_userptr \
 	${EXE_DIR}/menu_win
 
 ${EXE_DIR}/%: %.o

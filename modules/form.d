@@ -28,9 +28,9 @@ public import ncurses, eti;
 
 extern(C):
 
-typedef void FIELD;
-typedef void FORM;
-typedef void FIELDTYPE;
+alias void FIELD;
+alias void FORM;
+alias void FIELDTYPE;
 
 /**
 Restores the cursor to the position required by the forms driver.

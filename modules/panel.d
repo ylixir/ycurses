@@ -26,7 +26,7 @@ module panel;
 public import ncurses;
 
 extern (C):
-typedef void PANEL;
+alias void PANEL;
 
 /**
 Allocates a panel structure, associates it with a window, and places

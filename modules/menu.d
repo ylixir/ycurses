@@ -27,8 +27,8 @@ public import ncurses, eti;
 
 extern(C):
 
-typedef void ITEM;
-typedef void MENU;
+alias void ITEM;
+alias void MENU;
 
 /**
 Set/get the foreground (selected) attribute of menu.

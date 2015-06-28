@@ -40,8 +40,8 @@ extern (C):
 alias   uint mmask_t;
 alias   uint  chtype;
 alias   chtype   attr_t;
-typedef int OPTIONS;
-typedef void  SCREEN;
+alias int OPTIONS;
+alias void  SCREEN;
 __gshared struct  WINDOW
 {
   short   cury,
